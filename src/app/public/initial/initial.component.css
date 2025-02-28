@@ -1,0 +1,105 @@
+.background {
+  background-image: url('/assets/images/fondoinicio.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea los elementos hacia la parte superior */
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 50px; /* Añade espacio en la parte superior para el título */
+}
+
+.logo {
+  width: 70px;
+  margin-bottom: 5px;
+}
+
+.title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3.5rem;
+  color: #FFCC00;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 20px; /* Añade margen superior para ajustar la posición */
+  text-align: center;
+  text-shadow:
+    -1px -1px 0 #ffffff, /* Borde blanco en las cuatro direcciones */
+    1px -1px 0 #ffffff,
+    -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff;
+}
+
+.button-container {
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column; /* Coloca los botones en una columna */
+  align-items: center; /* Centra los botones horizontalmente */
+  gap: 30px;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 300px; /* Tamaño máximo en pantallas grandes */
+}
+
+.action-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.1rem;
+  color: blue;
+  background-color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.2s;
+  border-radius: 25px; /* Bordes ovalados */
+  font-weight: bold; /* Letras más gruesas */
+  text-shadow:
+    -1px -1px 0 #000000, /* Borde negro alrededor del texto */
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+}
+
+.action-button:hover {
+  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+  background-color: yellow; /* Cambia el color a amarillo */
+}
+
+#phaser-container {
+  overflow: hidden; /* Evita desbordes dentro del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Media Queries para Pantallas Pequeñas */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem; /* Ajuste del título para pantallas pequeñas */
+  }
+  .action-button {
+    font-size: 0.9rem; /* Ajuste del tamaño de letra en botones */
+    padding: 8px 15px;
+  }
+  #phaser-container {
+    width: 80px; /* Aumenta el tamaño en pantallas pequeñas */
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem; /* Ajuste del título para pantallas móviles */
+  }
+  .logo {
+    width: 80px; /* Escala menor para el logo en pantallas móviles */
+  }
+  .button-container {
+    width: 90%; /* Ocupa casi todo el ancho en pantallas muy pequeñas */
+  }
+  #phaser-container {
+    width: 70px; /* Ajusta el tamaño para pantallas móviles */
+    height: 70px;
+  }
+}

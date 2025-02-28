@@ -1,0 +1,81 @@
+body {
+  background-image: url('/assets/images/fondoinicio.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+mat-card {
+  padding-top: 50px;
+  width: 700px;
+  height: 500px;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: rgba(173, 216, 230, 0.8); /* Celeste bebé con transparencia */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Press Start 2P', cursive;
+  color: darkblue;
+}
+
+mat-card-title {
+  margin:40px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  color: darkblue;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.actions button {
+  font-family: 'Press Start 2P', cursive;
+  margin-bottom: 20px;  /* Espaciado entre botones */
+  font-size: 20px;      /* Letra más grande */
+  font-weight: bold;    /* Texto en negrita */
+  background-color: #f0f0f0; /* Color base de los botones */
+  color: darkblue;      /* Color de las letras inicial */
+  border: none;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.actions button:hover {
+  background-color: darkblue; /* Cambia a azul oscuro al hacer hover */
+  color: white;               /* Cambia el texto a blanco */
+  box-shadow: 0 0 20px 5px rgba(0, 0, 255, 0.7); /* Efecto de brillo */
+}
+

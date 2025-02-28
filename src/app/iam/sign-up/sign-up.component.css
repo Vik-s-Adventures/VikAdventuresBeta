@@ -1,0 +1,150 @@
+/* Fondo y estructura */
+.background {
+  background-image: url('/assets/images/fondoinicio.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Información del usuario */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  color: #FFCC00;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+}
+
+/* Botones y entradas */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.form-input {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: blue;
+  background-color: white;
+  border: 2px solid #000000;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-align: center;
+  outline: none;
+  transition: transform 0.3s, background-color 0.2s;
+}
+
+.form-input:focus {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.action-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: blue;
+  background-color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.2s;
+  border-radius: 25px;
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+}
+
+.action-button:hover {
+  transform: scale(1.1);
+  background-color: #60a5fa;
+}
+
+/* Registro */
+.register-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.register-link {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: #FF5722;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.register-link:hover {
+  color: #FFCC00;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.2rem;
+  }
+  .form-input, .action-button, .register-text, .register-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1rem;
+  }
+  .user-image {
+    width: 60px;
+    height: 60px;
+  }
+}

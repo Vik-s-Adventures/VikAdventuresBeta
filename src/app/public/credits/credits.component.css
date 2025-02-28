@@ -1,0 +1,139 @@
+.credits-container {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: transparent;
+  z-index: 10;
+  padding: 10px 0;
+}
+
+.credits-text {
+  font-family: 'Press Start 2P', cursive;
+  color: #ffffff;
+  text-align: center;
+  width: 90%;
+  font-size: 0.8em;
+  line-height: 1.5;
+  transform-origin: 50% 100%;
+  animation: scrollText 30s linear infinite;
+  max-width: 800px;
+}
+
+.credits-section {
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-family: 'Press Start 2P', cursive;
+  color: #FFD700;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+p {
+  color: #ffffff;
+  font-size: 0.7em;
+  margin-top: 0;
+}
+
+.circle-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.back-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  padding: 15px 30px;
+  background-color: #FFD700;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #FFC107;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateY(100%) scale(1.5);
+  }
+  100% {
+    transform: translateY(-300%) scale(1);
+  }
+}
+
+/* Media queries para hacer el diseño responsive */
+
+/* Pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+  .credits-text {
+    width: 70%;
+    font-size: 1em;
+  }
+  .back-button {
+    font-size: 1em;
+    padding: 15px 40px;
+  }
+}
+
+/* Pantallas medianas (tablet) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .credits-text {
+    width: 80%;
+    font-size: 0.9em;
+  }
+  .back-button {
+    font-size: 0.9em;
+    padding: 12px 35px;
+  }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+  .credits-text {
+    width: 90%;
+    font-size: 0.7em;
+  }
+  .h2 {
+    font-size: 1em;
+  }
+  .p {
+    font-size: 0.6em;
+  }
+  .circle-image {
+    width: 40px;
+    height: 40px;
+  }
+  .back-button {
+    font-size: 0.7em;
+    padding: 10px 25px;
+  }
+}

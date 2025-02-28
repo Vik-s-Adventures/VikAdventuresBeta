@@ -1,0 +1,39 @@
+<div class="background">
+  <div class="card">
+    <div class="user-info">
+      <img src="assets/images/vickk.png" alt="SignUpUser Image" class="user-image">
+      <h2 class="title">INICIAR SESIÓN</h2>
+    </div>
+
+    <form (ngSubmit)="onSignIn()" class="button-container">
+      <label class="action-button">GMAIL</label>
+      <input
+        type="email"
+        label="Ingresa tu gmail"
+        id="gmail"
+        name="gmail"
+        required
+        class="form-input"
+        [(ngModel)]="credentials.email"
+      />
+
+      <label class="action-button">CONTRASEÑA</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        class="form-input"
+        [(ngModel)]="credentials.password"
+      />
+
+      <button type="submit" class="action-button">Enviar</button>
+
+      <div class="register-container">
+        <a href="/sign-up" class="register-link">Registrate aquí</a>
+      </div>
+    </form>
+
+  </div>
+</div>
+

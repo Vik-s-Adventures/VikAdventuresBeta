@@ -1,0 +1,23 @@
+<app-time-counter-footer-page></app-time-counter-footer-page>
+<body>
+<mat-card *ngIf="currentQuestion">
+  <mat-card-title>Pregunta {{ currentQuestion.id }}</mat-card-title>
+  <mat-card-content>
+    <p>{{ currentQuestion.questionText }}</p>
+    <div *ngIf="currentQuestion.imageUrl">
+      <img [src]="currentQuestion.imageUrl" alt="Question Image" style="max-width: 60%; height: auto;">
+    </div>
+  </mat-card-content>
+
+
+  <mat-radio-group [(ngModel)]="selectedAnswer" class="example-radio-group">
+    <mat-radio-button *ngFor="let option of getOptionsByQuestionId(currentQuestion.id)" [value]="option" class="example-radio-group">
+      {{ option.text }}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <div class="actions">
+    <button mat-button (click)="nextQuestion()" [disabled]="!selectedAnswer">Siguiente</button>
+  </div>
+</mat-card>
+</body>

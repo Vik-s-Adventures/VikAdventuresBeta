@@ -1,0 +1,30 @@
+<body>
+<mat-card>
+  <mat-card-title>RANKING</mat-card-title>
+  <mat-card-content>
+    <table>
+      <thead>
+      <tr>
+        <th>Posición</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Puntaje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of studentsWithScores; let i = index">
+        <td>#{{ i + 1 }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.score }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+  <div class="actions">
+    <button mat-raised-button routerLink="/menu">MENU</button>
+  </div>
+</mat-card>
+</body>
+
+

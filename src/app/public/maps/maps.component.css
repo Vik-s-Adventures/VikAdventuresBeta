@@ -1,0 +1,75 @@
+body {
+  background-image: url('/assets/images/fondoinicio.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh; /* Cambia a min-height para permitir el scroll en pantallas pequeñas */
+  margin: 0;
+  padding: 0;
+}
+
+.titulo {
+  padding-top: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.titulo img {
+  max-width: 80%; /* Reduce el tamaño en pantallas pequeñas */
+  height: auto;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Permite que las cards se ajusten a múltiples líneas en pantallas pequeñas */
+  padding: 20px; /* Reduce el padding en pantallas pequeñas */
+  position: relative;
+  z-index: 1;
+}
+
+mat-card {
+  width: 250px;
+  margin: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column; /* Cambia la dirección para que las cards se apilen */
+    align-items: center; /* Centra las cards */
+    padding: 20px;
+  }
+
+  mat-card {
+    width: 80%; /* Ancho de las cards ajustado a pantallas pequeñas */
+  }
+
+  .titulo img {
+    max-width: 100%; /* Asegura que la imagen ocupe el ancho completo */
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo {
+    padding-top: 20px; /* Reduce el padding en pantallas muy pequeñas */
+  }
+
+  .titulo img {
+    max-width: 90%;
+  }
+
+  .card-container {
+    padding: 10px;
+  }
+
+  mat-card {
+    width: 90%;
+  }
+}

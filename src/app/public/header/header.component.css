@@ -1,0 +1,61 @@
+/* Estilos para el header */
+.header {
+  display: flex;
+  justify-content: space-between; /* Distribuye el espacio entre botones */
+  align-items: center; /* Centra verticalmente los botones */
+  padding: 5px 10px; /* Espaciado alrededor del contenido */
+  background-color: darkblue; /* Fondo azul oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+  color: white; /* Texto blanco */
+  flex-wrap: wrap; /* Para que los elementos se ajusten automáticamente en pantallas pequeñas */
+}
+
+/* Estilo de los botones */
+button {
+  font-family: 'Press Start 2P', cursive; /* Fuente personalizada */
+  background-color: #2563eb; /* Fondo azul primario */
+  color: white; /* Texto blanco */
+  padding: 5px 10px; /* Espaciado dentro del botón */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de fuente */
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: background-color 0.3s ease; /* Transición suave */
+  border: none; /* Sin borde */
+  margin: 5px; /* Espaciado entre botones */
+}
+
+button:hover {
+  background-color: #FFCC00; /* Color más claro al hacer hover */
+}
+
+button:focus {
+  outline: none; /* Elimina el borde predeterminado al enfocar */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5); /* Sombra azul en foco */
+}
+
+/* Hacer que el header sea responsivo en pantallas pequeñas */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Coloca los botones en columna en pantallas pequeñas */
+    align-items: stretch; /* Hace que los botones ocupen todo el ancho */
+    padding: 10px; /* Reduce el padding en pantallas pequeñas */
+  }
+
+  button {
+    width: 100%; /* Los botones ocupan el 100% del ancho en pantallas pequeñas */
+    padding: 15px; /* Aumenta el padding de los botones */
+    font-size: 14px; /* Reduce el tamaño de fuente */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 5px; /* Reduce aún más el padding en pantallas muy pequeñas */
+  }
+
+  button {
+    font-size: 12px; /* Reduce aún más el tamaño de fuente en pantallas muy pequeñas */
+    padding: 10px; /* Reduce el padding en botones */
+  }
+}

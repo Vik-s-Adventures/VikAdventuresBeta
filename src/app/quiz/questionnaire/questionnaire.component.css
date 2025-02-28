@@ -1,0 +1,89 @@
+body {
+  background-image: url('https://i.ibb.co/tsf859Q/fondoinicio.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0;
+  align-items: flex-start;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px; /* Fuente más pequeña */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  z-index: 1;
+  font-family: 'Press Start 2P', cursive;
+}
+
+mat-card {
+  width: 90%; /* Cambiado para evitar desbordes en pantallas pequeñas */
+  max-width: 1000px;
+  height: auto; /* Ajuste automático a contenido */
+  padding: 10px; /* Añadido padding */
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Press Start 2P', cursive;
+}
+
+mat-card-title {
+  margin: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px; /* Fuente más pequeña para el título */
+  font-family: 'Press Start 2P', cursive;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card-content p {
+  font-size: 10px; /* Fuente más pequeña para el contenido */
+}
+
+img {
+  display: block;
+  margin: 0 auto; /* Imagen centrada */
+  max-width: 30%; /* Evita desbordes de la imagen */
+  height: auto;
+}
+
+.actions {
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  position: relative;
+}
+
+button[mat-button] {
+  font-family: 'Press Start 2P', cursive;
+  font-weight: bold;
+  transition: box-shadow 0.3s ease;
+  font-size: 12px; /* Fuente más pequeña */
+}
+
+button[mat-button]:disabled {
+  box-shadow: none;
+}
+
+button[mat-button]:not(:disabled) {
+  box-shadow: 0px 0px 15px 2px rgba(0, 123, 255, 0.6);
+}
