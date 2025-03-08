@@ -1,4 +1,3 @@
-<app-time-counter-footer-page></app-time-counter-footer-page>
 <body>
 <mat-card *ngIf="currentQuestion">
   <mat-card-title>Pregunta {{ currentQuestion.id }}</mat-card-title>
@@ -12,7 +11,7 @@
 
   <mat-radio-group [(ngModel)]="selectedAnswer" class="example-radio-group">
     <mat-radio-button *ngFor="let option of getOptionsByQuestionId(currentQuestion.id)" [value]="option" class="example-radio-group">
-      {{ option.text }}
+      {{ option.optionText }}
     </mat-radio-button>
   </mat-radio-group>
 

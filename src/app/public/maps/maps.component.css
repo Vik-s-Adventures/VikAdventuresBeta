@@ -3,73 +3,113 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh; /* Cambia a min-height para permitir el scroll en pantallas pequeñas */
+  min-height: 100vh;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centra todo verticalmente */
+  font-family: Arial, sans-serif;
 }
 
-.titulo {
-  padding-top: 65px;
+.title-card-container {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.title-card {
+  background-color: white; /* Fondo blanco */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
 
-.titulo img {
-  max-width: 80%; /* Reduce el tamaño en pantallas pequeñas */
-  height: auto;
+.titulo {
+  font-size: 2.5em; /* Tamaño grande para el título */
+  font-weight: bold;
+  color: #0077cc; /* Color azul metálico */
+  background: linear-gradient(45deg, #0077cc, #00aaff); /* Efecto brillante */
+  -webkit-background-clip: text; /* Aplica el gradiente al texto */
+  -webkit-text-fill-color: transparent; /* Hace el texto transparente para mostrar el gradiente */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para mejorar el efecto */
+  margin: 0; /* Elimina el margen predeterminado */
 }
 
 .card-container {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  flex-wrap: wrap; /* Permite que las cards se ajusten a múltiples líneas en pantallas pequeñas */
-  padding: 20px; /* Reduce el padding en pantallas pequeñas */
-  position: relative;
-  z-index: 1;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px; /* Espacio entre las cards */
+  width: 100%; /* Asegura que el contenedor ocupe el ancho completo */
 }
 
 mat-card {
   width: 250px;
   margin: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+mat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+mat-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+mat-card-image {
+  border-radius: 8px 8px 0 0;
 }
 
 /* Media Queries para dispositivos móviles */
 @media (max-width: 768px) {
+  .titulo {
+    font-size: 2em; /* Reduce el tamaño del título en móviles */
+  }
+
   .card-container {
-    flex-direction: column; /* Cambia la dirección para que las cards se apilen */
-    align-items: center; /* Centra las cards */
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px; /* Reduce el espacio entre las cards en móviles */
   }
 
   mat-card {
-    width: 80%; /* Ancho de las cards ajustado a pantallas pequeñas */
-  }
-
-  .titulo img {
-    max-width: 100%; /* Asegura que la imagen ocupe el ancho completo */
+    width: 90%; /* Las cards ocupan el 90% del ancho en móviles */
+    margin: 5px 0; /* Reduce el margen vertical */
   }
 }
 
 @media (max-width: 480px) {
   .titulo {
-    padding-top: 20px; /* Reduce el padding en pantallas muy pequeñas */
-  }
-
-  .titulo img {
-    max-width: 90%;
+    font-size: 1.8em; /* Tamaño más pequeño para pantallas muy pequeñas */
   }
 
   .card-container {
-    padding: 10px;
+    padding: 5px;
   }
 
   mat-card {
-    width: 90%;
+    width: 95%; /* Las cards ocupan casi todo el ancho en pantallas muy pequeñas */
   }
 }

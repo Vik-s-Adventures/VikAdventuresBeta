@@ -8,10 +8,11 @@ import {CreditsComponent} from './public/credits/credits.component';
 import {MenuComponent} from './public/menu/menu.component';
 import {MapsComponent} from './public/maps/maps.component';
 import {RankingComponent} from './public/ranking/ranking.component';
+import {QuestionnaireComponent} from './quiz/questionnaire/questionnaire.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'menu', pathMatch:'full'},
+  {path: '', redirectTo:'maps', pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'ranking', component: RankingComponent},
   {path: 'credits', component: CreditsComponent},
   {path: 'welcomeQuestionnaire', component: WelcomeQuestionnaireComponent},
+  {path: 'questionnaire', component: QuestionnaireComponent},
 
 ];
 

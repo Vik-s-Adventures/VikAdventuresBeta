@@ -4,7 +4,7 @@
   justify-content: space-between; /* Distribuye el espacio entre botones */
   align-items: center; /* Centra verticalmente los botones */
   padding: 5px 10px; /* Espaciado alrededor del contenido */
-  background-color: darkblue; /* Fondo azul oscuro */
+  background-color: #0077cc; /* Fondo azul oscuro */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
   color: white; /* Texto blanco */
   flex-wrap: wrap; /* Para que los elementos se ajusten automáticamente en pantallas pequeñas */
@@ -14,7 +14,7 @@
 button {
   font-family: 'Press Start 2P', cursive; /* Fuente personalizada */
   background-color: #2563eb; /* Fondo azul primario */
-  color: white; /* Texto blanco */
+  color: darkblue; /* Texto blanco */
   padding: 5px 10px; /* Espaciado dentro del botón */
   border-radius: 5px; /* Bordes redondeados */
   font-size: 16px; /* Tamaño de fuente */
@@ -23,6 +23,7 @@ button {
   transition: background-color 0.3s ease; /* Transición suave */
   border: none; /* Sin borde */
   margin: 5px; /* Espaciado entre botones */
+  justify-content: flex-end; /* Alinea los botones a la derecha */
 }
 
 button:hover {

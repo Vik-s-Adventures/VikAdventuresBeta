@@ -64,7 +64,7 @@ export class WelcomeQuestionnaireComponent implements OnInit{
 
   continueAction(): void {
     // Redirige a otro componente usando el Router
-    this.router.navigate(['/questionnaire']); // Cambia '/another' por la ruta deseada
+    this.router.navigate(['/questionnaire']);
   }
 }
 

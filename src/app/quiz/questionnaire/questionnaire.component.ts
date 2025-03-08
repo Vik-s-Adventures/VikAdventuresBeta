@@ -6,6 +6,7 @@ import {QuestionService} from '../services/question.service';
 import {StudentResponseService} from '../services/student-response.service';
 import {OptionService} from '../services/option.service';
 import {Student} from '../../profile/model/Student';
+import {Response} from '../model/Response';
 import {StudentService} from '../../profile/services/student.service';
 
 @Component({
@@ -35,8 +36,6 @@ export class QuestionnaireComponent implements OnInit {
   ngOnInit(): void {
     this.loadQuestions();
     this.loadAnswerOptions();
-    this.loadCurrentStudent();
-    // Cargar el estudiante actual
   }
 
   loadQuestions(): void {
@@ -70,26 +69,10 @@ export class QuestionnaireComponent implements OnInit {
     return this.answerOptions.filter(option => option.questionId === questionId);
   }
 
-  // Cargar el estudiante actual (esto puede ser desde un servicio o localStorage)
-  loadCurrentStudent(): void {
-    // Simulando la carga del estudiante actual (esto dependerá de tu lógica)
-    this.currentStudent = {
-      id: 16,
-      firstName: 'Romina',
-      lastName: 'Lourdes',
-      birthDate: '17/04/2003',
-      sex: 'F',
-      gradeLevel: 1,
-      school: 'IE Faz',
-      department: 'Lima',
-      province: 'Lima',
-      district: 'Villa Maria del Triunfo'
-    };
-  }
 
   nextQuestion(): void {
     if (this.selectedAnswer && this.currentStudent) {
-      // @ts-ignore
+
       const newResponse: Response = {
         id: 0,  // O el valor que sea asignado por tu backend si es generado automáticamente
         studentId: Number(this.currentStudent.id), // Asegúrate de que es un número

@@ -19,10 +19,9 @@ import { CreditsComponent } from './public/credits/credits.component';
 import {MatButton} from '@angular/material/button';
 import { HeaderComponent } from './public/header/header.component';
 import { RankingComponent } from './public/ranking/ranking.component';
-import { ProfileComponent } from './profile/profile.component';
-import { QuestionnaireComponent } from './first_world/questionnaire/questionnaire.component';
-import { StudentComponent } from './profile/student/student.component';
-import { RegisterComponent } from './profile/register/register.component';
+import {QuestionnaireComponent} from './quiz/questionnaire/questionnaire.component';
+import {RegisterComponent} from './profile/register/register.component';
+import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 
 
 
@@ -38,9 +37,7 @@ import { RegisterComponent } from './profile/register/register.component';
     CreditsComponent,
     HeaderComponent,
     RankingComponent,
-    ProfileComponent,
     QuestionnaireComponent,
-    StudentComponent,
     RegisterComponent
   ],
   imports: [
@@ -50,6 +47,8 @@ import { RegisterComponent } from './profile/register/register.component';
     MatCardModule,
     FormsModule,
     MatButton,
+    MatRadioGroup,
+    MatRadioButton,
 
   ],
   providers: [
