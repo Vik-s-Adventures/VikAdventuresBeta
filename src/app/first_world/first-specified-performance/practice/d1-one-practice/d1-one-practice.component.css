@@ -1,0 +1,142 @@
+.background {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  color: #333;
+  padding: 20px;
+}
+
+/* Estilos generales de las tarjetas */
+.card {
+  background-color: rgba(173, 216, 230, 0.8); /* Color celeste transparente */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Estilo para la tarjeta del título */
+.title-card {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.02em;
+  max-width: 800px; /* Ajusta este valor según el tamaño deseado */
+  width: 100%; /* Hace que la tarjeta ocupe el 100% en pantallas pequeñas */
+}
+.h2{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.02em;
+}
+
+/* Estilo para la tarjeta de la dinámica */
+.dynamic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor de las imágenes y entradas */
+.fraction-graphic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fraction-image {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.fraction-representation {
+  width: 100px;  /* Ajusta este valor al tamaño deseado */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 10px 0;
+}
+
+
+/* Estilos para los campos de entrada */
+.input-zone input {
+  padding: 5px;
+  border: 2px solid green;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  margin: 10px 0;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Botón de Enviar */
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background-color: #45a049;
+}
+
+/* Mensaje de retroalimentación */
+.feedback {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}
+
+.feedback p {
+  color: #333;
+}
+
+/* Footer con el botón "Continuemos" */
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.footer button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .fraction-image {
+    width: 80px;
+  }
+
+  .fraction-representation {
+    width: 40px;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .footer button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}

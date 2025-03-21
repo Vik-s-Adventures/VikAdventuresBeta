@@ -22,7 +22,14 @@ import { RankingComponent } from './public/ranking/ranking.component';
 import {QuestionnaireComponent} from './quiz/questionnaire/questionnaire.component';
 import {RegisterComponent} from './profile/register/register.component';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
-
+import { OnePerformanceConceptsComponent } from './first_world/first-specified-performance/concept/one-performance-concepts/one-performance-concepts.component';
+import { OnePerformanceEvaluationComponent } from './first_world/first-specified-performance/evaluation/one-performance-evaluation/one-performance-evaluation.component';
+import { OneDialoguesComponent } from './first_world/first-specified-performance/dialogues/one-dialogues/one-dialogues.component';
+import { D1OnePracticeComponent } from './first_world/first-specified-performance/practice/d1-one-practice/d1-one-practice.component';
+import { D1TwoPracticeComponent } from './first_world/first-specified-performance/practice/d1-two-practice/d1-two-practice.component';
+import { D1ThreePracticeComponent } from './first_world/first-specified-performance/practice/d1-three-practice/d1-three-practice.component';
+import { D1TwoEvaluationQuestionComponent } from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-two-evaluation-question/d1-two-evaluation-question.component';
+import { D1OneEvaluationQuestionComponent } from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-one-evaluation-question/d1-one-evaluation-question.component';
 
 
 @NgModule({
@@ -38,7 +45,15 @@ import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
     HeaderComponent,
     RankingComponent,
     QuestionnaireComponent,
-    RegisterComponent
+    RegisterComponent,
+    OnePerformanceConceptsComponent,
+    OnePerformanceEvaluationComponent,
+    OneDialoguesComponent,
+    D1OnePracticeComponent,
+    D1TwoPracticeComponent,
+    D1ThreePracticeComponent,
+    D1TwoEvaluationQuestionComponent,
+    D1OneEvaluationQuestionComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,124 @@
+.background {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  color: #333;
+  padding: 20px;
+}
+
+/* Estilo general para las tarjetas */
+.card {
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+}
+
+/* Tarjeta del título */
+.title-card {
+  background-color: rgba(255, 255, 204, 0.8); /* Color amarillo bebé con opacidad */
+  max-width: 500px;
+  width: 100%;
+  font-size: 1em;
+}
+
+/* Tarjeta principal que contiene la cuadrícula */
+.main-card {
+  background-color: rgba(255, 255, 0, 0.8); /* Color amarillo */
+  width: 400px; /* Ancho aumentado */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Cuadrícula de tarjetas */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Tarjetas pequeñas en la cuadrícula */
+.small-card {
+  background-color: rgba(173, 216, 230, 0.8); /* Color celeste bebé transparente */
+  border-radius: 5px;
+  width: 100px;  /* Tamaño aumentado */
+  height: 100px; /* Tamaño aumentado */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden; /* Asegura que el contenido se mantenga dentro de la tarjeta */
+}
+
+.small-card img {
+  max-width: 100%;  /* Limita el ancho al tamaño de la tarjeta */
+  max-height: 100%; /* Limita la altura al tamaño de la tarjeta */
+  object-fit: contain; /* Ajusta la imagen dentro de la tarjeta sin distorsión */
+  border-radius: 5px;
+}
+
+/* Indicador de tarjeta revelada */
+.revealed {
+  background-color: #fff;
+}
+
+/* Mensaje de éxito */
+.feedback {
+  margin-top: 20px;
+  font-weight: bold;
+  color: yellow;
+}
+
+/* Footer con el botón "Continuemos" */
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footer button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.footer button:hover:enabled {
+  background-color: #45a049;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .main-card {
+    width: 90%;
+  }
+
+  .small-card {
+    width: 80px; /* Tamaño reducido para pantallas pequeñas */
+    height: 80px;
+  }
+
+  .title-card {
+    max-width: 90%;
+  }
+
+  .footer button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}

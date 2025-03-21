@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div class="container">
+  <h2 class="question-title">Pregunta Evaluadora</h2>
+
+  <div class="question-card">
+
+    <p class="question-text">Un grupo de obreros ha pintado los 3/5 de un mural, y el otro grupo, la mitad de lo que falta. ¿Qué fracción del total del mural falta pintar?</p>
+    <img class="question-image" src="assets/images/2fivmg.PNG" alt="Imagen referencial">
+    <div class="options-container">
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(1)"> 9/10 del mural
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(2)"> 1/5 del mural
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(3)"> 1/10 del mural
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(4)"> 3/10 del mural
+      </label>
+    </div>
+
+    <button [disabled]="!isOptionSelected" (click)="submitAnswer()">Continuar</button>
+  </div>
+</div>

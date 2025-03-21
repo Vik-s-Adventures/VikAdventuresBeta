@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="background">
+  <!-- Card para el título -->
+  <div class="card title-card" style="font-family: 'Press Start 2P', cursive; font-size: 10px">
+    <h2 style="font-family: 'Press Start 2P', cursive;">Completa las partes de la fracción:</h2>
+  </div>
+
+  <!-- Card para la dinámica -->
+  <div class="card dynamic-card">
+    <div class="fraction-graphic-container">
+      <img src="../../../../../assets/images/f11.png" class="fraction-image" alt="Imagen de fracción" />
+
+      <!-- Campo de entrada para Numerador -->
+      <div class="input-zone">
+        <input [(ngModel)]="topInput" placeholder="Escribe aquí" aria-label="Numerador" />
+      </div>
+
+      <img src="../../../../../assets/images/f.png" class="fraction-representation" alt="Representación gráfica de 2/3" />
+
+      <!-- Campo de entrada para Denominador -->
+      <div class="input-zone">
+        <input [(ngModel)]="bottomInput" placeholder="Escribe aquí" aria-label="Denominador" />
+      </div>
+    </div>
+
+    <!-- Botón para verificar la respuesta -->
+    <button (click)="checkAnswer()">Enviar</button>
+
+    <!-- Mensaje de retroalimentación -->
+    <div class="feedback">
+      <p>{{ feedbackMessage }}</p>
+    </div>
+  </div>
+
+  <!-- Footer con el botón "Continuemos" -->
+  <footer class="footer">
+    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
+
+  </footer>
+</div>
+
+

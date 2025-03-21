@@ -1,0 +1,139 @@
+.background {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+  padding: 20px;
+}
+
+/* Contenedor principal */
+.fraction-card {
+  background-color: rgba(255, 255, 204, 0.8); /* Color amarillo bebé transparente */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  margin: auto;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Cuadrícula de fracciones */
+.fraction-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas para imagen, input y tipo */
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Celda de fracción */
+.fraction-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(173, 216, 230, 0.8); /* Color celeste bebé transparente */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.fraction-cell img {
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.fraction-cell input {
+  padding: 5px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-align: center;
+  width: 80%;
+  margin-top: 5px;
+}
+
+.fraction-type {
+  margin-top: 10px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* Botón "Continuemos" */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background-color: #45a049;
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .fraction-grid {
+    grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas pequeñas */
+  }
+}
+
+/* Contenedor principal que organiza las tarjetas en fila */
+.content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Tarjeta de consejo */
+.tip-card {
+  background-color: rgba(255, 228, 196, 0.8); /* Color beige transparente */
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  max-width: 250px;
+}
+
+.tip-card img {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+
+
+.tip-card p {
+  font-size: 20px;
+  color: black;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+

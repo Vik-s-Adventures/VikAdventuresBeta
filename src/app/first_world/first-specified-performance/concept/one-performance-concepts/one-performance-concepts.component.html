@@ -1,0 +1,98 @@
+
+<div class="container">
+  <div class="button-container">
+    <button class="nav-button" (click)="navigateToComponent1()">MENU</button>
+    <button class="nav-button" (click)="navigateToComponent2()">TU RUTA</button>
+  </div>
+
+  <!-- Sprite a la izquierda -->
+  <div id="phaser-container"></div>
+
+  <!-- Contenedor de las cards, alineadas en columna -->
+  <div class="card-container">
+
+    <!-- Título grande en el primer diálogo -->
+    <div class="title" *ngIf="currentCard === 0">
+      <h1 class="dynamic-title">FRACCIONES</h1>
+    </div>
+
+    <!-- Card de presentación del tema -->
+    <div class="dialog-card" *ngIf="currentCard === 0">
+      <p>¡Hola! Hoy te voy a explicar sobre las fracciones. Empecemos con los conceptos básicos.</p>
+    </div>
+
+    <!-- Card principal explicando qué es una fracción -->
+    <div class="title" *ngIf="currentCard === 1">
+      <h2 class="dynamic-title-small">¿QUÉ ES UNA FRACCIÓN?</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 1">
+      <p>Una fracción es una forma de representar una parte de un todo. Verás, es muy útil para dividir cosas.</p>
+    </div>
+
+    <!-- Card explicando partes de la fracción con imagen -->
+    <div class="title" *ngIf="currentCard === 2">
+      <h2 class="dynamic-title-small">PARTES DE UNA FRACCIÓN</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 2">
+      <p>Una fracción tiene dos partes principales: el numerador (arriba) y el denominador (abajo).</p>
+    </div>
+    <div class="example-card" *ngIf="currentCard === 2">
+      <img src="../../../../../assets/images/partefraccion.png" alt="Partes de una fracción">
+    </div>
+
+    <!-- Card explicando fracciones propias -->
+    <div class="title" *ngIf="currentCard === 3">
+      <h2 class="dynamic-title-small">FRACCIONES PROPIAS</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 3">
+      <p>Fracción propia: el numerador es menor que el denominador. Ejemplo:</p>
+    </div>
+    <div class="example-card" *ngIf="currentCard === 3">
+      <img src="../../../../../assets/images/fraccionpropia.png" alt="Ejemplo de fracción propia">
+    </div>
+
+    <!-- Card explicando fracciones impropias -->
+    <div class="title" *ngIf="currentCard === 4">
+      <h2 class="dynamic-title-small">FRACCIONES IMPROPIAS</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 4">
+      <p>Fracción impropia: el numerador es mayor que el denominador. Ejemplo:</p>
+    </div>
+    <div class="example-card" *ngIf="currentCard === 4">
+      <img src="../../../../../assets/images/fraccionimpropia.png" alt="Ejemplo de fracción impropia">
+    </div>
+
+    <!-- Card explicando fracciones mixtas -->
+    <div class="title" *ngIf="currentCard === 5">
+      <h2 class="dynamic-title-small">FRACCIONES MIXTAS</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 5">
+      <p>Fracción mixta: combina un número entero y una fracción. Ejemplo:</p>
+    </div>
+    <div class="example-card" *ngIf="currentCard === 5">
+      <img src="../../../../../assets/images/fraccionmixta.png" alt="Ejemplo de fracción mixta">
+    </div>
+
+    <!-- Card para explicar consejos útiles -->
+    <div class="title" *ngIf="currentCard === 6">
+      <h2 class="dynamic-title-small">CONSEJO ÚTIL</h2>
+    </div>
+    <div class="dialog-card" *ngIf="currentCard === 6">
+      <p>Simplifica las fracciones siempre que sea posible para hacer más fáciles los cálculos.</p>
+    </div>
+
+    <!-- Card final con el botón "Recuerda" -->
+    <div class="dialog-card" *ngIf="currentCard === 7">
+      <p>¡Eso es todo! Ahora lo pondremos en práctica.</p>
+      <button (click)="goToRemember()">CONTINUEMOS</button>
+    </div>
+
+  </div> <!-- Fin del contenedor de las cards -->
+
+  <!-- Footer con las flechas centradas -->
+  <footer class="footer-container">
+    <div class="arrow-left" *ngIf="currentCard > 0" (click)="previousCard()"></div>
+    <div class="arrow" *ngIf="currentCard < 7" (click)="nextCard()"></div>
+  </footer>
+
+</div>

@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="background">
+  <!-- Card para el título -->
+  <div class="card title-card" >
+    <h2>Encuentra los pares según el tipo de fracción</h2>
+  </div>
+
+  <!-- Card principal que contiene las 9 cards -->
+  <div class="card main-card">
+    <div class="card-grid">
+      <div
+        *ngFor="let card of cards"
+        class="small-card"
+        [ngClass]="{ 'revealed': card.revealed || card.matched }"
+        (click)="revealCard(card)"
+      >
+        <img *ngIf="card.revealed || card.matched" [src]="card.img" alt="Imagen de fracción" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="successMessage" class="feedback">
+    <p>{{ successMessage }}</p>
+  </div>
+
+  <!-- Footer con el botón "Continuemos" -->
+  <footer class="footer">
+    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
+
+  </footer>
+</div>

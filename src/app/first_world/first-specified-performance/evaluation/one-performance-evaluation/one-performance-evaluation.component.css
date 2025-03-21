@@ -1,0 +1,121 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.background-container {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cards-container {
+  display: flex;
+  gap: 100px;
+}
+
+.card {
+  width: 300px;
+  height: 350px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.6s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  animation: moveSideToSide 2s infinite;
+}
+
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #FFD700;
+}
+
+.card.selected {
+  transform: rotateY(180deg);
+  box-shadow: 0 0 30px #FFD700;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+.card.selected .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  padding: 20px;
+}
+
+.card-front {
+  background-color: #03A9F4;
+  color: white;
+}
+
+.card-front img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover; /* Asegura que todas las imágenes tengan el mismo tamaño */
+  border-radius: 50%;
+  margin-bottom: 15px; /* Espacio entre la imagen y el texto */
+}
+
+.card-back {
+  background-color: #FFD700;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.card-back p, .card-back .go-to-question-btn {
+  transform: rotateY(180deg);
+}
+
+.go-to-question-btn {
+  margin-top: 50px;
+  padding: 10px 20px;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #03A9F4;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transform: rotateY(180deg);
+}
+
+.go-to-question-btn:hover {
+  background-color: #FFD700;
+  box-shadow: 0 0 15px #FFD700;
+  transform: rotateY(180deg);
+}

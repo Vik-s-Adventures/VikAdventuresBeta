@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="background">
+  <div class="content-container">
+    <!-- Tarjeta de Fracciones -->
+    <div class="fraction-card">
+      <h2>Completa las fracciones observando las gráficos</h2>
+
+      <!-- Cuadrícula de fracciones -->
+      <div class="fraction-grid">
+        <div *ngFor="let fraction of fractions" class="fraction-cell">
+          <img [src]="fraction.img" alt="Imagen de fracción" />
+          <input
+            [(ngModel)]="fraction.userAnswer"
+            (input)="checkAnswers()"
+            placeholder="Ingresa la fracción"
+            aria-label="Input de fracción"
+          />
+        </div>
+      </div>
+
+      <!-- Botón de Continuemos -->
+      <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
+    </div>
+
+    <!-- Tarjeta de Consejo -->
+    <div class="tip-card">
+      <h3>Consejo</h3>
+      <img src="/src/assets/images/sprite4.png" alt="Consejo" />
+      <p>Recuerda que las partes pintadas representa al numerador y las partes totales al denominador.</p>
+      <img src="/src/assets/images/fac1.JPG" alt="Consejo" />
+    </div>
+  </div>
+</div>
