@@ -30,6 +30,10 @@ import { D1TwoPracticeComponent } from './first_world/first-specified-performanc
 import { D1ThreePracticeComponent } from './first_world/first-specified-performance/practice/d1-three-practice/d1-three-practice.component';
 import { D1TwoEvaluationQuestionComponent } from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-two-evaluation-question/d1-two-evaluation-question.component';
 import { D1OneEvaluationQuestionComponent } from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-one-evaluation-question/d1-one-evaluation-question.component';
+import { TwoPerformanceConceptsComponent } from './first_world/second-specified-performance/concept/two-performance-concepts/two-performance-concepts.component';
+import { D2OnePracticeComponent } from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
+import { D2TwoPracticeComponent } from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
+import { D2ThreePracticeComponent } from './first_world/second-specified-performance/practice/d2-three-practice/d2-three-practice.component';
 
 
 @NgModule({
@@ -54,6 +58,10 @@ import { D1OneEvaluationQuestionComponent } from './first_world/first-specified-
     D1ThreePracticeComponent,
     D1TwoEvaluationQuestionComponent,
     D1OneEvaluationQuestionComponent,
+    TwoPerformanceConceptsComponent,
+    D2OnePracticeComponent,
+    D2TwoPracticeComponent,
+    D2ThreePracticeComponent,
   ],
   imports: [
     BrowserModule,

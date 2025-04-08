@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="background">
+  <!-- Tarjeta de Consejo -->
+  <div class="tip-card">
+    <h3>Consejo</h3>
+    <p>Recuerda que los porcentajes son el equivalente de las fracciones y viceversa: Ejemplo 100%=10/10</p>
+    <img src="/assets/images/d2/d2.PNG" alt="Consejo" />
+  </div>
+
+  <div class="content-container">
+    <h2>Completa los porcentajes y las fracciones equivalentes observando los gráficos</h2>
+
+    <!-- Contenedor de fracciones en una sola fila -->
+    <div class="fraction-row">
+      <div *ngFor="let fraction of fractions" class="fraction-cell">
+        <img [src]="fraction.img" alt="Imagen de fracción" />
+        <input
+          [(ngModel)]="fraction.userAnswer"
+          (input)="checkAnswers()"
+          placeholder="Ejem: 10%=1/10"
+          aria-label="Input de fracción"
+        />
+      </div>
+    </div>
+
+
+    <!-- Botón de Continuemos -->
+    <button [disabled]="!isCompleted" (click)="goToNext()">Continuemos</button>
+  </div>
+
+
+
+</div>

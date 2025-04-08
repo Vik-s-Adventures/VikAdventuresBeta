@@ -16,13 +16,15 @@ import {D1ThreePracticeComponent} from './first_world/first-specified-performanc
 import {OnePerformanceEvaluationComponent} from './first_world/first-specified-performance/evaluation/one-performance-evaluation/one-performance-evaluation.component';
 import {D1OneEvaluationQuestionComponent} from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-one-evaluation-question/d1-one-evaluation-question.component';
 import {D1TwoEvaluationQuestionComponent} from './first_world/first-specified-performance/evaluation/evaluation-questions/d1-two-evaluation-question/d1-two-evaluation-question.component';
-import {
-  OneDialoguesComponent
-} from './first_world/first-specified-performance/dialogues/one-dialogues/one-dialogues.component';
+import {OneDialoguesComponent} from './first_world/first-specified-performance/dialogues/one-dialogues/one-dialogues.component';
+import {TwoPerformanceConceptsComponent} from './first_world/second-specified-performance/concept/two-performance-concepts/two-performance-concepts.component';
+import {D2OnePracticeComponent} from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
+import {D2TwoPracticeComponent} from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
+import {D2ThreePracticeComponent} from './first_world/second-specified-performance/practice/d2-three-practice/d2-three-practice.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'one-performance-concept', pathMatch:'full'},
+  {path: '', redirectTo:'two-performance-concept', pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
@@ -40,7 +42,12 @@ const routes: Routes = [
   {path: 'd1-evaluation', component: OnePerformanceEvaluationComponent},
   {path: 'd1-one-evaluation-question', component: D1OneEvaluationQuestionComponent},
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},
-  {path: 'one-dialogues', component: OneDialoguesComponent}
+  {path: 'one-dialogues', component: OneDialoguesComponent},
+
+  {path: 'two-performance-concept', component: TwoPerformanceConceptsComponent},
+  {path: 'd2-one-practice', component: D2OnePracticeComponent},
+  {path: 'd2-two-practice', component: D2TwoPracticeComponent},
+  {path: 'd2-three-practice', component: D2ThreePracticeComponent},
 
 ];
 

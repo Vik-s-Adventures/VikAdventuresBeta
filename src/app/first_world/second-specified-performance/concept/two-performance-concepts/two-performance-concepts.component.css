@@ -1,0 +1,215 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Botones de navegación con opacidad 80% */
+.button-container {
+  position: absolute;
+  top: 20px;
+  left: 90%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  opacity: 0.8; /* Opacidad del 80% */
+}
+
+.nav-button {
+  background-color: #03A9F4;
+  color: #000000;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+}
+
+.nav-button:hover {
+  background-color: #FFD700;
+  box-shadow: 0 0 15px #FFD700;
+}
+
+/* Contenedor de las cards, alineadas en columna */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Estilos para las cards de diálogo y ejemplos */
+.dialog-card, .example-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  max-width: 800px;
+  width: 100%;
+  word-wrap: break-word;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+/* Footer centrado con flechas, color blanco y borde azul brillante oscuro */
+.footer-container {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #ffffff; /* Fondo blanco */
+  border: 3px solid #00008B; /* Borde azul brillante oscuro */
+  box-shadow: 0 0 15px #00008B; /* Efecto de brillo alrededor del borde */
+  padding: 10px; /* Espaciado interno */
+  opacity: 0.8; /* Opacidad del 80% */
+}
+
+/* Estilo de las flechas */
+.arrow, .arrow-left {
+  width: 50px;
+  height: 50px;
+  background-color: #03A9F4;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Flecha hacia la derecha */
+.arrow {
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+
+/* Flecha hacia la izquierda */
+.arrow-left {
+  clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+}
+
+.arrow:hover, .arrow-left:hover {
+  background-color: #FFD700;
+  box-shadow: 0 0 15px #FFD700;
+}
+
+/* Título grande en el primer diálogo */
+.dynamic-title {
+  font-size: 3rem;
+  color: #FFD700;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  animation: moveTitle 3s infinite alternate;
+}
+
+/* Título dinámico para los subtemas */
+.dynamic-title-small {
+  font-size: 2rem;
+  color: #FFD700;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  text-transform: uppercase;
+  animation: moveTitleSmall 3s infinite alternate;
+}
+
+/* Animación para el título grande */
+@keyframes moveTitle {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+/* Animación para los títulos pequeños */
+@keyframes moveTitleSmall {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+/* Estilo del botón "Recuerda" */
+button {
+  background-color: #03A9F4;
+  color: #000000;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: #FFD700;
+  color: #000000;
+  box-shadow: 0 0 15px #FFD700;
+}
+
+
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .dialog-card {
+    font-size: 1rem;
+    padding: 15px;
+    max-width: 300px;
+  }
+
+  .arrow, .arrow-left {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-button {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-card {
+    font-size: 0.9rem;
+    padding: 10px;
+    max-width: 250px;
+  }
+
+  .arrow, .arrow-left {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dynamic-title {
+    font-size: 2.5rem;
+  }
+
+  .dynamic-title-small {
+    font-size: 1.5rem;
+  }
+
+  .nav-button {
+    font-size: 0.7rem;
+    padding: 6px 12px;
+  }
+}

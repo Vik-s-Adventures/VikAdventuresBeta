@@ -1,0 +1,148 @@
+/* Fondo */
+.background {
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+  padding: 20px;
+}
+
+/* Contenedor principal */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 95%;
+  gap: 20px;
+}
+
+/* Nueva card para el título */
+.title-card {
+  background-color: rgba(255, 228, 181, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  width: 80%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Contenedor de imágenes + consejo en la misma fila */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+/* Contenedor de ejercicios */
+.content-container {
+  background-color: rgba(255, 255, 204, 0.9);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  width: 75%;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Contenedor del consejo */
+.advice-container {
+  background-color: rgba(245, 222, 179, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  width: 25%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+/* Imagen del consejo */
+.advice-container img {
+  width: 50%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+/* Contenedor de fracciones en fila */
+.fraction-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding-bottom: 10px;
+  overflow-x: auto;
+}
+
+/* Celda de fracción */
+.fraction-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(173, 216, 230, 0.8);
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+}
+
+/* Imágenes de fracción */
+.fraction-cell img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Input */
+.fraction-cell input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  text-align: center;
+  width: 90%;
+}
+
+/* Botón */
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background-color: #45a049;
+}
+
+/* Responsive: si la pantalla es muy pequeña, el consejo se mueve abajo */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-container {
+    width: 100%;
+  }
+
+  .advice-container {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
