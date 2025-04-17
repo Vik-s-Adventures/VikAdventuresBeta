@@ -14,14 +14,14 @@ export class DataIdentificationComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
   continuar() {
-    this.router.navigate(['/siguiente-nivel']);
+    this.router.navigate(['/d1-visual-representation']);
   }
 
   zonaDisponibleOriginal: string[] = [
-    'Laura colocó ½ de las manzanas en un plato.',
+    'Laura colocó 1/4 de las manzanas en un plato.',
     'En el plato se observan 2 manzanas.',
     '¿Cuántas manzanas quedarón en la canasta?',
-    'Laura compró 10 panes.'
+    'Laura compró 10 dulces.'
   ];
 
   zonaDisponible: string[] = [];
@@ -30,7 +30,7 @@ export class DataIdentificationComponent implements OnInit, OnDestroy {
 
   mensajeFeedback = '';
 
-  textoOriginal = 'Laura recogió cierta cantidad de manzanas. Colocó ½ de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántas manzanas dejó Laura en la canasta?';
+  textoOriginal = 'Laura recogió cierta cantidad de manzanas. Colocó 1/4 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántas manzanas dejó Laura en la canasta?';
   textoNarrado = '';
   mostrarConsejo = false;
   narracionFinalizada = false;
@@ -80,11 +80,11 @@ export class DataIdentificationComponent implements OnInit, OnDestroy {
 
   validarRespuesta() {
     const datosCorrectos = [
-      'Laura colocó ½ de las manzanas en un plato.',
+      'Laura colocó 1/4 de las manzanas en un plato.',
       'En el plato se observan 2 manzanas.'
     ];
     const faltanteCorrecto = '¿Cuántas manzanas quedarón en la canasta?';
-    const distractor = 'Laura compró 10 panes.';
+    const distractor = 'Laura compró 10 dulces.';
 
     const zonaDatoOk = this.zonaDato.length === 2 &&
       this.zonaDato.includes(datosCorrectos[0]) &&

@@ -1,1 +1,57 @@
-<p>visual-representation works!</p>
+<div class="pantalla-dividida">
+  <!-- 🧠 Sección problema -->
+  <div class="seccion-pregunta">
+    <div class="card-problema">
+      <h2>Problema Matemático</h2>
+      <div class="narracion-retro">
+        <span>{{ textoOriginal }}</span>
+      </div>
+      <img
+        src="assets/images/d1/practice-end-resources/practice-end.png"
+        alt="imagen del problema"
+        class="imagen-pregunta centrada"
+      />
+    </div>
+
+    <div class="consejo-personaje" *ngIf="mostrarConsejo">
+      <img
+        src="assets/images/d1/practice-end-resources/vik-front.png"
+        alt="personaje"
+        class="personaje-img grande"
+      />
+      <div class="bocadillo-retro">{{ consejo }}</div>
+    </div>
+  </div>
+
+  <!-- 🎮 Sección juego -->
+  <div class="seccion-juego">
+    <h2 class="titulo-juego">Selecciona la imagen que representa la fracción indicada...</h2>
+
+    <div class="card-indicacion">
+      📌 Observa las fracciones representadas y elige la que muestra 1/4 con dos manzanas.
+    </div>
+
+    <div class="opciones-grid">
+      <div
+        class="card-opcion"
+        *ngFor="let opcion of opciones"
+        [class.seleccionada]="opcion.id === seleccionadaId"
+        (click)="seleccionarOpcion(opcion.id)"
+      >
+        <img [src]="opcion.imagen" [alt]="opcion.alt" />
+      </div>
+    </div>
+
+    <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
+      {{ mensajeFeedback }}
+    </p>
+
+    <button class="btn-reintentar" *ngIf="!respuestaCorrecta && seleccionadaId !== null" (click)="reiniciar()">
+      🔁 Intentar de nuevo
+    </button>
+
+    <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
+      CONTINUAR  ➡
+    </button>
+  </div>
+</div>
