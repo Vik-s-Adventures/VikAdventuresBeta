@@ -10,7 +10,7 @@ import {SignInUser} from '../model/SignInUser';
 })
 export class AuthService {
   basePath = environment.serverBasePath;
-  url: string = '/auth';
+  url: string = '/authentication';
 
   private resourcePath(): string {
     return `${this.basePath}${this.url}`;

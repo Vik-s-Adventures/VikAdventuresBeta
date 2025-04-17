@@ -34,6 +34,10 @@ import { TwoPerformanceConceptsComponent } from './first_world/second-specified-
 import { D2OnePracticeComponent } from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
 import { D2TwoPracticeComponent } from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
 import { D2ThreePracticeComponent } from './first_world/second-specified-performance/practice/d2-three-practice/d2-three-practice.component';
+import { VisualRepresentationComponent } from './first_world/first-specified-performance/practice/practice-end/visual-representation/visual-representation.component';
+import { OperationResponseComponent } from './first_world/first-specified-performance/practice/practice-end/operation-response/operation-response.component';
+import {CdkDrag, CdkDropList, CdkDropListGroup, DragDropModule} from "@angular/cdk/drag-drop";
+import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
 
 
 @NgModule({
@@ -62,6 +66,9 @@ import { D2ThreePracticeComponent } from './first_world/second-specified-perform
     D2OnePracticeComponent,
     D2TwoPracticeComponent,
     D2ThreePracticeComponent,
+    DataIdentificationComponent,
+    VisualRepresentationComponent,
+    OperationResponseComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +79,10 @@ import { D2ThreePracticeComponent } from './first_world/second-specified-perform
     MatButton,
     MatRadioGroup,
     MatRadioButton,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
+    DragDropModule,
 
   ],
   providers: [

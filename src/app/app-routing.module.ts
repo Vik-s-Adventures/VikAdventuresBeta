@@ -21,10 +21,13 @@ import {TwoPerformanceConceptsComponent} from './first_world/second-specified-pe
 import {D2OnePracticeComponent} from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
 import {D2TwoPracticeComponent} from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
 import {D2ThreePracticeComponent} from './first_world/second-specified-performance/practice/d2-three-practice/d2-three-practice.component';
+import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
+import {OperationResponseComponent} from './first_world/first-specified-performance/practice/practice-end/operation-response/operation-response.component';
+import {VisualRepresentationComponent} from './first_world/first-specified-performance/practice/practice-end/visual-representation/visual-representation.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'two-performance-concept', pathMatch:'full'},
+  {path: '', redirectTo:'d1-data-identification' , pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
@@ -39,6 +42,9 @@ const routes: Routes = [
   {path: 'd1-one-practice', component: D1OnePracticeComponent},
   {path: 'd1-two-practice', component: D1TwoPracticeComponent},
   {path: 'd1-three-practice', component: D1ThreePracticeComponent},
+  {path: 'd1-data-identification', component: DataIdentificationComponent},
+  {path: 'd1-operation-response', component: OperationResponseComponent},
+  {path: 'd1-visual-representation', component: VisualRepresentationComponent},
   {path: 'd1-evaluation', component: OnePerformanceEvaluationComponent},
   {path: 'd1-one-evaluation-question', component: D1OneEvaluationQuestionComponent},
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},

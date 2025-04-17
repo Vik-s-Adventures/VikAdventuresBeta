@@ -1,0 +1,308 @@
+body, .game-container {
+  background-color: #f3f7fc;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 2.3rem;
+  color: #2e3c55;
+}
+
+p, .tarjeta, .tarjeta-correcta, .btn-validar {
+  font-size: 1.5rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.pantalla-dividida {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.seccion-pregunta, .seccion-juego {
+  width: 100%;
+  max-width: 50%;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.seccion-pregunta {
+  background-image: url('/assets/images/d1/practice-end-resources/fb2fondo.png');
+  border-right: 2px solid #e0e0e0;
+}
+
+.seccion-juego {
+  background-image: url('/assets/images/d1/practice-end-resources/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.imagen-pregunta.centrada {
+  width: 60%;
+  max-width: 300px;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 960px;
+}
+
+.tarjeta {
+  background-color: #fffdf6;
+  border: 2px dashed #f4c430;
+  padding: 1rem;
+  width: 90%;
+  max-width: 240px;
+  cursor: grab;
+  border-radius: 10px;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, background-color 0.3s;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tarjeta:hover {
+  transform: scale(1.03);
+  background-color: #fff9e2;
+}
+
+.zona-tableros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.zona-drop {
+  background-color: #e3f2fd;
+  padding: 1rem;
+  border: 3px solid #64b5f6;
+  width: 90%;
+  max-width: 360px;
+  min-height: 200px;
+  border-radius: 12px;
+  transition: background 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.zona-drop.cdk-drop-list-dragging {
+  background-color: #d0ebff;
+  box-shadow: 0 0 10px #64b5f6;
+}
+
+.zona-drop h3 {
+  text-align: center;
+  color: #2b4c6f;
+  font-size: 1.8rem; /* 👈 Aumenta o ajusta este valor */
+  font-weight: bold; /* (Opcional) para asegurarte que se vea más marcado */
+}
+
+.tarjeta-correcta {
+  background-color: #c8e6c9;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.btn-validar {
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-validar:hover {
+  background-color: #1565c0;
+}
+
+.btn-reintentar {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reintentar:hover {
+  background-color: #d32f2f;
+}
+
+.feedback {
+  font-size: 1.6rem; /* 👈 Cambia este valor, por ejemplo: 1.3rem */
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+.feedback.error {
+  color: #d32f2f;
+}
+
+.feedback:not(.error) {
+  color: #388e3c;
+}
+
+.narracion-retro {
+  font-size: 1.3rem;           /* ⬅️ Agranda el texto */
+  font-weight: bold;          /* ⬅️ Hace el texto en negrita */
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  border: 2px dashed #64b5f6;
+  color: #2e3c55;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  font-family: 'Segoe UI', monospace;
+  text-align: left;
+  min-height: 80px;
+}
+
+
+.typewriter-text {
+  white-space: pre-wrap;
+  display: inline-block;
+}
+
+.consejo-personaje {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.personaje-img.grande {
+  width: 170px;
+  height: auto;
+}
+
+.bocadillo-retro {
+  padding: 1rem;
+  background-color: #fff8c5;
+  border: 2px solid #ffd700;
+  border-radius: 12px;
+  max-width: 280px;
+  font-size: 1.8rem;        /* 🔹 Texto más grande */
+  font-weight: 600;         /* 🔹 Texto más marcado */
+}
+
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .pantalla-dividida {
+    flex-direction: column;
+  }
+
+  .seccion-pregunta, .seccion-juego {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .zona-tableros {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tarjeta, .zona-drop {
+    width: 100%;
+  }
+
+  .imagen-pregunta.centrada {
+    width: 80%;
+  }
+
+  .personaje-img.grande {
+    width: 90px;
+  }
+}
+
+.card-problema {
+  background-color: rgba(173, 216, 230, 0.8);
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.titulo-juego {
+  color: #f4c430;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+}
+
+.btn-flecha {
+  background-color: #4caf50; /* verde */
+  border: 2px solid white;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+}
+
+.btn-flecha:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
