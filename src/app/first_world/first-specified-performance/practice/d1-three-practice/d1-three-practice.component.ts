@@ -30,6 +30,6 @@ export class D1ThreePracticeComponent {
   }
 
   goToNext() {
-    this.router.navigate(['/d1-evaluation']); // Cambia '/menu' a la ruta real de tu menú principal
+    this.router.navigate(['/d1-data-identification']); // Cambia '/menu' a la ruta real de tu menú principal
   }
 }

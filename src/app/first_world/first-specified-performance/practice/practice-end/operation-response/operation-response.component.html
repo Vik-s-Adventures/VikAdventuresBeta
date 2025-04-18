@@ -1,1 +1,73 @@
-<p>operation-response works!</p>
+<div class="pantalla-dividida">
+  <!-- 🧠 Sección problema -->
+  <div class="seccion-pregunta">
+    <div class="card-problema">
+      <h2>Problema Matemático</h2>
+      <div class="narracion-retro">
+        <span class="typewriter-text">{{ textoNarrado }}</span>
+      </div>
+      <img
+        src="assets/images/d1/practice-end-resources/practice-end.png"
+        alt="imagen del problema"
+        class="imagen-pregunta centrada"
+      />
+    </div>
+
+    <div class="consejo-personaje" *ngIf="mostrarConsejo">
+      <img
+        src="assets/images/d1/practice-end-resources/vik-front.png"
+        alt="personaje"
+        class="personaje-img grande"
+      />
+      <div class="bocadillo-retro">
+        💡 Consejo: La parte sombreada de verde es la cantidad de manzanas que Laura dejó en la canasta.
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎮 Sección juego -->
+  <div class="seccion-juego">
+    <h2 class="titulo-juego">Analiza</h2>
+
+    <div class="fila-cards">
+      <!-- Card Datos -->
+      <div class="card-analisis">
+        <h3>Datos</h3>
+        <p>1/4 es igual a 2 manzanas</p>
+        <p>Cada parte del gráfico equivale a 2 manzanas</p>
+      </div>
+
+      <!-- Card Gráfico -->
+      <div class="card-analisis">
+        <h3>Gráfico</h3>
+        <img src="assets/images/d1/practice-end-resources/operation-d1.png" alt="Gráfico de manzanas" class="imagen-pregunta centrada" />
+      </div>
+    </div>
+
+    <!-- Card de ecuación -->
+    <div class="card-ecuacion">
+      <h3>?+?+?=...</h3>
+      <p>Selecciona la respuesta correcta para saber cuántas manzanas se dejó en la canasta</p>
+      <mat-radio-group class="opciones-respuesta" [(ngModel)]="opcionSeleccionada">
+        <mat-radio-button value="4">4</mat-radio-button>
+        <mat-radio-button value="6">6</mat-radio-button>
+        <mat-radio-button value="8">8</mat-radio-button>
+        <mat-radio-button value="9">9</mat-radio-button>
+      </mat-radio-group>
+
+      <!-- Botones -->
+      <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
+      <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
+        {{ mensajeFeedback }}
+      </p>
+
+      <button *ngIf="mensajeFeedback.includes('❌')" class="btn-reintentar" (click)="reiniciar()">
+        🔁 INTENTAR DE NUEVO
+      </button>
+
+      <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
+        CONTINUAR ➡
+      </button>
+    </div>
+  </div>
+</div>
