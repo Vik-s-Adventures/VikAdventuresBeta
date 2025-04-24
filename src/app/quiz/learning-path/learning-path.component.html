@@ -1,0 +1,29 @@
+<div class="learning-path-container">
+  <!-- Sección superior con sprite y mensajes -->
+  <div class="header-section">
+    <img src="/assets/images/sprite4.png" alt="Guía" class="guide-image">
+    <div class="messages">
+      <p class="message">¡Hola! Esta es tu ruta de aprendizaje</p>
+      <p class="message">Los niveles en rojo son niveles que debes completar</p>
+      <p class="message">Los niveles en verde son niveles ya superados según tus capacidades matemáticas</p>
+    </div>
+  </div>
+
+  <!-- Contenedor principal para niveles -->
+  <div class="levels-wrapper">
+    <div class="level-path-scroll">
+      <div class="level-path">
+        <ng-container *ngFor="let card of cards; let i = index">
+          <div
+            class="circle-card"
+            [ngClass]="{'red-circle': card.value === 0, 'green-circle': card.value === 1}"
+            (click)="onCardSelect(card.id)">
+            <span class="level-title">{{ card.title }}</span>
+          </div>
+          <div *ngIf="i < cards.length - 1" class="arrow">→</div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+</div>

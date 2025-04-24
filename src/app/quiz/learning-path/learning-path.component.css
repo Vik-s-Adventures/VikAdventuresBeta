@@ -1,0 +1,154 @@
+/* Fondo general */
+body, .learning-path-container {
+  margin: 0;
+  padding: 0;
+  background-image: url('https://i.ibb.co/tsf859Q/fondoinicio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Press Start 2P', cursive;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Sprite + textos */
+.header-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.guide-image {
+  width: 100px;
+}
+
+.messages {
+  margin-top: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.8rem;
+  max-width: 90vw;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+/* Niveles */
+.levels-wrapper {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-top: 1.2rem;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.start-text,
+.end-text {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0.6rem 0;
+}
+
+/* SCROLL */
+.level-path-scroll {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  max-width: 90vw;
+}
+
+/* Nivel y flechas */
+.level-path {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  min-width: 700px;
+  justify-content: flex-start;
+}
+
+.circle-card {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.circle-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px white;
+}
+
+.red-circle {
+  background-color: #e74c3c;
+}
+
+.green-circle {
+  background-color: #27ae60;
+}
+
+.level-title {
+  padding: 0 5px;
+  text-align: center;
+}
+
+.arrow {
+  font-size: 2rem;
+  color: black;
+  animation: pulse 1s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+/* Manita */
+.pointer-guide {
+  width: 40px;
+  position: absolute;
+  top: calc(50% + 60px);
+  left: calc(50% - 380px);
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .circle-card {
+    width: 70px;
+    height: 70px;
+    font-size: 0.7rem;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+  }
+
+  .pointer-guide {
+    width: 32px;
+    left: 16px;
+  }
+}

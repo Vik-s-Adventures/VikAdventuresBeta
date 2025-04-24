@@ -25,10 +25,11 @@ import {DataIdentificationComponent} from './first_world/first-specified-perform
 import {OperationResponseComponent} from './first_world/first-specified-performance/practice/practice-end/operation-response/operation-response.component';
 import {VisualRepresentationComponent} from './first_world/first-specified-performance/practice/practice-end/visual-representation/visual-representation.component';
 import {RegisterComponent} from './profile/register/register.component';
+import {LearningPathComponent} from './quiz/learning-path/learning-path.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'initial' , pathMatch:'full'},
+  {path: '', redirectTo:'learning-path' , pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
@@ -52,10 +53,8 @@ const routes: Routes = [
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},
   {path: 'one-dialogues', component: OneDialoguesComponent},
 
-  {path: 'two-performance-concept', component: TwoPerformanceConceptsComponent},
-  {path: 'd2-one-practice', component: D2OnePracticeComponent},
-  {path: 'd2-two-practice', component: D2TwoPracticeComponent},
-  {path: 'd2-three-practice', component: D2ThreePracticeComponent},
+  {path: 'learning-path', component: LearningPathComponent},
+
 
 ];
 

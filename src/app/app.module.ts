@@ -39,6 +39,7 @@ import { OperationResponseComponent } from './first_world/first-specified-perfor
 import {CdkDrag, CdkDropList, CdkDropListGroup, DragDropModule} from "@angular/cdk/drag-drop";
 import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
+import { LearningPathComponent } from './quiz/learning-path/learning-path.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
     DataIdentificationComponent,
     VisualRepresentationComponent,
     OperationResponseComponent,
+    LearningPathComponent,
   ],
   imports: [
     BrowserModule,
