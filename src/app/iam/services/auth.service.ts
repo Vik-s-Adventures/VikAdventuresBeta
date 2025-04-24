@@ -9,8 +9,8 @@ import {SignInUser} from '../model/SignInUser';
   providedIn: 'root'
 })
 export class AuthService {
-  basePath = environment.serverBasePath;
-  url: string = '/authentication';
+  private basePath = environment.serverBasePath;
+  private url = '/authentication';
 
   private resourcePath(): string {
     return `${this.basePath}${this.url}`;
@@ -18,14 +18,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signUp(user: SignUpUser): Observable<any> {
-    return this.http.post(`${this.resourcePath()}/sign-up`, user, {
-      withCredentials: true, // Habilitar envío de credenciales
-    });
+  signUp(user: { username: string; password: string }): Observable<any> {
+    return this.http.post(`${this.resourcePath()}/sign-up`, user);
   }
 
-  signIn(credentials: SignInUser): Observable<any> {
-    return this.http.post(`${this.resourcePath()}/sign-in`, credentials);
+  signIn(credentials: SignInUser): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.resourcePath()}/sign-in`, credentials);
   }
+
+
 
 }

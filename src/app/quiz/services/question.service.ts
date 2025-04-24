@@ -33,7 +33,7 @@ export class QuestionService {
   }
 
   private handleError(error: any) {
-    console.error('Error en la solicitud:', error);
+    console.error(error);
     return [];
   }
 }

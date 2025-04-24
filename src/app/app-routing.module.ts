@@ -24,14 +24,16 @@ import {D2ThreePracticeComponent} from './first_world/second-specified-performan
 import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
 import {OperationResponseComponent} from './first_world/first-specified-performance/practice/practice-end/operation-response/operation-response.component';
 import {VisualRepresentationComponent} from './first_world/first-specified-performance/practice/practice-end/visual-representation/visual-representation.component';
+import {RegisterComponent} from './profile/register/register.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'d1-data-identification' , pathMatch:'full'},
+  {path: '', redirectTo:'initial' , pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
-  {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  {path: 'sign-in', component: SignInComponent},
   {path: 'menu', component: MenuComponent},
+  {path: 'profile', component: RegisterComponent},
   {path: 'maps', component: MapsComponent},
   {path: 'ranking', component: RankingComponent},
   {path: 'credits', component: CreditsComponent},

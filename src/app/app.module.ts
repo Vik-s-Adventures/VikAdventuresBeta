@@ -7,7 +7,7 @@ import {AuthService} from './iam/services/auth.service';
 import {UserService} from './iam/services/user.service';
 import { RouterOutlet } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
-import {provideHttpClient} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import { InitialComponent } from './public/initial/initial.component';
 import { SignInComponent } from './iam/sign-in/sign-in.component';
 import { SignUpComponent } from './iam/sign-up/sign-up.component';
@@ -38,6 +38,7 @@ import { VisualRepresentationComponent } from './first_world/first-specified-per
 import { OperationResponseComponent } from './first_world/first-specified-performance/practice/practice-end/operation-response/operation-response.component';
 import {CdkDrag, CdkDropList, CdkDropListGroup, DragDropModule} from "@angular/cdk/drag-drop";
 import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
+import {TokenInterceptor} from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -89,6 +90,8 @@ import {DataIdentificationComponent} from './first_world/first-specified-perform
     AuthService,
     UserService,
     provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

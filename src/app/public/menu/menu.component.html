@@ -7,7 +7,7 @@
     <button mat-raised-button routerLink="/result">RUTA</button>
     <button mat-raised-button routerLink="/profile">PERFIL</button>
     <button mat-raised-button routerLink="/progress">PROGRESO</button>
-    <button mat-raised-button routerLink="/menu">SALIR</button>
+    <button mat-raised-button (click)="logout()">SALIR</button>
   </div>
   <div class="logo-container">
     <img src="/assets/images/upc.png" alt="UPC Logo" class="upc-logo"/>

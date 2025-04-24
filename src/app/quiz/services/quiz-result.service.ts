@@ -32,7 +32,7 @@ export class QuizResultService {
   }
 
   private handleError(error: any) {
-    console.error('Error en la solicitud:', error);
+    console.error(error);
     return [];
   }
 }

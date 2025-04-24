@@ -3,7 +3,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+  height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -19,7 +19,7 @@ body {
   margin: 3px 0;
   align-items: flex-start;
   font-family: 'Press Start 2P', cursive;
-  font-size: 12px; /* Fuente más pequeña */
+  font-size: 12px;
 }
 
 .card-container {
@@ -33,10 +33,10 @@ body {
 }
 
 mat-card {
-  width: 90%; /* Cambiado para evitar desbordes en pantallas pequeñas */
+  width: 90%;
   max-width: 1000px;
-  height: auto; /* Ajuste automático a contenido */
-  padding: 10px; /* Añadido padding */
+  height: auto;
+  padding: 10px;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
@@ -48,20 +48,20 @@ mat-card-title {
   margin: 10px;
   text-align: center;
   font-weight: bold;
-  font-size: 13px; /* Fuente más pequeña para el título */
+  font-size: 13px;
   font-family: 'Press Start 2P', cursive;
   justify-content: center;
   align-items: center;
 }
 
 mat-card-content p {
-  font-size: 10px; /* Fuente más pequeña para el contenido */
+  font-size: 10px;
 }
 
 img {
   display: block;
-  margin: 0 auto; /* Imagen centrada */
-  max-width: 30%; /* Evita desbordes de la imagen */
+  margin: 0 auto;
+  max-width: 30%;
   height: auto;
 }
 
@@ -77,7 +77,7 @@ button[mat-button] {
   font-family: 'Press Start 2P', cursive;
   font-weight: bold;
   transition: box-shadow 0.3s ease;
-  font-size: 12px; /* Fuente más pequeña */
+  font-size: 12px;
 }
 
 button[mat-button]:disabled {

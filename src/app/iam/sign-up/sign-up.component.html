@@ -6,15 +6,15 @@
     </div>
 
     <form (ngSubmit)="onSignUp()" class="button-container">
-      <label class="action-button">GMAIL</label>
+      <label class="action-button">USUARIO</label>
       <input
-        type="email"
-        label="Ingresa tu gmail"
+        type="text"
+        label="Ingresa tu usuario"
         id="gmail"
-        name="gmail"
+        name="username"
         required
         class="form-input"
-        [(ngModel)]="user.email"
+        [(ngModel)]="user.username"
       />
 
       <label class="action-button">CONTRASEÑA</label>

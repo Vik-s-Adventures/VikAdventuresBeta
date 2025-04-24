@@ -1,13 +1,12 @@
 <body>
-<mat-card *ngIf="currentQuestion">
+<mat-card *ngIf="currentQuestion" class="card-container">
   <mat-card-title>Pregunta {{ currentQuestion.id }}</mat-card-title>
   <mat-card-content>
     <p>{{ currentQuestion.questionText }}</p>
     <div *ngIf="currentQuestion.imageUrl">
-      <img [src]="currentQuestion.imageUrl" alt="Question Image" style="max-width: 60%; height: auto;">
+      <img [src]="currentQuestion.imageUrl" alt="Question Image" style="max-width: 40%; height: auto;">
     </div>
   </mat-card-content>
-
 
   <mat-radio-group [(ngModel)]="selectedAnswer" class="example-radio-group">
     <mat-radio-button *ngFor="let option of getOptionsByQuestionId(currentQuestion.id)" [value]="option" class="example-radio-group">

@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Question} from '../model/Question';
 import {Option} from '../model/Option';
 import {Router} from '@angular/router';
+import {Profile} from '../../profile/model/Profile';
+import {ProfileResponse} from '../model/ProfileResponse';
+
 import {QuestionService} from '../services/question.service';
-import {StudentResponseService} from '../services/student-response.service';
+import {ProfileResponseService} from '../services/profile-response.service';
 import {OptionService} from '../services/option.service';
-import {Student} from '../../profile/model/Student';
-import {Response} from '../model/Response';
-import {StudentService} from '../../profile/services/student.service';
+import {ProfileService} from '../../profile/services/profile.service';
+
 
 @Component({
   selector: 'app-questionnaire',
@@ -21,32 +23,48 @@ export class QuestionnaireComponent implements OnInit {
   currentQuestionIndex: number = 0;
   currentQuestion!: Question;
   selectedAnswer: Option | null = null;
-  currentStudent!: Student;  // Objeto de estudiante actual, que debe ser asignado
-  responses: Response[] = [];  // Array para almacenar respuestas
-  private student: Student | undefined;
+  currentProfile!: Profile;
 
   constructor(
     private router: Router,
     private questionService: QuestionService,
     private optionService: OptionService,
-    private responseService: StudentResponseService, // Servicio nuevo para manejar las respuestas
-    private studentService: StudentService,
+    private responseProfileService: ProfileResponseService,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
-    this.loadQuestions();
-    this.loadAnswerOptions();
+    const profileId = localStorage.getItem('profileId');
+    if (profileId) {
+      this.loadProfile(Number(profileId));
+    } else {
+      console.error();
+      this.router.navigate(['/profile']); // O redirige al paso anterior
+    }
   }
+
+  loadProfile(profileId: number): void {
+    this.profileService.getProfileById(profileId).subscribe({
+      next: (profile) => {
+        this.currentProfile = profile;
+        this.loadQuestions();
+        this.loadAnswerOptions();
+      },
+      error: (err) => {
+        console.error(err);
+        this.router.navigate(['/profile']);
+      }
+    });
+  }
+
 
   loadQuestions(): void {
     this.questionService.getQuestions().subscribe({
       next: (data: Question[]) => {
         this.questions = data;
-        this.currentQuestion = this.questions[this.currentQuestionIndex]; // Mostrar la primera pregunta
+        this.currentQuestion = this.questions[this.currentQuestionIndex];
       },
-      error: (error) => {
-        console.error('Error al cargar las preguntas', error);
-      }
+      error: (error) => console.error(error)
     });
   }
 
@@ -59,50 +77,39 @@ export class QuestionnaireComponent implements OnInit {
         this.answerOptions = data;
       },
       error: (error) => {
-        console.error('Error al cargar las opciones de respuesta', error);
+        console.error(error);
       }
     });
   }
 
-  // Método para obtener las respuestas filtradas por el ID de la pregunta
+
   getOptionsByQuestionId(questionId: number): Option[] {
     return this.answerOptions.filter(option => option.questionId === questionId);
   }
 
-
   nextQuestion(): void {
-    if (this.selectedAnswer && this.currentStudent) {
-
-      const newResponse: Response = {
-        id: 0,  // O el valor que sea asignado por tu backend si es generado automáticamente
-        studentId: Number(this.currentStudent.id), // Asegúrate de que es un número
-        optionId: Number(this.selectedAnswer.id)   // Asegúrate de que es un número
+    if (this.selectedAnswer && this.currentProfile?.id) {
+      const newProfileResponse: ProfileResponse = {
+        id: 0,
+        profileId: this.currentProfile.id,
+        optionId: this.selectedAnswer.id
       };
 
-      // Guardar la respuesta en el backend
-      // @ts-ignore
-      this.responseService.saveResponse(newResponse).subscribe({
-        next: (response) => {
-          console.log('Respuesta guardada exitosamente', response);
-          //this.responses.push(newResponse);  // Almacenar la respuesta en el array localmente
+      this.responseProfileService.saveResponse(newProfileResponse).subscribe({
+        next: () => {
+          this.selectedAnswer = null;
+          this.currentQuestionIndex++;
+
+          if (this.currentQuestionIndex < this.questions.length) {
+            this.currentQuestion = this.questions[this.currentQuestionIndex];
+          } else {
+            alert('🎉 Has completado el cuestionario');
+            this.router.navigate(['/result']);
+          }
         },
-        error: (error) => {
-          console.error('Error al guardar la respuesta', error);
-        }
+        error: (error) => console.error(error)
       });
-
-      this.selectedAnswer = null; // Resetear la selección
-      this.currentQuestionIndex++;
-
-      if (this.currentQuestionIndex < this.questions.length) {
-        this.currentQuestion = this.questions[this.currentQuestionIndex];
-      }
-      else {
-        alert('Has completado el cuestionario');
-        this.router.navigate(['/result']);  // Navegar al resultado
-      }
     }
-
   }
 }
 

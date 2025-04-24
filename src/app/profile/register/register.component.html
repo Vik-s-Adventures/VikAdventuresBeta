@@ -1,1 +1,56 @@
-<p>register works!</p>
+<body>
+<div class="background">
+  <div class="card">
+    <div class="user-info">
+      <img src="assets/images/vickk.png" alt="SignUpUser Image" class="user-image">
+      <h2 class="title">Regístrate</h2>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+      <div class="form-container">
+        <!-- Primera columna -->
+        <div class="column">
+          <div>
+            <label for="firstName" class="form-label">Nombre:</label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="profile.firstName" required class="form-input">
+          </div>
+
+          <div>
+            <label for="birthDate" class="form-label">Fecha de nacimiento:</label>
+            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="profile.birthDate" required class="form-input">
+          </div>
+
+          <div>
+            <label for="gradeLevel" class="form-label">Nivel de grado:</label>
+            <input type="number" id="gradeLevel" name="gradeLevel" [(ngModel)]="profile.gradeLevel" required class="form-input">
+          </div>
+
+        <!-- Segunda columna -->
+        <div class="column">
+          <div>
+            <label for="lastName" class="form-label">Apellido:</label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="profile.lastName" required class="form-input">
+          </div>
+
+          <div>
+            <label for="sex" class="form-label">Sexo:</label>
+            <select id="sex" name="sex" [(ngModel)]="profile.sex" required class="form-input">
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="school" class="form-label">Escuela:</label>
+            <input type="text" id="school" name="school" [(ngModel)]="profile.school" required class="form-input">
+          </div>
+
+        </div>
+      </div>
+      </div>
+      <button type="submit" [disabled]="studentForm.invalid" class="action-button">Enviar</button>
+    </form>
+  </div>
+</div>
+</body>
+

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
+import {ProfileService} from '../../profile/services/profile.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,24 +10,61 @@ import {AuthService} from '../services/auth.service';
   styleUrl: './sign-in.component.css'
 })
 export class SignInComponent {
-  constructor(private router: Router,
-              private authService: AuthService) {
-  }
+  credentials = {
+    username: '',
+    password: ''
+  };
 
-  credentials = {email: '', password: ''};
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private profileService: ProfileService
+  ) {}
 
+  onSignIn(): void {
+    // 🔄 Limpia datos anteriores de otro usuario
+    localStorage.clear();
 
-  onSignIn() {
-    this.authService.signIn(this.credentials).subscribe(
-      (response) => {
-        console.log('SignUpUser authenticated successfully', response);
+    this.authService.signIn(this.credentials).subscribe({
+      next: (response) => {
+        console.log('✅ Usuario autenticado correctamente:', response);
+
         localStorage.setItem('token', response.token);
 
-        this.router.navigate(['/menu']);
+        const decodedToken = this.parseJwt(response.token);
+        const username = decodedToken?.sub;
+        console.log('👤 Username decodificado:', username);
+
+        // Buscar si ya tiene perfil creado
+        this.profileService.getProfileByUsername(username).subscribe({
+          next: (profile) => {
+            if (profile?.id) {
+              localStorage.setItem('profileId', profile.id.toString());
+              console.log('📌 Perfil encontrado:', profile);
+              this.router.navigate(['/menu']);
+            } else {
+              console.warn('⚠️ Usuario no tiene perfil, redirigiendo...');
+              this.router.navigate(['/profile']);
+            }
+          },
+          error: (err) => {
+            console.warn('⚠️ No se encontró perfil, redirigiendo al registro...');
+            this.router.navigate(['/profile']);
+          }
+        });
       },
-      (error) => {
-        console.error('Error authenticating user', error);
+      error: (error) => {
+        console.error('❌ Error al autenticar usuario:', error);
       }
-    );
+    });
+  }
+
+  private parseJwt(token: string): any {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      console.error('❌ Error al decodificar JWT:', e);
+      return null;
+    }
   }
 }

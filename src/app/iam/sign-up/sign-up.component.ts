@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  user = { email: '', password: '' };
+  user = { username: '', password: '' };
   errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -23,7 +23,7 @@ export class SignUpComponent {
         this.router.navigate(['/sign-in']);
       },
       (error) => {
-        console.error('Error registering user', error);
+        console.error(error);
         this.errorMessage = 'Registration failed. Please try again.';
       }
     );
