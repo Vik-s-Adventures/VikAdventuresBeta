@@ -1,34 +1,41 @@
+<body>
 <div class="card-container" *ngIf="profile">
-  <mat-card>
-    <mat-card-title>¡Hola, {{ profile.fullName }}!</mat-card-title>
+  <mat-card class="main-card">
+    <mat-card-title class="main-title">¡Hola, {{ profile.fullName }}! estos son tus datos</mat-card-title>
     <mat-card-content>
-      <div class="profile-info">
-        <div>
+      <div class="info-grid">
+
+        <mat-card class="info-card">
           <mat-icon class="icon">person</mat-icon>
           <span>{{ profile.fullName }}</span>
-        </div>
-        <div>
-          <mat-icon class="icon">cake</mat-icon>
-          <span>{{ profile.birthDate }}</span>
-        </div>
-        <div>
+        </mat-card>
+
+        <mat-card class="info-card">
           <mat-icon class="icon">wc</mat-icon>
+          <span>{{ profile.birthDate }}</span>
+        </mat-card>
+
+        <mat-card class="info-card">
+          <mat-icon class="icon">cake</mat-icon>
           <span>{{ profile.sex }}</span>
-        </div>
-        <div>
+        </mat-card>
+
+        <mat-card class="info-card">
           <mat-icon class="icon">school</mat-icon>
           <span>{{ profile.gradeLevel }}</span>
-        </div>
-        <div>
+        </mat-card>
+
+        <mat-card class="info-card">
           <mat-icon class="icon">apartment</mat-icon>
           <span>{{ profile.school }}</span>
-        </div>
+        </mat-card>
+
       </div>
     </mat-card-content>
   </mat-card>
 
   <div class="logo-container">
     <img src="/assets/images/upc.png" class="upc-logo" alt="Logo UPC" />
-    <span class="credit-text">Diseñado para aprender con diversión</span>
   </div>
 </div>
+</body>
