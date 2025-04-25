@@ -1,4 +1,4 @@
-
+/* FONDO Y CONTENEDOR PRINCIPAL */
 .background {
   background-image: url('/assets/images/fondoinicio.jpg');
   background-size: cover;
@@ -10,21 +10,24 @@
   align-items: center;
   text-align: center;
   padding-top: 50px;
+  font-family: 'Press Start 2P', cursive;
 }
 
+/* TARJETA DEL FORMULARIO */
 .card {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
   padding: 30px;
-  max-width: 600px;
+  max-width: 420px;
   width: 90%;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
 }
 
+/* INFO DEL USUARIO Y TÍTULO */
 .user-info {
   display: flex;
   flex-direction: column;
@@ -45,12 +48,13 @@
   font-weight: bold;
   margin-bottom: 20px;
   text-shadow:
-    -1px -1px 0 #ffffff,
-    1px -1px 0 #ffffff,
-    -1px 1px 0 #ffffff,
-    1px 1px 0 #ffffff;
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px  1px 0 #000000,
+    1px  1px 0 #000000;
 }
 
+/* CONTENEDOR DE LOS CAMPOS */
 .form-container {
   width: 100%;
   display: flex;
@@ -62,16 +66,9 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 400px;
 }
 
-.form-label {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8rem;
-  color: #000;
-  margin-bottom: 5px;
-}
-
+/* INPUTS Y SELECTS */
 .form-input {
   font-family: 'Press Start 2P', cursive;
   font-size: 1rem;
@@ -80,10 +77,10 @@
   border: 2px solid #000000;
   padding: 10px 20px;
   border-radius: 25px;
-  width: 100%;
-  box-sizing: border-box;
   text-align: center;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
   transition: transform 0.3s, background-color 0.2s;
 }
 
@@ -92,13 +89,23 @@
   transform: scale(1.05);
 }
 
+.form-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: black;
+  display: block;
+  text-align: left;
+}
+
+/* BOTÓN DE ENVÍO */
 .action-button {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.2rem;
   color: blue;
   background-color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 25px;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.2s;
   border-radius: 25px;
@@ -106,8 +113,9 @@
   text-shadow:
     -1px -1px 0 #000000,
     1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
+    -1px  1px 0 #000000,
+    1px  1px 0 #000000;
+  margin-top: 15px;
 }
 
 .action-button:hover {
@@ -115,29 +123,60 @@
   background-color: #60a5fa;
 }
 
-#phaser-container {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* OPCIONAL: SECCIÓN DE ENLACE AL REGISTRO */
+.register-container {
   margin-top: 20px;
+  text-align: center;
 }
 
+.register-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.register-link {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  color: #FF5722;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.register-link:hover {
+  color: #0000ff;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .form-container {
-    grid-template-columns: 1fr;
-  }
   .title {
     font-size: 1.2rem;
   }
-  .form-input, .action-button {
+
+  .form-input,
+  .action-button {
     font-size: 0.9rem;
+  }
+
+  .form-label {
+    font-size: 0.7rem;
+  }
+
+  .user-image {
+    width: 60px;
+    height: 60px;
   }
 }
 
 @media (max-width: 480px) {
   .title {
     font-size: 1rem;
+  }
 
+  .form-input,
+  .action-button {
+    padding: 8px 15px;
   }
 }
