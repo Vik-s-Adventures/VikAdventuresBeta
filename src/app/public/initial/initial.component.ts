@@ -20,20 +20,40 @@ export class InitialComponent implements OnInit{
   }
 
   phaserGame!: Phaser.Game;
-  config!: Phaser.Types.Core.GameConfig;
 
+  preload = function (this: Phaser.Scene) {
+    this.load.spritesheet('character', 'assets/images/vick250ad.png', {
+      frameWidth: 250,
+      frameHeight: 250
+    });
+  };
 
-  sprite!: Phaser.GameObjects.Sprite;
-  private load: any;
-  private anims: any;
-  private add: any;
+  create = function (this: Phaser.Scene) {
+    this.anims.create({
+      key: 'walk',
+      frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
+      frameRate: 8,
+      repeat: -1
+    });
 
+    // Ajuste dinámico de escala según el ancho del canvas
+    const canvasWidth = this.sys.canvas.width;
+    const scaleFactor = canvasWidth <= 200 ? 0.4 : canvasWidth <= 300 ? 0.6 : 0.8;
+
+    const sprite = this.add.sprite(canvasWidth / 2, canvasWidth * 0.35, 'character').setScale(scaleFactor);
+    sprite.play('walk');
+  };
+
+  update = function () {};
 
   ngOnInit(): void {
-    this.config = {
+    const width = Math.min(window.innerWidth * 0.6, 250);
+    const height = width;
+
+    const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width: 500,
-      height: 500,
+      width: width,
+      height: height,
       parent: 'phaser-container',
       transparent: true,
       scene: {
@@ -43,29 +63,6 @@ export class InitialComponent implements OnInit{
       }
     };
 
-    this.phaserGame = new Phaser.Game(this.config);
-  }
-
-  preload() {
-    this.load.spritesheet('character', 'assets/images/vick250ad.png', {
-      frameWidth: 250,
-      frameHeight: 250
-    });
-  }
-
-  create() {
-    this.anims.create({
-      key: 'walk',
-      frames: this.anims.generateFrameNumbers('character', {start: 0, end: 3}),
-      frameRate: 8,
-      repeat: -1
-    });
-
-    this.sprite = this.add.sprite(250, 180, 'character').setScale(1);
-    this.sprite.play('walk');
-  }
-
-  update() {
-    // Lógica de actualización
+    this.phaserGame = new Phaser.Game(config);
   }
 }

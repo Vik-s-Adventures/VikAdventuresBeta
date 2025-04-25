@@ -1,3 +1,4 @@
+/* Fondo principal */
 .background {
   background-image: url('/assets/images/fondoinicio.jpg');
   background-size: cover;
@@ -5,44 +6,47 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Alinea los elementos hacia la parte superior */
   align-items: center;
   text-align: center;
+  padding-top: 40px;
   position: relative;
   overflow: hidden;
-  padding-top: 50px; /* Añade espacio en la parte superior para el título */
 }
 
+/* Logo */
 .logo {
-  width: 70px;
-  margin-bottom: 5px;
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
+/* Título */
 .title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3.5rem;
   color: #FFCC00;
   font-weight: bold;
-  margin-bottom: 30px;
-  margin-top: 20px; /* Añade margen superior para ajustar la posición */
-  text-align: center;
+  margin: 20px 0 30px;
   text-shadow:
-    -1px -1px 0 #ffffff, /* Borde blanco en las cuatro direcciones */
+    -1px -1px 0 #ffffff,
     1px -1px 0 #ffffff,
-    -1px 1px 0 #ffffff,
-    1px 1px 0 #ffffff;
+    -1px  1px 0 #ffffff,
+    1px  1px 0 #ffffff;
 }
 
+/* Contenedor de botones */
 .button-container {
   display: flex;
-  margin-top: 50px;
-  flex-direction: column; /* Coloca los botones en una columna */
-  align-items: center; /* Centra los botones horizontalmente */
-  gap: 30px;
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 300px; /* Tamaño máximo en pantallas grandes */
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  z-index: 2; /* Encima del sprite */
 }
 
+/* Botones */
 .action-button {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.1rem;
@@ -52,54 +56,78 @@
   padding: 10px 20px;
   cursor: pointer;
   transition: transform 0.3s, background-color 0.2s;
-  border-radius: 25px; /* Bordes ovalados */
-  font-weight: bold; /* Letras más gruesas */
+  border-radius: 25px;
+  font-weight: bold;
   text-shadow:
-    -1px -1px 0 #000000, /* Borde negro alrededor del texto */
+    -1px -1px 0 #000000,
     1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
+    -1px  1px 0 #000000,
+    1px  1px 0 #000000;
 }
 
 .action-button:hover {
-  transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
-  background-color: yellow; /* Cambia el color a amarillo */
+  transform: scale(1.1);
+  background-color: yellow;
 }
 
-#phaser-container {
-  overflow: hidden; /* Evita desbordes dentro del contenedor */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Sprite Phaser */
+.phaser-box {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  bottom: 110px; /* ahora más cerca de los botones */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0; /* Detrás de los botones */
+  pointer-events: none; /* No interfiere con clics */
 }
 
-/* Media Queries para Pantallas Pequeñas */
+/* Responsivo */
 @media (max-width: 768px) {
   .title {
-    font-size: 2rem; /* Ajuste del título para pantallas pequeñas */
+    font-size: 2.2rem;
   }
+
   .action-button {
-    font-size: 0.9rem; /* Ajuste del tamaño de letra en botones */
-    padding: 8px 15px;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  #phaser-container {
-    width: 80px; /* Aumenta el tamaño en pantallas pequeñas */
-    height: 80px;
+
+  .phaser-box {
+    width: 200px;
+    height: 200px;
+    bottom: 30px;
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 1.8rem; /* Ajuste del título para pantallas móviles */
+    font-size: 1.8rem;
   }
+
   .logo {
-    width: 80px; /* Escala menor para el logo en pantallas móviles */
+    width: 70px;
   }
+
   .button-container {
-    width: 90%; /* Ocupa casi todo el ancho en pantallas muy pequeñas */
+    width: 90%;
   }
-  #phaser-container {
-    width: 70px; /* Ajusta el tamaño para pantallas móviles */
-    height: 70px;
+  .phaser-box {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+    max-width: 250px;
+    width: 60vw;
+    height: auto;
+  }
+
+  @media (max-width: 480px) {
+    .phaser-box {
+      bottom: 5px;
+      width: 50vw;
+    }
   }
 }
