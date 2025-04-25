@@ -29,7 +29,7 @@ import {LearningPathComponent} from './quiz/learning-path/learning-path.componen
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'learning-path' , pathMatch:'full'},
+  {path: '', redirectTo:'initial' , pathMatch:'full'},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
