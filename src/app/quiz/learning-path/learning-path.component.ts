@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class LearningPathComponent {
   cards: { value: number, id: number, title: string, route: string }[] = [
-    { value: 0, id: 1,title:'Nivel 1', route: '/instructionOne' },
+    { value: 0, id: 1,title:'Nivel 1', route: '/one-performance-concept' },
     { value: 0, id: 2,title:'Nivel 2', route: '/instructionTwo' },
     { value: 0, id: 3,title:'Nivel 3', route: '/instructionThree' },
     { value: 0, id: 4,title:'Nivel 4', route: '/instructionFour' },

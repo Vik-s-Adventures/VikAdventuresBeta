@@ -105,34 +105,13 @@ export class QuestionnaireComponent implements OnInit {
           if (this.currentQuestionIndex < this.questions.length) {
             this.currentQuestion = this.questions[this.currentQuestionIndex];
           } else {
-            // ✅ Final del cuestionario, obtener token y generar ruta de aprendizaje
-            const token = localStorage.getItem('authToken');
-            if (!token) {
-              alert('❌ No se encontró token de autenticación');
-              return;
-            }
-
-            const profileId = this.currentProfile.id;
-            const quizId = 1; // Si siempre es el mismo quiz
-
-            this.learningPathService.getLearningPath(profileId, quizId, token).subscribe({
-              next: (learningPath) => {
-                console.log('📘 Ruta de aprendizaje generada:', learningPath);
-                this.router.navigate(['/result'], { state: { learningPath } });
-              },
-              error: (err) => {
-                console.error('❌ Error al obtener la ruta de aprendizaje:', err);
-                alert('Ocurrió un error al generar tu ruta de aprendizaje.');
-              }
-            });
+            alert('🎉 Has completado el cuestionario');
+            this.router.navigate(['/learning-path']);
           }
         },
-        error: (error) => {
-          console.error('❌ Error al guardar la respuesta del perfil:', error);
-        }
+        error: (error) => console.error(error)
       });
     }
   }
-
 
 }
