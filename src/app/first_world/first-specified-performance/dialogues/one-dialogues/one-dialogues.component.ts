@@ -64,6 +64,6 @@ export class OneDialoguesComponent implements OnInit{
 
   continueAction(): void {
     // Redirige a otro componente usando el Router
-    this.router.navigate(['/maps']);
+    this.router.navigate(['/learning-path']);
   }
 }
