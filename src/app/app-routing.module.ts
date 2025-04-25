@@ -26,6 +26,7 @@ import {OperationResponseComponent} from './first_world/first-specified-performa
 import {VisualRepresentationComponent} from './first_world/first-specified-performance/practice/practice-end/visual-representation/visual-representation.component';
 import {RegisterComponent} from './profile/register/register.component';
 import {LearningPathComponent} from './quiz/learning-path/learning-path.component';
+import {ProfileUserComponent} from './profile/profile-user/profile-user.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'menu', component: MenuComponent},
+  {path: 'profile-user', component: ProfileUserComponent},
   {path: 'profile', component: RegisterComponent},
   {path: 'maps', component: MapsComponent},
   {path: 'ranking', component: RankingComponent},

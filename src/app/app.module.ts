@@ -40,6 +40,8 @@ import {CdkDrag, CdkDropList, CdkDropListGroup, DragDropModule} from "@angular/c
 import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import { LearningPathComponent } from './quiz/learning-path/learning-path.component';
+import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
+import {MatIcon} from '@angular/material/icon';
 
 
 @NgModule({
@@ -72,6 +74,7 @@ import { LearningPathComponent } from './quiz/learning-path/learning-path.compon
     VisualRepresentationComponent,
     OperationResponseComponent,
     LearningPathComponent,
+    ProfileUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ import { LearningPathComponent } from './quiz/learning-path/learning-path.compon
     CdkDropList,
     CdkDrag,
     DragDropModule,
+    MatIcon,
 
   ],
   providers: [
