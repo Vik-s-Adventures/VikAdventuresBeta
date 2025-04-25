@@ -9,6 +9,7 @@ import {QuestionService} from '../services/question.service';
 import {ProfileResponseService} from '../services/profile-response.service';
 import {OptionService} from '../services/option.service';
 import {ProfileService} from '../../profile/services/profile.service';
+import {LearningPathService} from '../services/learning-path.service';
 
 
 @Component({
@@ -30,8 +31,10 @@ export class QuestionnaireComponent implements OnInit {
     private questionService: QuestionService,
     private optionService: OptionService,
     private responseProfileService: ProfileResponseService,
-    private profileService: ProfileService
-  ) {}
+    private profileService: ProfileService,
+    private learningPathService: LearningPathService,
+  ) {
+  }
 
   ngOnInit(): void {
     const profileId = localStorage.getItem('profileId');
@@ -86,7 +89,6 @@ export class QuestionnaireComponent implements OnInit {
   getOptionsByQuestionId(questionId: number): Option[] {
     return this.answerOptions.filter(option => option.questionId === questionId);
   }
-
   nextQuestion(): void {
     if (this.selectedAnswer && this.currentProfile?.id) {
       const newProfileResponse: ProfileResponse = {
@@ -103,13 +105,34 @@ export class QuestionnaireComponent implements OnInit {
           if (this.currentQuestionIndex < this.questions.length) {
             this.currentQuestion = this.questions[this.currentQuestionIndex];
           } else {
-            alert('🎉 Has completado el cuestionario');
-            this.router.navigate(['/result']);
+            // ✅ Final del cuestionario, obtener token y generar ruta de aprendizaje
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+              alert('❌ No se encontró token de autenticación');
+              return;
+            }
+
+            const profileId = this.currentProfile.id;
+            const quizId = 1; // Si siempre es el mismo quiz
+
+            this.learningPathService.getLearningPath(profileId, quizId, token).subscribe({
+              next: (learningPath) => {
+                console.log('📘 Ruta de aprendizaje generada:', learningPath);
+                this.router.navigate(['/result'], { state: { learningPath } });
+              },
+              error: (err) => {
+                console.error('❌ Error al obtener la ruta de aprendizaje:', err);
+                alert('Ocurrió un error al generar tu ruta de aprendizaje.');
+              }
+            });
           }
         },
-        error: (error) => console.error(error)
+        error: (error) => {
+          console.error('❌ Error al guardar la respuesta del perfil:', error);
+        }
       });
     }
   }
-}
 
+
+}

@@ -20,7 +20,20 @@ export class LearningPathComponent {
     { value: 1, id: 9,title:'Nivel 9', route: '/instructionSix' },
     { value: 1, id: 10,title:'Nivel 10', route: '/instructionSix' }
   ];
-
+  /*
+  [
+   5,
+  1,
+  4,
+  6,
+  8,
+  2,
+  9,
+  10,
+  3,
+  7
+]
+   */
   constructor(private router: Router) {
   }
 
