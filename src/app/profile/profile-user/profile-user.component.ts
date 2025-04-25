@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../shared/environments/environment.development';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,8 +12,14 @@ import {environment} from '../../shared/environments/environment.development';
 })
 export class ProfileUserComponent implements OnInit {
   profile: any;
+  private router: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,router: Router) {}
+  
+  
+  goToMenu() {
+    this.router.navigate(['/menu']);
+  }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');

@@ -1,5 +1,6 @@
 <body>
 <div class="card-container" *ngIf="profile">
+  <button (click)="goToMenu()" class="back-button">MENU</button>
   <mat-card class="main-card">
     <mat-card-title class="main-title">¡Hola, {{ profile.fullName }}! estos son tus datos</mat-card-title>
     <mat-card-content>
@@ -7,27 +8,27 @@
 
         <mat-card class="info-card">
           <mat-icon class="icon">person</mat-icon>
-          <span>{{ profile.fullName }}</span>
+          <span>Nombre: {{ profile.fullName }}</span>
         </mat-card>
 
         <mat-card class="info-card">
           <mat-icon class="icon">wc</mat-icon>
-          <span>{{ profile.birthDate }}</span>
+          <span>Genero:{{ profile.birthDate }}</span>
         </mat-card>
 
         <mat-card class="info-card">
           <mat-icon class="icon">cake</mat-icon>
-          <span>{{ profile.sex }}</span>
+          <span>Fecha de Nacimeinto: {{ profile.sex }}</span>
         </mat-card>
 
         <mat-card class="info-card">
           <mat-icon class="icon">school</mat-icon>
-          <span>{{ profile.gradeLevel }}</span>
+          <span>Grado:{{ profile.gradeLevel }}</span>
         </mat-card>
 
         <mat-card class="info-card">
           <mat-icon class="icon">apartment</mat-icon>
-          <span>{{ profile.school }}</span>
+          <span>Colegio:{{ profile.school }}</span>
         </mat-card>
 
       </div>

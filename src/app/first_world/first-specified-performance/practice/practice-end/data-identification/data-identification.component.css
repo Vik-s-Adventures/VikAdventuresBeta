@@ -15,12 +15,12 @@ body, .game-container {
 }
 
 h2 {
-  font-size: 2.3rem;
+  font-size: 1.6rem;
   color: #2e3c55;
 }
 
 p, .tarjeta, .tarjeta-correcta, .btn-validar {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -123,7 +123,7 @@ p, .tarjeta, .tarjeta-correcta, .btn-validar {
 .zona-drop h3 {
   text-align: center;
   color: #2b4c6f;
-  font-size: 1.8rem; /* 👈 Aumenta o ajusta este valor */
+  font-size: 1.3rem; /* 👈 Aumenta o ajusta este valor */
   font-weight: bold; /* (Opcional) para asegurarte que se vea más marcado */
 }
 
@@ -144,7 +144,7 @@ p, .tarjeta, .tarjeta-correcta, .btn-validar {
   padding: 12px 28px;
   border: none;
   border-radius: 8px;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 16px;
@@ -161,7 +161,7 @@ p, .tarjeta, .tarjeta-correcta, .btn-validar {
   padding: 10px 24px;
   border: none;
   border-radius: 8px;
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 8px;
@@ -173,7 +173,7 @@ p, .tarjeta, .tarjeta-correcta, .btn-validar {
 }
 
 .feedback {
-  font-size: 1.6rem; /* 👈 Cambia este valor, por ejemplo: 1.3rem */
+  font-size: 1.3rem; /* 👈 Cambia este valor, por ejemplo: 1.3rem */
   font-weight: 600;
   text-align: center;
   margin-bottom: 1rem;

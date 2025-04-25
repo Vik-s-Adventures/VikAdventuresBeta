@@ -80,6 +80,6 @@ export class OnePerformanceConceptsComponent implements OnInit {
   }
 
   navigateToComponent2() {
-    this.router.navigate(['/result']); // Navega a Componente 2
+    this.router.navigate(['/learning-path']); // Navega a Componente 2
   }
 }

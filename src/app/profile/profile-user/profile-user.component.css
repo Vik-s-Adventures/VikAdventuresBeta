@@ -82,6 +82,28 @@ body {
   text-align: center;
 }
 
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.back-button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8em;
+  padding: 15px 30px;
+  background-color: #0000ff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #FFC107;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .main-title {
