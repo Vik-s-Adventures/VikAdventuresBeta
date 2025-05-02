@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import * as Phaser from 'phaser';
+import {AuthService} from '../../iam/services/auth.service';
 
 @Component({
   selector: 'app-initial',
@@ -9,7 +10,13 @@ import * as Phaser from 'phaser';
   styleUrl: './initial.component.css'
 })
 export class InitialComponent implements OnInit{
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private authService: AuthService) {}
+
+
+  navigateToGoogleLogin(): void {
+    this.authService.loginWithGoogle();
+  }
 
   navigateToSignIn(): void {
     this.router.navigate(['/sign-in']);

@@ -18,13 +18,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signUp(user: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.resourcePath()}/sign-up`, user);
+  signUp(user: { name: string; email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.resourcePath()}/register`, user);
   }
 
   signIn(credentials: SignInUser): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.resourcePath()}/sign-in`, credentials);
+    return this.http.post<{ token: string }>(`${this.resourcePath()}/login/local`, credentials);
   }
+
+  loginWithGoogle(): void {
+    window.location.href = `${this.resourcePath()}/login/google`;
+  }
+
 
 
 

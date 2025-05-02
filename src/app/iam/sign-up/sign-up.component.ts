@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  user = { username: '', password: '' };
+  user = { name: '', email: '', password: '' };
   errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}

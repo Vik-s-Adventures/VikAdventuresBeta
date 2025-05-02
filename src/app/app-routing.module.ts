@@ -27,6 +27,7 @@ import {VisualRepresentationComponent} from './first_world/first-specified-perfo
 import {RegisterComponent} from './profile/register/register.component';
 import {LearningPathComponent} from './quiz/learning-path/learning-path.component';
 import {ProfileUserComponent} from './profile/profile-user/profile-user.component';
+import {AuthCallbackComponent} from './iam/auth-callback/auth-callback.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
+  {path: 'auth-callback', component: AuthCallbackComponent},
   {path: 'menu', component: MenuComponent},
   {path: 'profile-user', component: ProfileUserComponent},
   {path: 'profile', component: RegisterComponent},

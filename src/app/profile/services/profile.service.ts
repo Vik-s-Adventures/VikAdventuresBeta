@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../shared/environments/environment.development";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, of, retry} from "rxjs";
-import {Profile} from "../model/Profile";
+import { environment } from "../../shared/environments/environment.development";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, Observable, of } from "rxjs";
+import { Profile } from "../model/Profile";
 
 @Injectable({
   providedIn: 'root'
@@ -17,52 +17,12 @@ export class ProfileService {
     return `${this.basePath}${this.url}`;
   }
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
-  /**
-   * Manejo genérico de errores
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
+  updateProfile(profile: Profile): Observable<Profile> {
+    return this.http.put<Profile>(this.resourcePath(), profile);
   }
 
-  /**
-   * Crea un nuevo perfil
-   * @param profile los datos del perfil a crear
-   */
-  createProfile(profile: Profile): Observable<Profile> {
-    return this.http.post<Profile>(this.resourcePath(), profile, this.httpOptions)
-      .pipe(
-        catchError(this.handleError<Profile>('createProfile'))
-      );
-  }
-
-  /**
-   * Obtiene el perfil por ID
-   * @param profileId ID del perfil a obtener
-   */
   getProfileById(profileId: number): Observable<Profile> {
     const url = `${this.resourcePath()}/${profileId}`;
-    // @ts-ignore
-    return this.http.get<Profile>(url, this.httpOptions)
-      .pipe(
-        catchError(this.handleError('getProfileById'))
-      );
+    return this.http.get<Profile>(url);
   }
-
-  getProfileByUsername(username: string): Observable<Profile> {
-    return this.http.get<Profile>(`${this.resourcePath()}/by-username/${username}`, this.httpOptions)
-      .pipe(
-        catchError(this.handleError<Profile>('getProfileByUsername'))
-      );
-  }
-
-
 }

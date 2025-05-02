@@ -42,6 +42,7 @@ import {TokenInterceptor} from './interceptors/token.interceptor';
 import { LearningPathComponent } from './quiz/learning-path/learning-path.component';
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
 import {MatIcon} from '@angular/material/icon';
+import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.component';
 
 
 @NgModule({
@@ -74,7 +75,7 @@ import {MatIcon} from '@angular/material/icon';
     VisualRepresentationComponent,
     OperationResponseComponent,
     LearningPathComponent,
-    ProfileUserComponent,
+    ProfileUserComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +91,7 @@ import {MatIcon} from '@angular/material/icon';
     CdkDrag,
     DragDropModule,
     MatIcon,
+    AuthCallbackComponent,
 
   ],
   providers: [

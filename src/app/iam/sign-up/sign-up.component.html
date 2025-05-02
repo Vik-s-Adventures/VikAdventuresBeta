@@ -7,14 +7,24 @@
 
     <form (ngSubmit)="onSignUp()" class="button-container">
       <label class="action-button">USUARIO</label>
-      <input
-        type="text"
-        label="Ingresa tu usuario"
-        id="gmail"
-        name="username"
+        <input
+          type="text"
+          label="Ingresa tu nombre"
+          id="name"
+          name="name"
+          required
+          class="form-input"
+          [(ngModel)]="user.name"
+        />
+        <label class="action-button">EMAIL</label>
+        <input
+        type="email"
+        label="Ingresa tu gmail"
+        id="email"
+        name="email"
         required
         class="form-input"
-        [(ngModel)]="user.username"
+        [(ngModel)]="user.email"
       />
 
       <label class="action-button">CONTRASEÑA</label>
