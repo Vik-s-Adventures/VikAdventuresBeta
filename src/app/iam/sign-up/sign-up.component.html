@@ -1,3 +1,11 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<!-- sign-up.component.html -->
 <div class="background">
   <div class="card">
     <div class="user-info">
@@ -6,42 +14,67 @@
     </div>
 
     <form (ngSubmit)="onSignUp()" class="button-container">
-      <label class="action-button">USUARIO</label>
-        <input
-          type="text"
-          label="Ingresa tu nombre"
-          id="name"
-          name="name"
-          required
-          class="form-input"
-          [(ngModel)]="user.name"
-        />
-        <label class="action-button">EMAIL</label>
-        <input
+      <label class="input-label">
+        <i class="fas fa-user icon"></i>
+        USUARIO
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        class="form-input"
+        placeholder="ej. usuario123"
+        [(ngModel)]="user.name"
+      />
+
+      <label class="input-label">
+        <i class="fas fa-envelope icon"></i>
+        EMAIL
+      </label>
+      <input
         type="email"
-        label="Ingresa tu gmail"
         id="email"
         name="email"
         required
         class="form-input"
+        placeholder="ej. ejemplo@gmail.com"
         [(ngModel)]="user.email"
       />
 
-      <label class="action-button">CONTRASEÑA</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        required
-        class="form-input"
-        [(ngModel)]="user.password"
-      />
+      <label class="input-label">
+        <i class="fas fa-lock icon"></i>
+        CONTRASEÑA
+      </label>
+      <div class="password-container">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          required
+          class="form-input"
+          placeholder="********"
+          [(ngModel)]="user.password"
+          (input)="validatePassword(user.password)"
+        />
+        <i class="fas toggle-visibility" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="showPassword = !showPassword"></i>
+      </div>
 
+      <ul class="password-rules">
+        <li [class.valid]="passwordValidation.hasLower">1 Minúscula</li>
+        <li [class.valid]="passwordValidation.hasUpper">1 Mayúscula</li>
+        <li [class.valid]="passwordValidation.hasNumber">1 Número</li>
+        <li [class.valid]="passwordValidation.minLength">Mínimo 8 caracteres</li>
+      </ul>
 
-      <button type="submit" class="action-button">Enviar</button>
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="!isFormValid()"
+        [ngClass]="{ 'disabled': !isFormValid() }"
+      >
+        Enviar
+      </button>
     </form>
-
   </div>
 </div>
-
-

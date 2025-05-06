@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   profile: Profile = {
     id: 0,
+    fullName:'',
     firstName: '',
     lastName: '',
     birthDate: '',

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ProfileService} from '../../profile/services/profile.service';
+import { Profile } from '../../profile/model/Profile';
+
 
 @Component({
   selector: 'app-auth-callback',
   template: `<p>Autenticando...</p>`
 })
 export class AuthCallbackComponent implements OnInit {
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -23,24 +26,31 @@ export class AuthCallbackComponent implements OnInit {
       const userId = decodedToken?.userId;
 
       if (userId) {
-        this.profileService.getProfileById(userId).subscribe({
+        // ✅ Ahora usamos el nuevo endpoint correcto: /profiles/by-user/{userId}
+        this.profileService.getProfileByUserId(userId).subscribe({
           next: (profile) => {
-            if (profile) {
-              this.router.navigate(['/menu']); // ✅ Ya tiene perfil
+            console.log('📦 Perfil recibido:', profile); // 👈 Ahora sí, dentro del scope correcto
+            const isIncomplete =
+              !profile.fullName ||
+              !profile.gradeLevel ||
+              !profile.school;
+
+            if (isIncomplete) {
+              this.router.navigate(['/profile']); // 🔄 Redirige a completar perfil
             } else {
-              this.router.navigate(['/profile']); // 🔄 Redirigir a completar datos
+              this.router.navigate(['/menu']); // ✅ Perfil completo
             }
           },
           error: () => {
-            // ❌ No tiene perfil aún
+            // 🚨 Si falla la búsqueda del perfil, asumimos que no tiene
             this.router.navigate(['/profile']);
           }
         });
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login']); // ⚠️ Token no válido
       }
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']); // ⚠️ Token no presente
     }
   }
 
@@ -48,9 +58,13 @@ export class AuthCallbackComponent implements OnInit {
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      return JSON.parse(decodeURIComponent(atob(base64).split('').map(c =>
-        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      ).join('')));
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+          .join('')
+      );
+      return JSON.parse(jsonPayload);
     } catch (error) {
       return null;
     }

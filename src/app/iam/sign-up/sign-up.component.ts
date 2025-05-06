@@ -8,25 +8,56 @@ import {Router} from '@angular/router';
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent {
+export class SignUpComponent  {
   user = { name: '', email: '', password: '' };
   errorMessage: string | null = null;
+  showPassword = false;
+
+  passwordValidation = {
+    hasLower: false,
+    hasUpper: false,
+    hasNumber: false,
+    minLength: false
+  };
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSignUp() {
-    this.authService.signUp(this.user).subscribe(
-      (response) => {
-        console.log('SignUpUser registered successfully', response);
+  onSignUp(): void {
+    if (!this.isFormValid()) return;
 
-        // Redirigir a la página de inicio de sesión o a otra ruta deseada
+    this.authService.signUp(this.user).subscribe({
+      next: (response) => {
+        console.log('✅ Usuario registrado exitosamente:', response);
         this.router.navigate(['/sign-in']);
       },
-      (error) => {
-        console.error(error);
-        this.errorMessage = 'Registration failed. Please try again.';
+      error: (error) => {
+        console.error('❌ Error al registrar:', error);
+        this.errorMessage = 'Registro fallido. Intenta nuevamente.';
       }
+    });
+  }
+
+  validatePassword(password: string): void {
+    this.passwordValidation = {
+      hasLower: /[a-z]/.test(password),
+      hasUpper: /[A-Z]/.test(password),
+      hasNumber: /[0-9]/.test(password),
+      minLength: password.length >= 8
+    };
+  }
+
+  isPasswordValid(): boolean {
+    const { hasLower, hasUpper, hasNumber, minLength } = this.passwordValidation;
+    return hasLower && hasUpper && hasNumber && minLength;
+  }
+
+  isFormValid(): boolean {
+    return (
+      this.user.name.trim() !== '' &&
+      this.user.email.trim() !== '' &&
+      this.isPasswordValid()
     );
   }
 }
+
 
