@@ -1,39 +1,61 @@
+<!-- Agrega esto en tu index.html -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<!-- sign-in.component.html adaptado -->
 <div class="background">
   <div class="card">
     <div class="user-info">
-      <img src="assets/images/vickk.png" alt="SignUpUser Image" class="user-image">
+      <img src="assets/images/vickk.png" alt="SignInUser Image" class="user-image">
       <h2 class="title">INICIAR SESIÓN</h2>
     </div>
 
     <form (ngSubmit)="onSignIn()" class="button-container">
-      <label class="action-button">USUARIO</label>
+      <label class="input-label">
+        <i class="fas fa-user icon"></i>
+        USUARIO o GMAIL
+      </label>
       <input
         type="text"
-        label="Ingresa tu usuario"
         id="username"
         name="username"
         required
         class="form-input"
+        placeholder="ej. usuario123@gmail.com"
         [(ngModel)]="credentials.identifier"
+        (input)="validateForm()"
       />
 
-      <label class="action-button">CONTRASEÑA</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        required
-        class="form-input"
-        [(ngModel)]="credentials.password"
-      />
+      <label class="input-label">
+        <i class="fas fa-lock icon"></i>
+        CONTRASEÑA
+      </label>
+      <div class="password-container">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          name="password"
+          required
+          class="form-input"
+          placeholder="Ingresa tu contraseña"
+          [(ngModel)]="credentials.password"
+          (input)="validateForm()"
+        />
+        <i class="fas toggle-visibility" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="showPassword = !showPassword"></i>
+      </div>
 
-      <button type="submit" class="action-button">Enviar</button>
+      <p class="error-message" *ngIf="!isValid && showValidation">Por favor completa todos los campos correctamente.</p>
+
+      <button type="submit" class="submit-button" [disabled]="!isValid">Enviar</button>
 
       <div class="register-container">
-        <a href="/sign-up" class="register-link">Registrate aquí</a>
+    <a href="/sign-up" class="register-link underline-blue">Regístrate aquí</a>
       </div>
-    </form>
 
+    </form>
   </div>
 </div>
-

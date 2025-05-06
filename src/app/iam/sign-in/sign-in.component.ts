@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {ProfileService} from '../../profile/services/profile.service';
+import {Profile} from '../../profile/model/Profile';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,11 +15,24 @@ export class SignInComponent {
     identifier: '',
     password: ''
   };
+  showPassword = false;
+  isValid = false;
+  showValidation = false;
+
+  validateForm(): void {
+    this.showValidation = true;
+    const { identifier, password } = this.credentials;
+    this.isValid = identifier.trim().length > 0 && password.trim().length >= 6;
+  }
+
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private profileService: ProfileService
   ) {}
+
+
 
   onSignIn(): void {
     localStorage.clear();
@@ -26,14 +40,53 @@ export class SignInComponent {
     this.authService.signIn(this.credentials).subscribe({
       next: (response) => {
         console.log('✅ Usuario autenticado correctamente:', response);
-        localStorage.setItem('token', response.token);
+        const token = response.token;
+        localStorage.setItem('token', token);
 
-        // 👇 Ya no obtenemos el perfil, lo mandamos al registro para completarlo con PUT
-        this.router.navigate(['/profile']);
+        const decodedToken = this.parseJwt(token);
+        const userId = decodedToken?.userId;
+
+        if (userId) {
+          this.profileService.getProfileByUserId(userId).subscribe({
+            next: (profile: Profile) => {
+              console.log('📦 Perfil recibido (login):', profile);
+              const isIncomplete =
+                !profile.fullName ||
+                !profile.gradeLevel ||
+                !profile.school ||
+                !profile.birthDate ||
+                !profile.sex;
+
+              this.router.navigate([isIncomplete ? '/profile' : '/menu']);
+            },
+            error: () => {
+              // 🔁 Si no tiene perfil aún, lo mandamos a completarlo
+              this.router.navigate(['/profile']);
+            }
+          });
+        } else {
+          this.router.navigate(['/login']);
+        }
       },
       error: (error) => {
         console.error('❌ Error al autenticar usuario:', error);
       }
     });
+  }
+
+  private parseJwt(token: string): any {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+          .join('')
+      );
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      return null;
+    }
   }
 }
