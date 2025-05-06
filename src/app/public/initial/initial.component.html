@@ -3,11 +3,28 @@
   <h1 class="title">VIK´S ADVENTURES</h1>
 
   <div class="button-container">
-    <button class="action-button" (click)="navigateToGoogleLogin()">INICIAR SESIÓN CON GOOGLE</button>
-    <button class="action-button" (click)="navigateToSignIn()">INICIAR SESIÓN</button>
-    <button class="action-button" (click)="navigateToSignUp()">CREAR CUENTA</button>
-  </div>
+    <button class="action-button" (click)="navigateToGoogleLogin()">
+      <i class="fab fa-google button-icon"></i>
+      CONTINUAR CON GOOGLE
+    </button>
 
-  <!-- Sprite debajo -->
+    <button class="action-button" (click)="navigateToSignUp()">
+      <i class="fas fa-envelope button-icon"></i>
+      CONTINUAR CON GMAIL
+    </button>
+
+    <button class="login-button" (click)="navigateToSignIn()">
+      <i class="fas fa-user button-icon"></i>
+      INICIAR SESIÓN
+    </button>
+  </div>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+
   <div id="phaser-container" class="phaser-box"></div>
 </div>
