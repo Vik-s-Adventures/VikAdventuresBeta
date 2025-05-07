@@ -11,12 +11,12 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@ang
 import { InitialComponent } from './public/initial/initial.component';
 import { SignInComponent } from './iam/sign-in/sign-in.component';
 import { SignUpComponent } from './iam/sign-up/sign-up.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuComponent } from './public/menu/menu.component';
 import { WelcomeQuestionnaireComponent } from './public/welcome-questionnaire/welcome-questionnaire.component';
 import { MapsComponent } from './public/maps/maps.component';
 import { CreditsComponent } from './public/credits/credits.component';
-import {MatButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import { HeaderComponent } from './public/header/header.component';
 import { RankingComponent } from './public/ranking/ranking.component';
 import {QuestionnaireComponent} from './quiz/questionnaire/questionnaire.component';
@@ -43,6 +43,18 @@ import { LearningPathComponent } from './quiz/learning-path/learning-path.compon
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
 import {MatIcon} from '@angular/material/icon';
 import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.component';
+import { ProfileEditDialogComponentComponent } from './profile/profile-edit-dialog-component/profile-edit-dialog-component.component';
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {
+  MatDatepicker,
+  MatDatepickerInput, MatDatepickerModule,
+  MatDatepickerToggle
+} from '@angular/material/datepicker';
+import {MatInput, MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -75,7 +87,8 @@ import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.compone
     VisualRepresentationComponent,
     OperationResponseComponent,
     LearningPathComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    ProfileEditDialogComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -92,11 +105,31 @@ import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.compone
     DragDropModule,
     MatIcon,
     AuthCallbackComponent,
+    MatDialogTitle,
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatDatepickerInput,
+    MatDatepicker,
+    MatDatepickerToggle,
+    MatInput,
+    MatDialogActions,
+    MatLabel,
+    MatIconButton,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
 
   ],
   providers: [
     AuthService,
     UserService,
+    MatDatepickerModule,
+    MatNativeDateModule,
     provideHttpClient(),
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

@@ -1,37 +1,65 @@
+<!-- profile-user.component.html mejorado para niños -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 <body>
 <div class="card-container" *ngIf="profile">
   <mat-card class="main-card">
-    <mat-card-title class="main-title">¡Hola, {{ profile.fullName }}! estos son tus datos</mat-card-title>
+
+    <div class="header-row">
+      <img class="profile-pic" src="assets/images/vickk.png" alt="Avatar" />
+      <mat-card-title class="main-title">¡Hola, {{ profile.firstName }}! estos son tus datos
+      </mat-card-title>
+    </div>
+
+    <mat-card-actions class="action-buttons">
+      <button mat-raised-button color="primary" (click)="openEditDialog()">
+        <mat-icon>edit</mat-icon> Editar
+      </button>
+      <button mat-raised-button color="accent" (click)="goToMenu()">
+        <mat-icon>home</mat-icon> Menú
+      </button>
+    </mat-card-actions>
+
     <mat-card-content>
       <div class="info-grid">
 
         <mat-card class="info-card">
-          <mat-icon class="icon">person</mat-icon>
-          <span>Nombre: {{ profile.fullName }}</span>
+          <span>
+            <mat-icon class="icon name-icon">person</mat-icon>
+            <strong class="label">Nombre:</strong> {{ profile.fullName }}</span>
         </mat-card>
 
         <mat-card class="info-card">
-          <mat-icon class="icon">wc</mat-icon>
-          <span>Genero:{{ profile.birthDate }}</span>
+          <span>
+            <mat-icon class="icon gender-icon">wc</mat-icon>
+            <strong class="label">Género:</strong> {{ profile.sex }}</span>
         </mat-card>
 
         <mat-card class="info-card">
-          <mat-icon class="icon">cake</mat-icon>
-          <span>Fecha de Nacimeinto: {{ profile.sex }}</span>
+          <span>
+            <mat-icon class="icon birth-icon">cake</mat-icon>
+            <strong class="label">Fecha de Nacimiento:</strong> {{ profile.birthDate }}</span>
         </mat-card>
 
         <mat-card class="info-card">
-          <mat-icon class="icon">school</mat-icon>
-          <span>Grado:{{ profile.gradeLevel }}</span>
+          <span>
+            <mat-icon class="icon grade-icon">school</mat-icon>
+            <strong class="label">Grado:</strong> {{ profile.gradeLevel }}</span>
         </mat-card>
 
         <mat-card class="info-card">
-          <mat-icon class="icon">apartment</mat-icon>
-          <span>Colegio:{{ profile.school }}</span>
+          <span>
+            <mat-icon class="icon school-icon">apartment</mat-icon>
+            <strong class="label">Colegio:</strong> {{ profile.school }}</span>
         </mat-card>
 
       </div>
     </mat-card-content>
+
   </mat-card>
 
   <div class="logo-container">
