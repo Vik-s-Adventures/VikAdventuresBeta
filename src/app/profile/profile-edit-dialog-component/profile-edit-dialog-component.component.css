@@ -1,0 +1,22 @@
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1rem;
+  }
+  .dialog-form {
+    gap: 12px;
+  }
+  mat-form-field {
+    font-size: 0.9rem;
+  }
+}

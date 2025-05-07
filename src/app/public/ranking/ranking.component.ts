@@ -4,8 +4,7 @@ import { ProfileService } from '../../profile/services/profile.service';
 import { forkJoin } from 'rxjs';
 
 interface StudentScore {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   score: number;
 }
 
@@ -40,8 +39,7 @@ export class RankingComponent implements OnInit {
         forkJoin(profileRequests).subscribe({
           next: (profiles) => {
             this.studentsWithScores = results.map((result, index) => ({
-              firstName: profiles[index]?.firstName ?? 'Sin nombre',
-              lastName: profiles[index]?.lastName ?? '',
+              fullName: profiles[index]?.fullName ?? 'Sin nombre',
               score: result.score
             })).sort((a, b) => b.score - a.score); // Orden descendente
           },
