@@ -55,6 +55,7 @@ import {
 import {MatInput, MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AlertHeaderComponent } from './quiz/alert-header/alert-header.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     OperationResponseComponent,
     LearningPathComponent,
     ProfileUserComponent,
-    ProfileEditDialogComponentComponent
+    ProfileEditDialogComponentComponent,
+    AlertHeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -30,6 +30,7 @@ export class AuthCallbackComponent implements OnInit {
         this.profileService.getProfileByUserId(userId).subscribe({
           next: (profile) => {
             console.log('📦 Perfil recibido:', profile); // 👈 Ahora sí, dentro del scope correcto
+            localStorage.setItem('profileId', profile.id.toString());
             const isIncomplete =
               !profile.fullName ||
               !profile.gradeLevel ||

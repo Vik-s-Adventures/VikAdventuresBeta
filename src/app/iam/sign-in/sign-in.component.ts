@@ -50,6 +50,7 @@ export class SignInComponent {
           this.profileService.getProfileByUserId(userId).subscribe({
             next: (profile: Profile) => {
               console.log('📦 Perfil recibido (login):', profile);
+              localStorage.setItem('profileId', profile.id.toString());
               const isIncomplete =
                 !profile.fullName ||
                 !profile.gradeLevel ||
