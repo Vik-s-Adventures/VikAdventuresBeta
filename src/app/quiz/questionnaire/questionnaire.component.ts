@@ -1,22 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {Question} from '../model/Question';
-import {Option} from '../model/Option';
-import {Router} from '@angular/router';
-import {Profile} from '../../profile/model/Profile';
-import {ProfileResponse} from '../model/ProfileResponse';
+import { Component, OnInit } from '@angular/core';
+import { Question } from '../model/Question';
+import { Option } from '../model/Option';
+import { Router } from '@angular/router';
+import { Profile } from '../../profile/model/Profile';
+import { ProfileResponse } from '../model/ProfileResponse';
 
-import {QuestionService} from '../services/question.service';
-import {ProfileResponseService} from '../services/profile-response.service';
-import {OptionService} from '../services/option.service';
-import {ProfileService} from '../../profile/services/profile.service';
-import {LearningPathService} from '../services/learning-path.service';
-
+import { QuestionService } from '../services/question.service';
+import { ProfileResponseService } from '../services/profile-response.service';
+import { OptionService } from '../services/option.service';
+import { ProfileService } from '../../profile/services/profile.service';
+import { LearningPathService } from '../services/learning-path.service';
 
 @Component({
   selector: 'app-questionnaire',
   standalone: false,
   templateUrl: './questionnaire.component.html',
-  styleUrl: './questionnaire.component.css'
+  styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
   questions: Question[] = [];
@@ -33,8 +32,7 @@ export class QuestionnaireComponent implements OnInit {
     private responseProfileService: ProfileResponseService,
     private profileService: ProfileService,
     private learningPathService: LearningPathService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     const profileId = localStorage.getItem('profileId');
@@ -42,7 +40,7 @@ export class QuestionnaireComponent implements OnInit {
       this.loadProfile(Number(profileId));
     } else {
       console.error();
-      this.router.navigate(['/profile']); // O redirige al paso anterior
+      this.router.navigate(['/profile']);
     }
   }
 
@@ -60,11 +58,10 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
-
   loadQuestions(): void {
     this.questionService.getQuestions().subscribe({
       next: (data: Question[]) => {
-        this.questions = data;
+        this.questions = data.filter(q => q.quizId === 1); // 👈 solo preguntas del quiz_id: 1
         this.currentQuestion = this.questions[this.currentQuestionIndex];
       },
       error: (error) => console.error(error)
@@ -84,11 +81,10 @@ export class QuestionnaireComponent implements OnInit {
       }
     });
   }
-
-
   getOptionsByQuestionId(questionId: number): Option[] {
     return this.answerOptions.filter(option => option.questionId === questionId);
   }
+
   nextQuestion(): void {
     if (this.selectedAnswer && this.currentProfile?.id) {
       const newProfileResponse: ProfileResponse = {
@@ -113,5 +109,4 @@ export class QuestionnaireComponent implements OnInit {
       });
     }
   }
-
 }

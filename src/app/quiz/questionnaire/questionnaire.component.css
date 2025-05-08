@@ -3,87 +3,171 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.questionnaire-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-family: 'Press Start 2P', cursive;
+  padding: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  align-items: stretch; /* 👈 fuerza que ambas tarjetas usen la misma altura */
 }
 
-.example-radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 3px 0;
-  align-items: flex-start;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 12px;
+/* Card de la izquierda: texto + imagen */
+.card-left {
+  flex: 2;
+  min-width: 300px;
+}
+.card-right {
+  flex: 1;
+  min-width: 280px;
 }
 
-.card-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  z-index: 1;
-  font-family: 'Press Start 2P', cursive;
+
+.info-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 16px;
+  height: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.options-card {
+  background-color: rgba(173, 216, 230, 0.88); /* celeste bebé */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  height: 90%;
 }
 
-mat-card {
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  padding: 10px;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-family: 'Press Start 2P', cursive;
-}
 
-mat-card-title {
-  margin: 10px;
+.info-card mat-card-title {
   text-align: center;
-  font-weight: bold;
-  font-size: 13px;
-  font-family: 'Press Start 2P', cursive;
-  justify-content: center;
-  align-items: center;
+  font-size: 20px;
+  color: #001f8b;
+  text-shadow: 1px 1px #ccc;
+  margin-bottom: 12px;
 }
 
-mat-card-content p {
-  font-size: 10px;
+.question-text {
+  font-size: 14px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  text-align: justify;
+  margin-bottom: 16px;
+  color: #000;
 }
 
-img {
+.info-card img {
   display: block;
+  max-width: 100%;
+  height: auto;
   margin: 0 auto;
-  max-width: 30%;
+  border-radius: 6px;
+}
+.card-left img {
+  max-width: 60%; /* cambia este valor para agrandar o reducir */
   height: auto;
 }
 
-.actions {
-  font-family: 'Press Start 2P', cursive;
+
+.options-card mat-card-title {
+  font-size: 16px;
+  color: #001f8b;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.radio-options {
   display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  position: relative;
+  flex-direction: column;
+  gap: 10px;
 }
 
-button[mat-button] {
+.option-item {
+  font-size: 13px;
+  color: #000;
+}
+
+/* Botón con animaciones */
+.submit-button-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+button[mat-raised-button] {
   font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
   font-weight: bold;
-  transition: box-shadow 0.3s ease;
-  font-size: 12px;
+  padding: 12px 24px;
+  background-color: #ffeb3b;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(255, 235, 59, 0.7);
+  animation: bounce 1.5s infinite;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
 }
 
-button[mat-button]:disabled {
+button[mat-raised-button]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #fdd835;
+}
+
+button[mat-raised-button]:disabled {
+  background-color: #ccc;
+  color: #666;
   box-shadow: none;
+  animation: none;
 }
 
-button[mat-button]:not(:disabled) {
-  box-shadow: 0px 0px 15px 2px rgba(0, 123, 255, 0.6);
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .questionnaire-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .card-left img {
+    max-width: 90%;
+  }
+
+  .card-left,
+  .card-right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .info-card mat-card-title,
+  .options-card mat-card-title {
+    font-size: 18px;
+  }
+
+  .question-text {
+    font-size: 13px;
+  }
+
+  .option-item {
+    font-size: 12px;
+  }
+
+  button[mat-raised-button] {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }
