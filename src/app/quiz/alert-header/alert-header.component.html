@@ -1,0 +1,19 @@
+<!-- Encabezado con botón de SALIR -->
+<div class="alert-header">
+  <button class="exit-button" (click)="confirmExit()">
+    <mat-icon class="exit-icon">logout</mat-icon>
+    SALIR
+  </button>
+</div>
+
+<!-- Diálogo modal personalizado -->
+<div *ngIf="showDialog" class="custom-dialog-backdrop">
+  <div class="custom-dialog">
+    <h2 class="dialog-title">¿Estás seguro/a de salir?</h2>
+    <p class="dialog-message">Si sales ahora el cuestionario se enviará con tu avance actual y NO podrás rendirlo de nuevo.</p>
+    <div class="alert-actions">
+      <button mat-raised-button class="exit-confirm-button" (click)="exitToMenu()">Sí, salir</button>
+      <button mat-stroked-button class="cancel-button" (click)="cancelExit()">No, continuar</button>
+    </div>
+  </div>
+</div>
