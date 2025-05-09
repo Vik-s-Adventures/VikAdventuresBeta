@@ -1,0 +1,28 @@
+<!-- Encabezado con botón de SALIR -->
+<div class="alert-header">
+  <button class="exit-button" (click)="confirmExit()">
+    <mat-icon class="exit-icon">logout</mat-icon>
+    SALIR
+  </button>
+</div>
+
+<!-- Diálogo modal personalizado -->
+<!-- Diálogo retro personalizado al intentar salir -->
+<div *ngIf="showDialog" class="completed-dialog-backdrop">
+  <div class="completed-dialog">
+    <div class="dialog-content">
+      <img src="assets/images/vickk.png" alt="Personaje" class="dialog-character">
+      <div class="dialog-text">
+        <h2>❌Estas saliendo del cuestionario❌</h2>
+        <p>Si sales del cuestionario se enviará con tu avance actual<br> y NO podrás rendirlo de nuevo</p>
+      </div>
+    </div>
+
+    <!-- Botones con estilo arcade -->
+    <div class="alert-actions">
+      <button mat-raised-button class="exit-confirm-button" (click)="exitToMenu()">Sí, salir</button>
+      <button mat-stroked-button class="cancel-button" (click)="cancelExit()">No, continuar</button>
+    </div>
+  </div>
+</div>
+

@@ -1,9 +1,10 @@
 
 export interface Result {
-  id: number;
+  id: number;        // ← opcional
+  score: number;     // ← opcional
   profileId: number;
   quizId: number;
-  score: number;
+
 }
 
 export interface RankedStudent {

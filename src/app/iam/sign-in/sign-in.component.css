@@ -12,11 +12,11 @@
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 15px;
   padding: 30px;
   max-width: 400px;
-  width: 100%;
+  width: 90%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -40,6 +40,7 @@
 .title {
   font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
+  letter-spacing: 2px;
   color: #FFCC00;
   font-weight: bold;
   margin-bottom: 20px;
@@ -59,17 +60,39 @@
   max-width: 300px;
 }
 
+.input-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.icon {
+  font-size: 1rem;
+}
+
 .form-input {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
-  color: blue;
+  font-size: 0.9rem;
+  color: #333;
   background-color: white;
   border: 2px solid #000000;
   padding: 10px 20px;
   border-radius: 25px;
-  text-align: center;
   outline: none;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
   transition: transform 0.3s, background-color 0.2s;
+}
+
+.form-input::placeholder {
+  color: #888;
+  font-size: 0.6rem;
 }
 
 .form-input:focus {
@@ -77,52 +100,52 @@
   transform: scale(1.05);
 }
 
-.action-button {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.2rem;
-  color: blue;
-  background-color: white;
-  border: none;
-  padding: 10px 20px;
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-visibility {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: transform 0.3s, background-color 0.2s;
+  font-size: 1rem;
+  color: #666;
+}
+
+.submit-button {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #FFCC00;
+  color: black;
+  padding: 10px 20px;
   border-radius: 25px;
+  border: none;
+  cursor: pointer;
   font-weight: bold;
+  width: 100%;
   text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
+    -1px -1px 0 #ffffff,
+    1px -1px 0 #ffffff,
+    -1px 1px 0 #ffffff,
+    1px 1px 0 #ffffff;
+  transition: background-color 0.3s ease;
 }
 
-.action-button:hover {
-  transform: scale(1.1);
-  background-color: #60a5fa;
-}
-
-#phaser-container {
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+.submit-button:hover {
+  background-color: #ffaa00;
 }
 
 .register-container {
   margin-top: 20px;
   text-align: center;
-}
-
-.register-text {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.9rem;
-  color: #000000;
-  margin-bottom: 10px;
+  width: 100%;
 }
 
 .register-link {
   font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #FF5722;
   text-decoration: none;
   font-weight: bold;
@@ -133,13 +156,32 @@
   color: #0000ff;
 }
 
+.error-message {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: red;
+  text-align: left;
+  width: 100%;
+  margin-top: -10px;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.underline-blue {
+  color: #0000ff; /* azul */
+  text-decoration: underline;
+}
+
+
 @media (max-width: 768px) {
   .title {
     font-size: 1.2rem;
   }
   .form-input,
-  .action-button {
-    font-size: 0.9rem;
+  .submit-button {
+    font-size: 0.85rem;
   }
 }
 

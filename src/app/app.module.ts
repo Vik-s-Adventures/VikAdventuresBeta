@@ -11,15 +11,15 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@ang
 import { InitialComponent } from './public/initial/initial.component';
 import { SignInComponent } from './iam/sign-in/sign-in.component';
 import { SignUpComponent } from './iam/sign-up/sign-up.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenuComponent } from './public/menu/menu.component';
-import { WelcomeQuestionnaireComponent } from './public/welcome-questionnaire/welcome-questionnaire.component';
+import { WelcomeQuestionnaireComponent } from './public/welcome/welcome-questionnaire/welcome-questionnaire.component';
 import { MapsComponent } from './public/maps/maps.component';
 import { CreditsComponent } from './public/credits/credits.component';
-import {MatButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
 import { HeaderComponent } from './public/header/header.component';
 import { RankingComponent } from './public/ranking/ranking.component';
-import {QuestionnaireComponent} from './quiz/questionnaire/questionnaire.component';
+import {QuestionnaireComponent} from './quiz/quizzes/questionnaire/questionnaire.component';
 import {RegisterComponent} from './profile/register/register.component';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import { OnePerformanceConceptsComponent } from './first_world/first-specified-performance/concept/one-performance-concepts/one-performance-concepts.component';
@@ -39,10 +39,30 @@ import { OperationResponseComponent } from './first_world/first-specified-perfor
 import {CdkDrag, CdkDropList, CdkDropListGroup, DragDropModule} from "@angular/cdk/drag-drop";
 import {DataIdentificationComponent} from './first_world/first-specified-performance/practice/practice-end/data-identification/data-identification.component';
 import {TokenInterceptor} from './interceptors/token.interceptor';
-import { LearningPathComponent } from './quiz/learning-path/learning-path.component';
+import { LearningPathComponent } from './quiz/paths/learning-path/learning-path.component';
 import { ProfileUserComponent } from './profile/profile-user/profile-user.component';
 import {MatIcon} from '@angular/material/icon';
 import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.component';
+import { ProfileEditDialogComponentComponent } from './profile/profile-edit-dialog-component/profile-edit-dialog-component.component';
+import {MatDialogActions, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {MatOption, MatSelect} from '@angular/material/select';
+import {
+  MatDatepicker,
+  MatDatepickerInput, MatDatepickerModule,
+  MatDatepickerToggle
+} from '@angular/material/datepicker';
+import {MatInput, MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AlertHeaderComponent } from './quiz/alert-header/alert-header.component';
+import { QuestionnaireTwoComponent } from './quiz/quizzes/questionnaire-two/questionnaire-two.component';
+import { QuestionnareThreeComponent } from './quiz/quizzes/questionnare-three/questionnare-three.component';
+import { QuestionnareFourComponent } from './quiz/quizzes/questionnare-four/questionnare-four.component';
+import { WelcomeQuestionnaireTwoComponent } from './public/welcome/welcome-questionnaire-two/welcome-questionnaire-two.component';
+import { WelcomeQuestionnaireThreeComponent } from './public/welcome/welcome-questionnaire-three/welcome-questionnaire-three.component';
+import { WelcomeQuestionnaireFourComponent } from './public/welcome/welcome.questionnaire-four/welcome.questionnaire-four.component';
+import { CompletedQuizDialogComponent } from './quiz/completed-quiz-dialog/completed-quiz-dialog.component';
 
 
 @NgModule({
@@ -75,7 +95,17 @@ import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.compone
     VisualRepresentationComponent,
     OperationResponseComponent,
     LearningPathComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    ProfileEditDialogComponentComponent,
+    AlertHeaderComponent,
+    QuestionnaireTwoComponent,
+    QuestionnareThreeComponent,
+    QuestionnareFourComponent,
+    WelcomeQuestionnaireTwoComponent,
+    WelcomeQuestionnaireThreeComponent,
+    WelcomeQuestionnaireFourComponent,
+    CompletedQuizDialogComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -92,11 +122,31 @@ import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.compone
     DragDropModule,
     MatIcon,
     AuthCallbackComponent,
+    MatDialogTitle,
+    MatDialogContent,
+    ReactiveFormsModule,
+    MatFormField,
+    MatSelect,
+    MatOption,
+    MatDatepickerInput,
+    MatDatepicker,
+    MatDatepickerToggle,
+    MatInput,
+    MatDialogActions,
+    MatLabel,
+    MatIconButton,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
 
   ],
   providers: [
     AuthService,
     UserService,
+    MatDatepickerModule,
+    MatNativeDateModule,
     provideHttpClient(),
     provideHttpClient(withInterceptorsFromDi()),
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

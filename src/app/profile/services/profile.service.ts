@@ -25,4 +25,10 @@ export class ProfileService {
     const url = `${this.resourcePath()}/${profileId}`;
     return this.http.get<Profile>(url);
   }
+  getProfileByUserId(userId: number): Observable<Profile> {
+    return this.http.get<Profile>(`${this.resourcePath()}/by-user/${userId}`);
+  }
+
+
+
 }

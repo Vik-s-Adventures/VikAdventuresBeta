@@ -9,9 +9,9 @@ import {Component, HostListener} from '@angular/core';
 export class AppComponent {
   title = 'vik';
 
-  @HostListener('window:beforeunload', ['$event'])
+  /*@HostListener('window:beforeunload', ['$event'])
   clearOnClose(event: Event) {
     localStorage.removeItem('profileId');
     localStorage.clear();
-  }
+  }*/
 }

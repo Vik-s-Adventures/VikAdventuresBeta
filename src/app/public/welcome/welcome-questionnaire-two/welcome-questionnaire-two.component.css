@@ -1,0 +1,92 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 30px; /* Espacio entre el sprite y la card */
+  background-image: url('/src/assets/images/fondoinicio.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dialog-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Press Start 2P', cursive; /* Aplicar la fuente */
+  font-size: 1.3rem; /* Tamaño de letra más grande */
+  font-weight: bold; /* Texto más grueso */
+  max-width: 500px; /* Limita el ancho de la card */
+  word-wrap: break-word; /* Hace que el texto no se desborde */
+  animation: textMovement 1.5s infinite; /* Animación de movimiento de letras */
+}
+
+.dialog-card p {
+  margin: 0 0 20px;
+}
+
+.dialog-card button {
+  padding: 15px 30px; /* Botón más grande */
+  font-size: 1.2rem; /* Texto más grande pero ajustado */
+  font-weight: bold; /* Texto más grueso */
+  cursor: pointer;
+  background-color: #03A9F4;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Press Start 2P', cursive; /* Aplicar la fuente al botón */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Efecto de brillo y movimiento */
+  width: 100%; /* Botón ocupa todo el ancho disponible */
+}
+
+.dialog-card button:hover {
+  box-shadow: 0 0 15px #03A9F4, 0 0 30px #03A9F4; /* Efecto de brillo al pasar el cursor */
+  transform: scale(1.1); /* El botón se agranda al pasar el cursor */
+}
+
+/* Animación para hacer que las letras se muevan */
+@keyframes textMovement {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .dialog-card {
+    font-size: 1.2rem; /* Reducir el tamaño de la letra en pantallas más pequeñas */
+    max-width: 250px; /* Limita el ancho de la card en pantallas pequeñas */
+  }
+
+  .dialog-card button {
+    font-size: 1rem; /* Ajustar el tamaño del botón en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-card {
+    font-size: 1rem; /* Aún más pequeño en pantallas móviles */
+    max-width: 200px; /* Ajustar el tamaño de la card */
+  }
+
+  .dialog-card button {
+    font-size: 0.9rem; /* Ajustar el botón en móviles */
+  }
+}
+

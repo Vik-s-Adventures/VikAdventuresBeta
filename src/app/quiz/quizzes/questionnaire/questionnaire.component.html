@@ -1,0 +1,38 @@
+<body>
+<app-alert-header></app-alert-header>
+<div class="questionnaire-wrapper" *ngIf="currentQuestion">
+
+  <div class="card-left">
+    <mat-card class="info-card">
+      <mat-card-title>Pregunta {{ currentQuestion.id }}</mat-card-title>
+      <mat-card-content>
+        <p class="question-text">{{ currentQuestion.questionText }}</p>
+        <img *ngIf="currentQuestion.imageUrl" [src]="currentQuestion.imageUrl" alt="Imagen de pregunta" />
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="card-right">
+    <mat-card class="options-card">
+      <mat-card-title class="choose-text">Elige tu respuesta</mat-card-title>
+      <mat-card-content>
+        <mat-radio-group [(ngModel)]="selectedAnswer" class="radio-options">
+          <mat-radio-button
+            *ngFor="let option of getOptionsByQuestionId(currentQuestion.id)"
+            [value]="option"
+            class="option-item"
+          >
+            {{ option.optionText }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+      <div class="submit-button-container">
+        <button mat-raised-button color="accent" (click)="nextQuestion()" [disabled]="!selectedAnswer">
+          Siguiente
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+</div>
+</body>
