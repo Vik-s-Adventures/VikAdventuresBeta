@@ -65,7 +65,7 @@ export class RegisterComponent {
         if (err.status === 401) {
           alert('⚠️ Vuelve a completar tus datos, ingresalos de forma correcta.');
           localStorage.clear();
-          this.router.navigate(['/sign-in']);
+          this.router.navigate(['/initial']);
         } else {
           alert('❌ Error inesperado. Revisa los datos e intenta nuevamente.');
         }
