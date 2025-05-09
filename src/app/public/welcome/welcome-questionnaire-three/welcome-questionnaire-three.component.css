@@ -11,7 +11,7 @@ body, html {
   align-items: center;
   height: 100vh;
   gap: 30px; /* Espacio entre el sprite y la card */
-  background-image: url('/src/assets/images/fondoinicio.jpg');
+  background-image: url('/assets/images/fondoinicio.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
