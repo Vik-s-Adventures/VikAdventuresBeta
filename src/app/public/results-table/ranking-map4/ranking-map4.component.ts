@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { QuizResultService} from '../../quiz/services/quiz-result.service';
-import { ProfileService } from '../../profile/services/profile.service';
-import { forkJoin } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {QuizResultService} from '../../../quiz/services/quiz-result.service';
+import {ProfileService} from '../../../profile/services/profile.service';
+import {forkJoin} from 'rxjs';
 
 interface StudentScore {
   sex: string;
@@ -11,12 +11,12 @@ interface StudentScore {
 }
 
 @Component({
-  selector: 'app-ranking',
+  selector: 'app-ranking-map4',
   standalone: false,
-  templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css']
+  templateUrl: './ranking-map4.component.html',
+  styleUrl: './ranking-map4.component.css'
 })
-export class RankingComponent implements OnInit {
+export class RankingMap4Component implements OnInit {
   studentsWithScores: StudentScore[] = [];
   searchTerm: string = '';
   currentPage: number = 0;
@@ -29,7 +29,7 @@ export class RankingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const quizIdFilter = 1;
+    const quizIdFilter = 4;
 
     this.quizResultService.getAllResults().subscribe({
       next: (results) => {

@@ -18,7 +18,7 @@ import { MapsComponent } from './public/maps/maps.component';
 import { CreditsComponent } from './public/credits/credits.component';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import { HeaderComponent } from './public/header/header.component';
-import { RankingComponent } from './public/ranking/ranking.component';
+import { RankingComponent } from './public/results-table/ranking/ranking.component';
 import {QuestionnaireComponent} from './quiz/quizzes/questionnaire/questionnaire.component';
 import {RegisterComponent} from './profile/register/register.component';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
@@ -63,6 +63,11 @@ import { WelcomeQuestionnaireTwoComponent } from './public/welcome/welcome-quest
 import { WelcomeQuestionnaireThreeComponent } from './public/welcome/welcome-questionnaire-three/welcome-questionnaire-three.component';
 import { WelcomeQuestionnaireFourComponent } from './public/welcome/welcome.questionnaire-four/welcome.questionnaire-four.component';
 import { CompletedQuizDialogComponent } from './quiz/completed-quiz-dialog/completed-quiz-dialog.component';
+import { RankingMap2Component } from './public/results-table/ranking-map2/ranking-map2.component';
+import { RankingMap3Component } from './public/results-table/ranking-map3/ranking-map3.component';
+import { RankingMap4Component } from './public/results-table/ranking-map4/ranking-map4.component';
+import { TableSelectionComponent } from './public/results-table/table-selection/table-selection.component';
+import { ProgressAdvanceComponent } from './learning-progress/progress-advance/progress-advance.component';
 
 
 @NgModule({
@@ -105,6 +110,11 @@ import { CompletedQuizDialogComponent } from './quiz/completed-quiz-dialog/compl
     WelcomeQuestionnaireThreeComponent,
     WelcomeQuestionnaireFourComponent,
     CompletedQuizDialogComponent,
+    RankingMap2Component,
+    RankingMap3Component,
+    RankingMap4Component,
+    TableSelectionComponent,
+    ProgressAdvanceComponent,
 
   ],
   imports: [

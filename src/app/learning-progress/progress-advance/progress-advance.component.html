@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="page-container">
+  <!-- Título dentro de una card -->
+  <div class="title-card">
+    <h1>⚡ PROGRESO ⚡</h1>
+  </div>
+
+  <!-- Dos columnas de niveles -->
+  <div class="levels-wrapper">
+    <div class="column">
+      <div
+        class="level-row"
+        *ngFor="let level of levels.slice(0, 5); let i = index"
+        [class.unlocked]="isLevelUnlocked(i + 1)"
+      >
+        <div class="level-icon-left">
+          <img src="assets/images/manzana.png" alt="Nivel" />
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="getLevelProgress(i + 1)"
+          ></div>
+          <span class="progress-indicator">
+            Nivel {{ i + 1 }} - {{ level }}/{{ maxPointsPerLevel }}
+          </span>
+        </div>
+
+        <div class="level-icon-right">
+          <img
+            *ngIf="canUnlockReward(i + 1)"
+            src="assets/images/copa.png"
+            alt="Recompensa"
+          />
+        </div>
+
+        <div class="level-controls">
+          <button (click)="increaseProgress(i)">➕</button>
+          <button (click)="resetProgress(i)">🔄</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div
+        class="level-row"
+        *ngFor="let level of levels.slice(5, 10); let j = index"
+        [class.unlocked]="isLevelUnlocked(j + 6)"
+      >
+        <div class="level-icon-left">
+          <img src="assets/images/manzana.png" alt="Nivel" />
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="getLevelProgress(j + 6)"
+          ></div>
+          <span class="progress-indicator">
+            Nivel {{ j + 6 }} - {{ level }}/{{ maxPointsPerLevel }}
+          </span>
+        </div>
+
+        <div class="level-icon-right">
+          <img
+            *ngIf="canUnlockReward(j + 6)"
+            src="assets/images/copa.png"
+            alt="Recompensa"
+          />
+        </div>
+
+        <div class="level-controls">
+          <button (click)="increaseProgress(j + 5)">➕</button>
+          <button (click)="resetProgress(j + 5)">🔄</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

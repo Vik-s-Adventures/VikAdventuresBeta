@@ -1,62 +1,62 @@
 /* Estilos para el header */
 .header {
   display: flex;
-  justify-content: space-between; /* Distribuye el espacio entre botones */
-  align-items: center; /* Centra verticalmente los botones */
-  padding: 5px 10px; /* Espaciado alrededor del contenido */
-  background-color: #0077cc; /* Fondo azul oscuro */
+  justify-content: center; /* Centra el botón horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  padding: 5px 10px;
+  background-color: black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-  color: white; /* Texto blanco */
-  flex-wrap: wrap; /* Para que los elementos se ajusten automáticamente en pantallas pequeñas */
+  color: white;
+  flex-wrap: wrap;
 }
 
 /* Estilo de los botones */
 button {
-  font-family: 'Press Start 2P', cursive; /* Fuente personalizada */
-  background-color: #2563eb; /* Fondo azul primario */
-  color: darkblue; /* Texto blanco */
-  padding: 5px 10px; /* Espaciado dentro del botón */
-  border-radius: 5px; /* Bordes redondeados */
-  font-size: 16px; /* Tamaño de fuente */
+  font-family: 'Press Start 2P', cursive;
+  background-color: black;
+  color: white; /* Cambiado a blanco para mejor contraste */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  transition: background-color 0.3s ease; /* Transición suave */
-  border: none; /* Sin borde */
-  margin: 5px; /* Espaciado entre botones */
-  justify-content: flex-end; /* Alinea los botones a la derecha */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  border: none;
+  margin: 5px;
 }
 
 button:hover {
-  background-color: #FFCC00; /* Color más claro al hacer hover */
+  background-color: #FFCC00;
+  color: black; /* Cambio para que contraste en hover */
 }
 
 button:focus {
-  outline: none; /* Elimina el borde predeterminado al enfocar */
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.5); /* Sombra azul en foco */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.5);
 }
 
 /* Hacer que el header sea responsivo en pantallas pequeñas */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column; /* Coloca los botones en columna en pantallas pequeñas */
-    align-items: stretch; /* Hace que los botones ocupen todo el ancho */
-    padding: 10px; /* Reduce el padding en pantallas pequeñas */
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px;
   }
 
   button {
-    width: 100%; /* Los botones ocupan el 100% del ancho en pantallas pequeñas */
-    padding: 15px; /* Aumenta el padding de los botones */
-    font-size: 14px; /* Reduce el tamaño de fuente */
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .header {
-    padding: 5px; /* Reduce aún más el padding en pantallas muy pequeñas */
+    padding: 5px;
   }
 
   button {
-    font-size: 12px; /* Reduce aún más el tamaño de fuente en pantallas muy pequeñas */
-    padding: 10px; /* Reduce el padding en botones */
+    font-size: 12px;
+    padding: 10px;
   }
 }

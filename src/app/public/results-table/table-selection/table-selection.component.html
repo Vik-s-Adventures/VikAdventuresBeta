@@ -1,0 +1,51 @@
+<app-header></app-header>
+<body>
+<div class="title-card-container">
+  <mat-card class="title-card">
+    <h1 class="titulo-principal">🏆 PUNTAJES POR MUNDO</h1>
+    <p class="subtitulo">Haz clic en un mundo para ver quién logró los mejores puntajes</p>
+  </mat-card>
+</div>
+
+<div class="card-container">
+  <mat-card class="map-card" [routerLink]="['/ranking']">
+    <mat-card-header>
+      <mat-card-title class="map-title">🛒 MERCADO</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../../../assets/images/mercado.png" alt="Mercado">
+    <mat-card-content>
+      <p>Visualiza los puntajes del mapa del mercado.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="map-card" [routerLink]="['/ranking-map2']">
+    <mat-card-header>
+      <mat-card-title class="map-title">🔬 CIENCIA</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../../../assets/images/laboratorio.png" alt="Ciencia">
+    <mat-card-content>
+      <p>Consulta los resultados del mundo científico.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="map-card" [routerLink]="['/ranking-map3']">
+    <mat-card-header>
+      <mat-card-title class="map-title">🧙 FANTASÍA</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../../../assets/images/fantasia.png" alt="Fantasía">
+    <mat-card-content>
+      <p>Mira las puntuaciones del reino mágico.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="map-card" [routerLink]="['/ranking-map4']">
+    <mat-card-header>
+      <mat-card-title class="map-title">🚀 ESPACIAL</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../../../assets/images/espacial.png" alt="Espacial">
+    <mat-card-content>
+      <p>Explora quién obtuvo los mejores puntajes en el espacio.</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+</body>

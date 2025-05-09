@@ -1,0 +1,59 @@
+<body>
+<div class="menu-button-container">
+  <button mat-raised-button color="primary" routerLink="/menu">
+    <mat-icon>home</mat-icon> Menú
+  </button>
+</div>
+
+<mat-card class="ranking-card">
+  <mat-card-title class="ranking-title">TABLA DE PUNTAJES</mat-card-title>
+
+  <div class="search-box">
+    <mat-form-field appearance="fill" class="search-field">
+      <mat-label>Buscar por nombre</mat-label>
+      <input matInput [(ngModel)]="searchTerm" placeholder="Escribe tu nombre...">
+    </mat-form-field>
+  </div>
+
+  <mat-card-content>
+    <table>
+      <thead>
+      <tr>
+        <th>Posición</th>
+        <th>Avatar</th>
+        <th>Nombre</th>
+        <th>Puntaje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of pagedStudents" [ngClass]="getRankClass(student.originalIndex)">
+        <td>#{{ student.originalIndex }}</td>
+        <td>
+          <mat-icon
+            [ngClass]="{
+                  'icon-boy': student.sex === 'Masculino',
+                  'icon-girl': student.sex === 'Femenino'
+                }"
+          >
+            {{ student.sex === 'Femenino' ? 'face_4' : 'face_5' }}
+          </mat-icon>
+        </td>
+        <td>{{ student.fullName }}</td>
+        <td>{{ student.score }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+
+  <div class="paginator">
+    <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 0">
+      Anterior
+    </button>
+    <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+    <button mat-raised-button (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">
+      Siguiente
+    </button>
+  </div>
+</mat-card>
+</body>
+

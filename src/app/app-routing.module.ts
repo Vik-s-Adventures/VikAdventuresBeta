@@ -7,7 +7,7 @@ import {WelcomeQuestionnaireComponent} from './public/welcome/welcome-questionna
 import {CreditsComponent} from './public/credits/credits.component';
 import {MenuComponent} from './public/menu/menu.component';
 import {MapsComponent} from './public/maps/maps.component';
-import {RankingComponent} from './public/ranking/ranking.component';
+import {RankingComponent} from './public/results-table/ranking/ranking.component';
 import {QuestionnaireComponent} from './quiz/quizzes/questionnaire/questionnaire.component';
 import {OnePerformanceConceptsComponent} from './first_world/first-specified-performance/concept/one-performance-concepts/one-performance-concepts.component';
 import {D1OnePracticeComponent} from './first_world/first-specified-performance/practice/d1-one-practice/d1-one-practice.component';
@@ -35,6 +35,11 @@ import {
   WelcomeQuestionnaireFourComponent
 } from './public/welcome/welcome.questionnaire-four/welcome.questionnaire-four.component';
 import {guardsQuestionnaireAccessGuard} from './public/guard-configuration/guards-questionnaire-access.guard';
+import {RankingMap2Component} from './public/results-table/ranking-map2/ranking-map2.component';
+import {RankingMap3Component} from './public/results-table/ranking-map3/ranking-map3.component';
+import {RankingMap4Component} from './public/results-table/ranking-map4/ranking-map4.component';
+import {TableSelectionComponent} from './public/results-table/table-selection/table-selection.component';
+import {ProgressAdvanceComponent} from './learning-progress/progress-advance/progress-advance.component';
 
 
 const routes: Routes = [
@@ -47,8 +52,14 @@ const routes: Routes = [
   {path: 'profile-user', component: ProfileUserComponent},
   {path: 'profile', component: RegisterComponent},
   {path: 'maps', component: MapsComponent},
-  {path: 'ranking', component: RankingComponent},
   {path: 'credits', component: CreditsComponent},
+  {path: 'progress-advance', component: ProgressAdvanceComponent},
+
+  {path: 'table-selection', component: TableSelectionComponent},
+  {path: 'ranking', component: RankingComponent},
+  {path: 'ranking-map2', component: RankingMap2Component},
+  {path: 'ranking-map3', component: RankingMap3Component},
+  {path: 'ranking-map4', component: RankingMap4Component},
 
   {path: 'welcomeQuestionnaire', component: WelcomeQuestionnaireComponent},
   {path: 'welcomeQuestionnaire-two', component: WelcomeQuestionnaireTwoComponent},

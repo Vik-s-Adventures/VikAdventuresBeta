@@ -1,0 +1,159 @@
+.page-container {
+  text-align: center;
+  padding: 20px;
+  background-image: url('/assets/images/zf1.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: #ffd166;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+.title-card {
+  background: rgba(0, 0, 0, 0.9);
+  border: 3px dashed #ffcb42;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ffcb42;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 0 0 8px #ffcb42;
+}
+
+.title-card h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #ffcb42;
+}
+
+/* Estilo para el contenedor de columnas */
+.levels-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Cada columna de niveles */
+.column {
+  flex: 1;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: rgba(1, 22, 39, 0.8);
+  border: 2px solid #ffd166;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #073b4c;
+  flex-wrap: wrap;
+}
+
+.level-row.unlocked {
+  background: rgba(255, 215, 0, 0.9);
+  box-shadow: 0 0 10px #ffcb42;
+}
+
+.level-icon-left img,
+.level-icon-right img {
+  width: 40px;
+  height: 40px;
+}
+
+.level-icon-right img {
+  visibility: hidden;
+}
+
+.level-row.unlocked .level-icon-right img {
+  visibility: visible;
+}
+
+.progress-bar {
+  position: relative;
+  flex: 1 1 50%;
+  margin: 10px;
+  height: 40px;
+  background: linear-gradient(90deg, #073b4c, #118ab2);
+  border: 2px solid #ffcb42;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd166, #ffcb42, rgba(255, 255, 255, 0.5));
+  transition: width 0.4s ease;
+}
+
+.progress-indicator {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #011627;
+  font-weight: bold;
+  font-size: 0.8rem;
+  font-family: 'Press Start 2P', cursive;
+  white-space: nowrap;
+}
+
+.level-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.level-controls button {
+  padding: 8px;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #011627;
+  color: #ffd166;
+  border: 2px solid #ffcb42;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+.level-controls button:hover {
+  background-color: #ffcb42;
+  color: #011627;
+  box-shadow: 0 0 8px #ffd166;
+}
+
+@media (max-width: 768px) {
+  .levels-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+    max-width: 90%;
+  }
+
+  .progress-indicator {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-card h1 {
+    font-size: 1.2rem;
+  }
+
+  .level-controls button {
+    font-size: 0.6rem;
+    padding: 6px;
+  }
+}
