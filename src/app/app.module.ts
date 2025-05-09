@@ -56,6 +56,13 @@ import {MatInput, MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AlertHeaderComponent } from './quiz/alert-header/alert-header.component';
+import { QuestionnaireTwoComponent } from './quiz/questionnaire-two/questionnaire-two.component';
+import { QuestionnareThreeComponent } from './quiz/questionnare-three/questionnare-three.component';
+import { QuestionnareFourComponent } from './quiz/questionnare-four/questionnare-four.component';
+import { WelcomeQuestionnaireTwoComponent } from './public/welcome-questionnaire-two/welcome-questionnaire-two.component';
+import { WelcomeQuestionnaireThreeComponent } from './public/welcome-questionnaire-three/welcome-questionnaire-three.component';
+import { WelcomeQuestionnaireFourComponent } from './public/welcome.questionnaire-four/welcome.questionnaire-four.component';
+import { CompletedQuizDialogComponent } from './public/completed-quiz-dialog/completed-quiz-dialog.component';
 
 
 @NgModule({
@@ -90,7 +97,15 @@ import { AlertHeaderComponent } from './quiz/alert-header/alert-header.component
     LearningPathComponent,
     ProfileUserComponent,
     ProfileEditDialogComponentComponent,
-    AlertHeaderComponent
+    AlertHeaderComponent,
+    QuestionnaireTwoComponent,
+    QuestionnareThreeComponent,
+    QuestionnareFourComponent,
+    WelcomeQuestionnaireTwoComponent,
+    WelcomeQuestionnaireThreeComponent,
+    WelcomeQuestionnaireFourComponent,
+    CompletedQuizDialogComponent,
+
   ],
   imports: [
     BrowserModule,

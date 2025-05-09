@@ -55,6 +55,12 @@ export class QuizResultService {
     );
   }
 
+  getResultByProfileAndQuiz(profileId: number, quizId: number): Observable<any> {
+    const url = `${this.basePath}/results/profile/${profileId}/quiz/${quizId}`;
+    return this.http.get(url, this.httpOptions);
+  }
+
+
 
   // ✅ GET /results + /profiles/{id} para mostrar ranking con nombres
   getRankedStudents(): Observable<any[]> {

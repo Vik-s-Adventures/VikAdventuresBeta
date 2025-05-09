@@ -21,6 +21,7 @@ export class AlertHeaderComponent {
   }
 
   exitToMenu(): void {
+    sessionStorage.removeItem('allowQuestionnaireAccess');
     localStorage.removeItem('incompleteQuiz');
     this.router.navigate(['/menu']);
   }

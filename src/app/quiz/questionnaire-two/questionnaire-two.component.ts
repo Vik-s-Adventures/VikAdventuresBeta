@@ -1,23 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { Question } from '../model/Question';
-import { Option } from '../model/Option';
-import { Router } from '@angular/router';
-import { Profile } from '../../profile/model/Profile';
-import { ProfileResponse } from '../model/ProfileResponse';
-
-import { QuestionService } from '../services/question.service';
-import { ProfileResponseService } from '../services/profile-response.service';
-import { OptionService } from '../services/option.service';
-import { ProfileService } from '../../profile/services/profile.service';
-import { LearningPathService } from '../services/learning-path.service';
+import {Component, OnInit} from '@angular/core';
+import {Question} from '../model/Question';
+import {Option} from '../model/Option';
+import {Profile} from '../../profile/model/Profile';
+import {Router} from '@angular/router';
+import {QuestionService} from '../services/question.service';
+import {OptionService} from '../services/option.service';
+import {ProfileResponseService} from '../services/profile-response.service';
+import {ProfileService} from '../../profile/services/profile.service';
+import {LearningPathService} from '../services/learning-path.service';
+import {ProfileResponse} from '../model/ProfileResponse';
 
 @Component({
-  selector: 'app-questionnaire',
+  selector: 'app-questionnaire-two',
   standalone: false,
-  templateUrl: './questionnaire.component.html',
-  styleUrls: ['./questionnaire.component.css']
+  templateUrl: './questionnaire-two.component.html',
+  styleUrl: './questionnaire-two.component.css'
 })
-export class QuestionnaireComponent implements OnInit {
+export class QuestionnaireTwoComponent implements OnInit {
   questions: Question[] = [];
   answerOptions: Option[] = [];
   currentQuestionIndex: number = 0;
@@ -52,7 +51,6 @@ export class QuestionnaireComponent implements OnInit {
     }
   }
 
-
   loadProfile(profileId: number): void {
     this.profileService.getProfileById(profileId).subscribe({
       next: (profile) => {
@@ -70,7 +68,7 @@ export class QuestionnaireComponent implements OnInit {
   loadQuestions(): void {
     this.questionService.getQuestions().subscribe({
       next: (data: Question[]) => {
-        this.questions = data.filter(q => q.quizId === 1); // 👈 solo preguntas del quiz_id: 1
+        this.questions = data.filter(q => q.quizId === 2); // 👈 solo preguntas del quiz_id: 1
         this.currentQuestion = this.questions[this.currentQuestionIndex];
       },
       error: (error) => console.error(error)
@@ -119,3 +117,4 @@ export class QuestionnaireComponent implements OnInit {
     }
   }
 }
+

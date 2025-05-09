@@ -7,13 +7,22 @@
 </div>
 
 <!-- Diálogo modal personalizado -->
-<div *ngIf="showDialog" class="custom-dialog-backdrop">
-  <div class="custom-dialog">
-    <h2 class="dialog-title">¿Estás seguro/a de salir?</h2>
-    <p class="dialog-message">Si sales ahora el cuestionario se enviará con tu avance actual y NO podrás rendirlo de nuevo.</p>
+<!-- Diálogo retro personalizado al intentar salir -->
+<div *ngIf="showDialog" class="completed-dialog-backdrop">
+  <div class="completed-dialog">
+    <div class="dialog-content">
+      <img src="assets/images/vickk.png" alt="Personaje" class="dialog-character">
+      <div class="dialog-text">
+        <h2>❌Estas saliendo del cuestionario❌</h2>
+        <p>Si sales del cuestionario se enviará con tu avance actual<br> y NO podrás rendirlo de nuevo</p>
+      </div>
+    </div>
+
+    <!-- Botones con estilo arcade -->
     <div class="alert-actions">
       <button mat-raised-button class="exit-confirm-button" (click)="exitToMenu()">Sí, salir</button>
       <button mat-stroked-button class="cancel-button" (click)="cancelExit()">No, continuar</button>
     </div>
   </div>
 </div>
+
