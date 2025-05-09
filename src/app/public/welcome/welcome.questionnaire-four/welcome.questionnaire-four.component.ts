@@ -3,12 +3,12 @@ import Phaser from 'phaser';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-welcome-questionnaire',
+  selector: 'app-welcome.questionnaire-four',
   standalone: false,
-  templateUrl: './welcome-questionnaire.component.html',
-  styleUrl: './welcome-questionnaire.component.css'
+  templateUrl: './welcome.questionnaire-four.component.html',
+  styleUrl: './welcome.questionnaire-four.component.css'
 })
-export class WelcomeQuestionnaireComponent implements OnInit{
+export class WelcomeQuestionnaireFourComponent implements OnInit{
 
   phaserGame!: Phaser.Game;
   config!: Phaser.Types.Core.GameConfig;
@@ -63,8 +63,10 @@ export class WelcomeQuestionnaireComponent implements OnInit{
   }
 
   continueAction(): void {
+    // Establece permiso temporal para acceder al cuestionario
+    sessionStorage.setItem('allowQuestionnaireAccess', 'true');
     // Redirige a otro componente usando el Router
-    this.router.navigate(['/questionnaire']);
+    this.router.navigate(['/questionnaire-four']);
   }
 }
 

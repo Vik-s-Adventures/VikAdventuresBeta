@@ -7,29 +7,33 @@
 </div>
 
 <div class="card-container">
-  <mat-card routerLink="/welcomeQuestionnaire">
+  <mat-card (click)="onMapClick(1, '/welcomeQuestionnaire')">
     <mat-card-header>
-      <mat-card-title style="font-family: 'Press Start 2P',ui-sans-serif; color: #2563eb;">MERCADO</mat-card-title>
+      <mat-card-title class="map-title">MERCADO</mat-card-title>
     </mat-card-header>
     <img mat-card-image src="../../../../assets/images/mercado.png" alt="Mercado">
   </mat-card>
-  <mat-card routerLink="/welcomeQuestionnaire">
+
+  <mat-card (click)="onMapClick(2, '/welcomeQuestionnaire-two')">
     <mat-card-header>
-      <mat-card-title style="font-family: 'Press Start 2P',ui-sans-serif; color: #2563eb;">CIENCIA</mat-card-title>
+      <mat-card-title class="map-title">CIENCIA</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="../../../../assets/images/laboratorio.png" alt="Laboratorio">
+    <img mat-card-image src="../../../../assets/images/laboratorio.png" alt="Ciencia">
   </mat-card>
-  <mat-card routerLink="/welcomeQuestionnaire">
+
+  <mat-card (click)="onMapClick(3, '/welcomeQuestionnaire-three')">
     <mat-card-header>
-      <mat-card-title style="font-family: 'Press Start 2P',ui-sans-serif; color: #2563eb;">FANTASIA</mat-card-title>
+      <mat-card-title class="map-title">FANTASÍA</mat-card-title>
     </mat-card-header>
     <img mat-card-image src="../../../../assets/images/fantasia.png" alt="Fantasía">
   </mat-card>
-  <mat-card routerLink="/welcomeQuestionnaire">
+
+  <mat-card (click)="onMapClick(4, '/welcomeQuestionnaire-four')">
     <mat-card-header>
-      <mat-card-title style="font-family: 'Press Start 2P',ui-sans-serif; color: #2563eb;">ESPACIAL</mat-card-title>
+      <mat-card-title class="map-title">ESPACIAL</mat-card-title>
     </mat-card-header>
     <img mat-card-image src="../../../../assets/images/espacial.png" alt="Espacial">
   </mat-card>
+
 </div>
 </body>

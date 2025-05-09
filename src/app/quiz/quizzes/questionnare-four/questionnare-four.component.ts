@@ -1,24 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {Question} from '../model/Question';
-import {Option} from '../model/Option';
+import {Question} from '../../model/Question';
+import {Option} from '../../model/Option';
+import {Profile} from '../../../profile/model/Profile';
 import {Router} from '@angular/router';
-import {Profile} from '../../profile/model/Profile';
-import {ProfileResponse} from '../model/ProfileResponse';
-
-import {QuestionService} from '../services/question.service';
-import {ProfileResponseService} from '../services/profile-response.service';
-import {OptionService} from '../services/option.service';
-import {ProfileService} from '../../profile/services/profile.service';
-import {LearningPathService} from '../services/learning-path.service';
-
+import {QuestionService} from '../../services/question.service';
+import {OptionService} from '../../services/option.service';
+import {ProfileResponseService} from '../../services/profile-response.service';
+import {ProfileService} from '../../../profile/services/profile.service';
+import {LearningPathService} from '../../services/learning-path.service';
+import {ProfileResponse} from '../../model/ProfileResponse';
 
 @Component({
-  selector: 'app-questionnaire',
+  selector: 'app-questionnare-four',
   standalone: false,
-  templateUrl: './questionnaire.component.html',
-  styleUrl: './questionnaire.component.css'
+  templateUrl: './questionnare-four.component.html',
+  styleUrl: './questionnare-four.component.css'
 })
-export class QuestionnaireComponent implements OnInit {
+export class QuestionnareFourComponent implements OnInit {
   questions: Question[] = [];
   answerOptions: Option[] = [];
   currentQuestionIndex: number = 0;
@@ -33,16 +31,23 @@ export class QuestionnaireComponent implements OnInit {
     private responseProfileService: ProfileResponseService,
     private profileService: ProfileService,
     private learningPathService: LearningPathService,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
+    // ✅ Protección adicional: bloquear acceso si no vino desde flujo válido
+    const accessAllowed = sessionStorage.getItem('allowQuestionnaireAccess');
+    if (accessAllowed !== 'true') {
+      console.warn('[GUARD LOCAL] Acceso denegado desde ngOnInit (manual check)');
+      this.router.navigate(['/maps']);
+      return;
+    }
+
     const profileId = localStorage.getItem('profileId');
     if (profileId) {
       this.loadProfile(Number(profileId));
     } else {
-      console.error();
-      this.router.navigate(['/profile']); // O redirige al paso anterior
+      console.error('[❌] No se encontró profileId, redirigiendo...');
+      this.router.navigate(['/profile']);
     }
   }
 
@@ -60,11 +65,10 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
-
   loadQuestions(): void {
     this.questionService.getQuestions().subscribe({
       next: (data: Question[]) => {
-        this.questions = data;
+        this.questions = data.filter(q => q.quizId === 4); // 👈 solo preguntas del quiz_id: 1
         this.currentQuestion = this.questions[this.currentQuestionIndex];
       },
       error: (error) => console.error(error)
@@ -84,11 +88,10 @@ export class QuestionnaireComponent implements OnInit {
       }
     });
   }
-
-
   getOptionsByQuestionId(questionId: number): Option[] {
     return this.answerOptions.filter(option => option.questionId === questionId);
   }
+
   nextQuestion(): void {
     if (this.selectedAnswer && this.currentProfile?.id) {
       const newProfileResponse: ProfileResponse = {
@@ -113,5 +116,4 @@ export class QuestionnaireComponent implements OnInit {
       });
     }
   }
-
 }
