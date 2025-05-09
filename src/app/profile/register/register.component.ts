@@ -63,7 +63,7 @@ export class RegisterComponent {
         console.error('❌ Error al actualizar el perfil:', err);
 
         if (err.status === 401) {
-          alert('⚠️ Tu sesión expiró. Por favor, vuelve a iniciar sesión.');
+          alert('⚠️ Vuelve a completar tus datos, ingresalos de forma correcta.');
           localStorage.clear();
           this.router.navigate(['/sign-in']);
         } else {
