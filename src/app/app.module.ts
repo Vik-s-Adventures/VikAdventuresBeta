@@ -68,6 +68,7 @@ import { RankingMap3Component } from './public/results-table/ranking-map3/rankin
 import { RankingMap4Component } from './public/results-table/ranking-map4/ranking-map4.component';
 import { TableSelectionComponent } from './public/results-table/table-selection/table-selection.component';
 import { ProgressAdvanceComponent } from './learning-progress/progress-advance/progress-advance.component';
+import { PlayComponent } from './public/play/play.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { ProgressAdvanceComponent } from './learning-progress/progress-advance/p
     RankingMap4Component,
     TableSelectionComponent,
     ProgressAdvanceComponent,
+    PlayComponent,
 
   ],
   imports: [

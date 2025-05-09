@@ -40,10 +40,12 @@ import {RankingMap3Component} from './public/results-table/ranking-map3/ranking-
 import {RankingMap4Component} from './public/results-table/ranking-map4/ranking-map4.component';
 import {TableSelectionComponent} from './public/results-table/table-selection/table-selection.component';
 import {ProgressAdvanceComponent} from './learning-progress/progress-advance/progress-advance.component';
+import {PlayComponent} from './public/play/play.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'initial' , pathMatch:'full'},
+  {path: '', redirectTo:'play' , pathMatch:'full'},
+  {path: 'play', component: PlayComponent},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
