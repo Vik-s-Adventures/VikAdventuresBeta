@@ -2,7 +2,7 @@
 body, .learning-path-container {
   margin: 0;
   padding: 0;
-  background-image: url('/assets/images/fondoinicio.jpg');
+  background-image: url('/src/assets/images/fondoinicio.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

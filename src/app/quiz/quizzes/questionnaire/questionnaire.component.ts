@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Question } from '../model/Question';
-import { Option } from '../model/Option';
+import { Question } from '../../model/Question';
+import { Option } from '../../model/Option';
 import { Router } from '@angular/router';
-import { Profile } from '../../profile/model/Profile';
-import { ProfileResponse } from '../model/ProfileResponse';
+import { Profile } from '../../../profile/model/Profile';
+import { ProfileResponse } from '../../model/ProfileResponse';
 
-import { QuestionService } from '../services/question.service';
-import { ProfileResponseService } from '../services/profile-response.service';
-import { OptionService } from '../services/option.service';
-import { ProfileService } from '../../profile/services/profile.service';
-import { LearningPathService } from '../services/learning-path.service';
+import { QuestionService } from '../../services/question.service';
+import { ProfileResponseService } from '../../services/profile-response.service';
+import { OptionService } from '../../services/option.service';
+import { ProfileService } from '../../../profile/services/profile.service';
+import { LearningPathService } from '../../services/learning-path.service';
 
 @Component({
   selector: 'app-questionnaire',

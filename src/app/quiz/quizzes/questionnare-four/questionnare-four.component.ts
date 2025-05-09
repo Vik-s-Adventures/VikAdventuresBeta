@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-import {Question} from '../model/Question';
-import {Option} from '../model/Option';
-import {Profile} from '../../profile/model/Profile';
+import {Question} from '../../model/Question';
+import {Option} from '../../model/Option';
+import {Profile} from '../../../profile/model/Profile';
 import {Router} from '@angular/router';
-import {QuestionService} from '../services/question.service';
-import {OptionService} from '../services/option.service';
-import {ProfileResponseService} from '../services/profile-response.service';
-import {ProfileService} from '../../profile/services/profile.service';
-import {LearningPathService} from '../services/learning-path.service';
-import {ProfileResponse} from '../model/ProfileResponse';
+import {QuestionService} from '../../services/question.service';
+import {OptionService} from '../../services/option.service';
+import {ProfileResponseService} from '../../services/profile-response.service';
+import {ProfileService} from '../../../profile/services/profile.service';
+import {LearningPathService} from '../../services/learning-path.service';
+import {ProfileResponse} from '../../model/ProfileResponse';
 
 @Component({
-  selector: 'app-questionnare-three',
+  selector: 'app-questionnare-four',
   standalone: false,
-  templateUrl: './questionnare-three.component.html',
-  styleUrl: './questionnare-three.component.css'
+  templateUrl: './questionnare-four.component.html',
+  styleUrl: './questionnare-four.component.css'
 })
-export class QuestionnareThreeComponent implements OnInit {
+export class QuestionnareFourComponent implements OnInit {
   questions: Question[] = [];
   answerOptions: Option[] = [];
   currentQuestionIndex: number = 0;
@@ -68,7 +68,7 @@ export class QuestionnareThreeComponent implements OnInit {
   loadQuestions(): void {
     this.questionService.getQuestions().subscribe({
       next: (data: Question[]) => {
-        this.questions = data.filter(q => q.quizId === 3); // 👈 solo preguntas del quiz_id: 1
+        this.questions = data.filter(q => q.quizId === 4); // 👈 solo preguntas del quiz_id: 1
         this.currentQuestion = this.questions[this.currentQuestionIndex];
       },
       error: (error) => console.error(error)
@@ -117,4 +117,3 @@ export class QuestionnareThreeComponent implements OnInit {
     }
   }
 }
-

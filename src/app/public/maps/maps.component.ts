@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {QuizResultService} from '../../quiz/services/quiz-result.service';
 import {MatDialog} from '@angular/material/dialog';
-import {CompletedQuizDialogComponent} from '../completed-quiz-dialog/completed-quiz-dialog.component';
+import {CompletedQuizDialogComponent} from '../../quiz/completed-quiz-dialog/completed-quiz-dialog.component';
 
 @Component({
   selector: 'app-maps',
