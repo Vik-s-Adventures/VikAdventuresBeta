@@ -74,7 +74,7 @@ import {
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'two-performance-concept', pathMatch:'full'},
+  {path: '', redirectTo:'play', pathMatch:'full'},
   {path: 'play', component: PlayComponent},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
