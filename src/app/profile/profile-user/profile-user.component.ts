@@ -37,7 +37,7 @@ export class ProfileUserComponent implements OnInit {
             error: err => console.error('❌ Error al cargar perfil:', err)
           });
       } else {
-        console.warn('⚠️ No se pudo extraer userId del token');
+        console.warn('⚠️ No se pudo extraer userId del Tokenn');
       }
     } else {
       console.warn('⚠️ Token no disponible');
