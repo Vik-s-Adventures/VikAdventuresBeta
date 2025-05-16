@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="pantalla-dividida">
+  <!-- 🧠 Sección problema -->
+  <div class="seccion-pregunta">
+    <div class="card-problema">
+      <h2>Problema Matemático</h2>
+      <div class="narracion-retro">
+        <span class="typewriter-text">{{ textoNarrado }}</span>
+      </div>
+      <img
+        src="assets/images/d2/ESTADIO.PNG"
+        alt="imagen del problema"
+        class="imagen-pregunta centrada"
+      />
+    </div>
+
+    <div class="consejo-personaje" *ngIf="mostrarConsejo">
+      <img
+        src="assets/images/d1/practice-end-resources/vik-front.png"
+        alt="personaje"
+        class="personaje-img grande"
+      />
+      <div class="bocadillo-retro">
+        💡 Consejo: Recuerda que la capacidad total es igual a si el estadio se hubiera llenado.
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎮 Sección juego -->
+  <div class="seccion-juego">
+    <h2 class="titulo-juego">Analiza</h2>
+
+    <div class="fila-cards">
+      <!-- Card Datos -->
+      <div class="card-analisis">
+        <h3>Datos</h3>
+        <p>Ahora sabemos que 2/4 es igual a 500</p>
+        <p>Cada parte del gráfico equivale a 250</p>
+      </div>
+
+      <!-- Card Gráfico -->
+      <div class="card-analisis">
+        <h3>Gráfico</h3>
+        <img
+          src="assets/images/d2/D2-1-001.PNG"
+          alt="Gráfico de manzanas"
+          class="imagen-pregunta centrada"
+        />
+      </div>
+    </div>
+
+    <!-- Card de ecuación -->
+    <div class="card-ecuacion">
+      <h3>Dado que cada parte del gráfico es igual a 250, y necesitamos saber el total general, entonces ¿Cuál es la capacidad total del estadio?</h3>
+      <p>Marca la respuesta correcta.</p>
+      <mat-radio-group class="opciones-respuesta" [(ngModel)]="opcionSeleccionada">
+        <mat-radio-button value="2000">2000</mat-radio-button>
+        <mat-radio-button value="1000">1000</mat-radio-button>
+        <mat-radio-button value="1500">1500</mat-radio-button>
+        <mat-radio-button value="500">500</mat-radio-button>
+      </mat-radio-group>
+
+      <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
+
+      <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
+        {{ mensajeFeedback }}
+      </p>
+
+      <button *ngIf="mensajeFeedback.includes('❌')" class="btn-reintentar" (click)="reiniciar()">
+        🔁 INTENTAR DE NUEVO
+      </button>
+
+      <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
+        CONTINUAR ➡
+      </button>
+    </div>
+  </div>
+</div>
+

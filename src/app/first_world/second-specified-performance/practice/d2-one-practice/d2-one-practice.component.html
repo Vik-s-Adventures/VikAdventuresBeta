@@ -25,6 +25,10 @@
 
     <!-- Botón para verificar la respuesta -->
     <button (click)="checkAnswer()">Enviar</button>
+    <footer class="footer">
+      <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
+
+    </footer>
 
     <!-- Mensaje de retroalimentación -->
     <div class="feedback">
@@ -32,11 +36,7 @@
     </div>
   </div>
 
-  <!-- Footer con el botón "Continuemos" -->
-  <footer class="footer">
-    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
 
-  </footer>
 </div>
 
 

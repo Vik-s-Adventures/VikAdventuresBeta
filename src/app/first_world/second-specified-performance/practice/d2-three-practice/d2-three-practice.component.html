@@ -1,1 +1,89 @@
-<p>d2-three-practice works!</p>
+<app-header></app-header>
+
+<div class="container">
+  <!-- Subtítulo dentro de una tarjeta -->
+  <div class="card subtitle-card">
+    <p class="subtitle">1. TERCERA PRÁCTICA: Observa cada gráfica y únelas con la fracción correcta que la representa. Selecciona con el mouse y emparejará con los colores</p>
+  </div>
+
+  <div class="main-content">
+    <div class="columns">
+      <!-- Columna izquierda -->
+      <div class="column">
+        <div
+          *ngFor="let item of leftItems"
+          class="card match-card"
+          [class.selected]="selectedLeft?.id === item.id"
+          [class.paired]="isPaired(item.id, 'left')"
+          [class]="getPairClass(item, 'left')"
+          (click)="selectLeft(item)"
+        >
+          <ng-container *ngIf="item.image">
+            <img [src]="item.image" class="fraction-img" />
+          </ng-container>
+          <ng-container *ngIf="item.label">
+            <p>{{ item.label }}</p>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="column">
+        <div
+          *ngFor="let item of rightItems"
+          class="card match-card"
+          [class.selected]="selectedRight?.id === item.id"
+          [class.paired]="isPaired(item.id, 'right')"
+          [class]="getPairClass(item, 'right')"
+          (click)="selectRight(item)"
+        >
+          <ng-container *ngIf="item.image">
+            <img [src]="item.image" class="fraction-img" />
+          </ng-container>
+          <ng-container *ngIf="item.label">
+            <p>{{ item.label }}</p>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Panel de ejemplo al lado derecho -->
+      <div class="right-panel">
+        <div class="button-container">
+          <button
+            mat-button
+            class="submit-btn"
+            (click)="verifyMatches()"
+            [disabled]="!canSubmit"
+          >
+            ENVIAR
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Diálogos -->
+<ng-template #errorDialog>
+  <h1 mat-dialog-title class="dialog-title">¡Ups!</h1>
+  <div mat-dialog-content class="dialog-content">
+    Las respuestas no son correctas, intenta nuevamente.
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button mat-dialog-close (click)="resetPairs()">Volver a intentarlo</button>
+  </div>
+</ng-template>
+
+<ng-template #successDialog let-dialogRef="dialogRef">
+  <h1 mat-dialog-title class="dialog-title">¡Correcto!</h1>
+  <div mat-dialog-content class="dialog-content">
+    Has emparejado todos los elementos correctamente. Ahora pasaremos a un ejercicio practico.
+  </div>
+  <div mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="closeAndNavigate(dialogRef)">Continuar</button>
+  </div>
+</ng-template>

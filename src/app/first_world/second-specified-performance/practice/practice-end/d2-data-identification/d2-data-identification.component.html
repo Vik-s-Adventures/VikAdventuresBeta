@@ -1,0 +1,91 @@
+<app-header></app-header>
+<div class="pantalla-dividida">
+  <!-- 🧠 Sección problema -->
+  <div class="seccion-pregunta">
+    <div class="card-problema">
+      <h2>Problema Matemático</h2>
+      <div class="narracion-retro">
+        <span class="typewriter-text">{{ textoNarrado }}</span>
+      </div>
+      <img
+        src="assets/images/d2/ESTADIO.PNG"
+        alt="imagen del problema"
+        class="imagen-pregunta centrada"
+      />
+    </div>
+
+    <div class="consejo-personaje" *ngIf="mostrarConsejo">
+      <img
+        src="assets/images/d1/practice-end-resources/vik-front.png"
+        alt="personaje"
+        class="personaje-img grande"
+      />
+      <div class="bocadillo-retro">
+        💡 Consejo: Identifica lo que sabes antes de resolver lo que no sabes.
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎮 Sección juego -->
+  <div class="seccion-juego">
+    <h2 class="titulo-juego">📌 Arrastra los datos en las cajas de abajo...</h2>
+
+    <!-- Tarjetas disponibles -->
+    <div
+      id="zonaDisponible"
+      class="tarjetas"
+      cdkDropList
+      [cdkDropListData]="zonaDisponible"
+      [cdkDropListConnectedTo]="['zonaDato', 'zonaFaltante']"
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      <div class="tarjeta" *ngFor="let pista of zonaDisponible" cdkDrag>
+        {{ pista }}
+      </div>
+    </div>
+
+    <!-- ✅ Botones arriba de los tableros -->
+    <div class="botones-juego">
+      <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
+      <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
+        {{ mensajeFeedback }}
+      </p>
+      <button *ngIf="mensajeFeedback.includes('❌')" class="btn-reintentar" (click)="reiniciarJuego()">
+        🔁 INTENTAR DE NUEVO
+      </button>
+      <!-- Botón continuar -->
+      <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
+        CONTINUAR ➡
+      </button>
+    </div>
+
+    <!-- 🔄 Tableros alineados en horizontal -->
+    <div class="zona-tableros-horizontal">
+      <div
+        class="zona-drop"
+        id="zonaDato"
+        cdkDropList
+        [cdkDropListData]="zonaDato"
+        [cdkDropListConnectedTo]="['zonaDisponible', 'zonaFaltante']"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        <h3>Dato conocido</h3>
+        <div *ngFor="let d of zonaDato" class="tarjeta-correcta">{{ d }}</div>
+      </div>
+
+      <div
+        class="zona-drop"
+        id="zonaFaltante"
+        cdkDropList
+        [cdkDropListData]="zonaFaltante"
+        [cdkDropListConnectedTo]="['zonaDisponible', 'zonaDato']"
+        (cdkDropListDropped)="onDrop($event)"
+      >
+        <h3>¿Cuál es la pregunta?</h3>
+        <div *ngFor="let f of zonaFaltante" class="tarjeta-correcta">{{ f }}</div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

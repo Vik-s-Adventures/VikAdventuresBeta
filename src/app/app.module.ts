@@ -69,6 +69,12 @@ import { RankingMap4Component } from './public/results-table/ranking-map4/rankin
 import { TableSelectionComponent } from './public/results-table/table-selection/table-selection.component';
 import { ProgressAdvanceComponent } from './learning-progress/progress-advance/progress-advance.component';
 import { PlayComponent } from './public/play/play.component';
+import { D2OneEvaluationQuestionComponent } from './first_world/second-specified-performance/evaluation/evaluation-questions/d2-one-evaluation-question/d2-one-evaluation-question.component';
+import { D2TwoEvaluationQuestionComponent } from './first_world/second-specified-performance/evaluation/evaluation-questions/d2-two-evaluation-question/d2-two-evaluation-question.component';
+import { TwoPerformanceEvaluationComponent } from './first_world/second-specified-performance/evaluation/two-performance-evaluation/two-performance-evaluation.component';
+import { D2DataIdentificationComponent } from './first_world/second-specified-performance/practice/practice-end/d2-data-identification/d2-data-identification.component';
+import { D2OperationResponseComponent } from './first_world/second-specified-performance/practice/practice-end/d2-operation-response/d2-operation-response.component';
+import { D2VisualRepresentationComponent } from './first_world/second-specified-performance/practice/practice-end/d2-visual-representation/d2-visual-representation.component';
 
 
 @NgModule({
@@ -117,6 +123,12 @@ import { PlayComponent } from './public/play/play.component';
     TableSelectionComponent,
     ProgressAdvanceComponent,
     PlayComponent,
+    D2OneEvaluationQuestionComponent,
+    D2TwoEvaluationQuestionComponent,
+    TwoPerformanceEvaluationComponent,
+    D2DataIdentificationComponent,
+    D2OperationResponseComponent,
+    D2VisualRepresentationComponent,
 
   ],
   imports: [

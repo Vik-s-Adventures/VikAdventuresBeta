@@ -18,7 +18,7 @@ export class TwoPerformanceConceptsComponent implements OnInit {
     this.phaserGame = new Phaser.Game({
       type: Phaser.AUTO,
       width: 300,
-      height: 300,
+      height: 200,
       parent: 'phaser-container',
       transparent: true,
       scale: {
@@ -27,9 +27,9 @@ export class TwoPerformanceConceptsComponent implements OnInit {
       },
       scene: {
         preload: function () {
-          this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
-            frameWidth: 500,
-            frameHeight: 500
+          this.load.spritesheet('character', 'assets/images/vick250ad.png', {
+            frameWidth: 250,
+            frameHeight: 250,
           });
         },
         create: function () {

@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="background-container">
+  <h2 class="title">Escoge una de las cartas para terminar el nivel,¡SUERTE!</h2>
+  <div class="cards-container">
+    <div
+      *ngFor="let card of cards; let i = index"
+      class="card"
+      [ngClass]="{ 'selected': i === currentCardIndex }"
+      (click)="revealCard(i)"
+    >
+      <div class="card-inner">
+        <div class="card-front">
+          <img [src]="card.image" alt="Imagen de la carta" />
+          <p>¿...?</p>
+        </div>
+        <div class="card-back" *ngIf="card.revealed">
+          <p>{{ card.question }}</p>
+        </div>
+      </div>
+      <button *ngIf="card.revealed" class="go-to-question-btn" (click)="goToQuestion(card.route)">Continuar</button>
+    </div>
+  </div>
+</div>
+
+

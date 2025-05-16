@@ -1,0 +1,38 @@
+<!-- HTML COMPLETO ACTUALIZADO -->
+<app-header></app-header>
+<div class="container">
+  <h2 class="question-title">Pregunta Evaluadora</h2>
+
+  <div class="question-card">
+    <p class="question-text">
+      En el estadio de la ciudad de Tarata, se jugó la final de un campeonato de fútbol. En total, 300 personas asistieron al estadio.  Esta cantidad de personas representa a los 2/4 de su capacidad. ¿Cuál es la capacidad que tiene este estadio?
+    </p>
+    <img class="question-image" src="assets/images/d2/ESTADIO.PNG" alt="Imagen referencial">
+
+    <div class="options-container">
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(500)"> 500
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(1000)"> 1000
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(600)"> 600
+      </label>
+      <label class="option">
+        <input type="radio" name="answer" (change)="selectOption(900)"> 900
+      </label>
+    </div>
+
+    <button [disabled]="!isOptionSelected" (click)="submitAnswer()">
+      {{ isAnswerCorrect === false ? 'Reintentar' : 'Continuar' }}
+    </button>
+
+    <p class="feedback" *ngIf="isAnswerCorrect === false">
+      ❌ Respuesta incorrecta, intenta nuevamente.
+    </p>
+    <p class="feedback success" *ngIf="isAnswerCorrect === true">
+      ✅ ¡Correcto! Has respondido correctamente.
+    </p>
+  </div>
+</div>

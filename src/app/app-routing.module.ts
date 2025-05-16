@@ -50,10 +50,31 @@ import {
 import {
   D2TwoPracticeComponent
 } from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
+import {
+  D2ThreePracticeComponent
+} from './first_world/second-specified-performance/practice/d2-three-practice/d2-three-practice.component';
+import {
+  D2DataIdentificationComponent
+} from './first_world/second-specified-performance/practice/practice-end/d2-data-identification/d2-data-identification.component';
+import {
+  D2VisualRepresentationComponent
+} from './first_world/second-specified-performance/practice/practice-end/d2-visual-representation/d2-visual-representation.component';
+import {
+  D2OperationResponseComponent
+} from './first_world/second-specified-performance/practice/practice-end/d2-operation-response/d2-operation-response.component';
+import {
+  TwoPerformanceEvaluationComponent
+} from './first_world/second-specified-performance/evaluation/two-performance-evaluation/two-performance-evaluation.component';
+import {
+  D2OneEvaluationQuestionComponent
+} from './first_world/second-specified-performance/evaluation/evaluation-questions/d2-one-evaluation-question/d2-one-evaluation-question.component';
+import {
+  D2TwoEvaluationQuestionComponent
+} from './first_world/second-specified-performance/evaluation/evaluation-questions/d2-two-evaluation-question/d2-two-evaluation-question.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo:'play' , pathMatch:'full'},
+  {path: '', redirectTo:'two-performance-concept', pathMatch:'full'},
   {path: 'play', component: PlayComponent},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
@@ -123,14 +144,21 @@ const routes: Routes = [
   {path: 'd2-two-practice', component: D2TwoPracticeComponent},
 
   {path: 'd1-three-practice', component: D1ThreePracticeComponent},
+  {path: 'd2-three-practice', component: D2ThreePracticeComponent},
 
   {path: 'd1-data-identification', component: DataIdentificationComponent},
   {path: 'd1-visual-representation', component: VisualRepresentationComponent},
   {path: 'd1-operation-response', component: OperationResponseComponent},
+  {path: 'd2-data-identification', component: D2DataIdentificationComponent},
+  {path: 'd2-visual-representation', component: D2VisualRepresentationComponent},
+  {path: 'd2-operation-response', component: D2OperationResponseComponent},
 
   {path: 'd1-evaluation', component: OnePerformanceEvaluationComponent},
   {path: 'd1-one-evaluation-question', component: D1OneEvaluationQuestionComponent},
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},
+  {path: 'd2-evaluation', component: TwoPerformanceEvaluationComponent},
+  {path: 'd2-one-evaluation-question', component: D2OneEvaluationQuestionComponent},
+  {path: 'd2-two-evaluation-question', component: D2TwoEvaluationQuestionComponent},
 
   {path: 'one-dialogues', component: OneDialoguesComponent},
 

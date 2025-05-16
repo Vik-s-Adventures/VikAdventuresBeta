@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  background-image: url('/assets/images/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.question-title {
+  font-size: 1.8rem;
+  color: #FFD700;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.question-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.question-text {
+  font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: start;
+  color: #000;
+}
+
+.question-image {
+  max-width: 100%;
+  max-height: 300px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-align: start;
+}
+
+.option {
+  font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  background-color: #03A9F4;
+  color: #000000;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button[disabled] {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+button:not([disabled]):hover {
+  background-color: #FFD700;
+  box-shadow: 0 0 15px #FFD700;
+}
+
+.feedback {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: bold;
+  color: #f44336;
+}
+
+.feedback.success {
+  color: #4CAF50;
+}
+
+/* 📱 Responsive ajustes */
+@media screen and (max-width: 768px) {
+  .question-title {
+    font-size: 1.3rem;
+  }
+
+  .question-card {
+    padding: 16px;
+  }
+
+  .question-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .question-image {
+    max-height: 200px;
+  }
+
+  .option {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

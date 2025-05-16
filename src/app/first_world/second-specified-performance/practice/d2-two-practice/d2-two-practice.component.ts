@@ -21,15 +21,15 @@ export class D2TwoPracticeComponent {
 
 // Definir las tarjetas con las imágenes y estados necesarios
   cards: Card[] = [
-    { id: 1, type: 'mixta', img: 'assets/images/fraccionmixta.png', revealed: false, matched: false },
-    { id: 2, type: 'impropia', img: 'assets/images/fraccionimpropia.png', revealed: false, matched: false },
-    { id: 3, type: 'propia', img: 'assets/images/fraccionpropia.png', revealed: false, matched: false },
-    { id: 4, type: 'mixta', img: 'assets/images/fraccionmixta.png', revealed: false, matched: false },
-    { id: 5, type: 'impropia', img: 'assets/images/fraccionimpropia.png', revealed: false, matched: false },
-    { id: 6, type: 'propia', img: 'assets/images/fraccionpropia.png', revealed: false, matched: false },
+    { id: 1, type: '300', img: 'assets/images/d2/D2-003.PNG', revealed: false, matched: false },
     { id: 7, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false },
     { id: 8, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false },
-    { id: 9, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false }
+    { id: 2, type: '300', img: 'assets/images/d2/D2-007.PNG', revealed: false, matched: false },
+    { id: 3, type: '900', img: 'assets/images/d2/D2-005.PNG', revealed: false, matched: false },
+    { id: 9, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false },
+    { id: 4, type: '900', img: 'assets/images/d2/D2-006.PNG', revealed: false, matched: false },
+    { id: 5, type: '150', img: 'assets/images/d2/D2-004.PNG', revealed: false, matched: false },
+    { id: 6, type: '150', img: 'assets/images/d2/D2-008.PNG', revealed: false, matched: false },
   ];
 
   selectedCards: Card[] = [];
@@ -75,6 +75,6 @@ export class D2TwoPracticeComponent {
   }
 
   goToNext() {
-    this.router.navigate(['/d1-three-practice']); // Cambia '/menu' a la ruta real de tu menú principal
+    this.router.navigate(['/d2-three-practice']); // Cambia '/menu' a la ruta real de tu menú principal
   }
 }
