@@ -11,62 +11,57 @@ import {Router} from '@angular/router';
 export class WelcomeQuestionnaireTwoComponent implements OnInit{
 
   phaserGame!: Phaser.Game;
-  config!: Phaser.Types.Core.GameConfig;
-  private load: any;
-  private anims: any;
-  private add: any;
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.config = {
+    const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width: 500,
-      height: 500,
-      parent: 'phaser-container', // Div donde se renderiza el canvas
+      width: 300,
+      height: 300,
+      parent: 'phaser-container',
       transparent: true,
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+      },
       scene: {
-        preload: this.preload,
-        create: this.create,
-        update: this.update
+        preload: function () {
+          this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
+            frameWidth: 500,
+            frameHeight: 500
+          });
+        },
+        create: function () {
+          // Escala dinámica según resolución
+          const scaleFactor = window.innerWidth < 480
+            ? 0.4
+            : window.innerWidth < 768
+              ? 0.5
+              : 0.6;
+
+          this.anims.create({
+            key: 'walk',
+            frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
+            frameRate: 8,
+            repeat: -1
+          });
+
+          const sprite = this.add.sprite(150, 150, 'character').setScale(scaleFactor);
+          sprite.play('walk');
+        },
+        update: function () {
+          // No se requiere lógica de actualización por ahora
+        }
       }
     };
 
-    this.phaserGame = new Phaser.Game(this.config);
-  }
-
-  preload() {
-    // Cargar el sprite (ajusta la ruta a tu imagen de sprites)
-    this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
-      frameWidth: 500,
-      frameHeight: 500
-    });
-  }
-
-  create() {
-    // Crear la animación del sprite
-    this.anims.create({
-      key: 'walk',
-      frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
-      frameRate: 8,
-      repeat: -1 // Repetir la animación indefinidamente
-    });
-
-    // Añadir el sprite al canvas
-    const sprite = this.add.sprite(250, 250, 'character').setScale(1);
-    sprite.play('walk');
-  }
-
-  update() {
-    // Actualizaciones de frame si es necesario
+    this.phaserGame = new Phaser.Game(config);
   }
 
   continueAction(): void {
-    // Establece permiso temporal para acceder al cuestionario
     sessionStorage.setItem('allowQuestionnaireAccess', 'true');
-    // Redirige a otro componente usando el Router
-    this.router.navigate(['/questionnaire-two']);
+    this.router.navigate(['/welcomeQuestionnaire-two']);
   }
 }
 
