@@ -8,19 +8,32 @@ import {Router} from '@angular/router';
   styleUrl: './d1-one-evaluation-question.component.css'
 })
 export class D1OneEvaluationQuestionComponent {
+
   constructor(private router: Router) {}
 
-  isOptionSelected = false;
-  selectedOption: number | null = null;
 
-  selectOption(option: number) {
+  selectedOption: number | null = null;
+  isOptionSelected = false;
+  isAnswerCorrect: boolean | null = null;
+
+  correctAnswer = 8; // ✅ Respuesta correcta
+
+  selectOption(option: number): void {
     this.selectedOption = option;
     this.isOptionSelected = true;
+    this.isAnswerCorrect = null; // Reinicia feedback al cambiar selección
+  }
+  submitAnswer(): void {
+    if (this.selectedOption === this.correctAnswer) {
+      this.isAnswerCorrect = true;
+
+      // Espera 1 segundo para mostrar feedback y luego redirige
+      setTimeout(() => {
+        this.router.navigate(['/one-dialogues']);
+      }, 1000);
+    } else {
+      this.isAnswerCorrect = false;
+    }
   }
 
-  submitAnswer() {
-    console.log("La opción seleccionada es:", this.selectedOption);
-    this.router.navigate(['/one-dialogues']);
-    // Aquí iría la lógica para continuar con la siguiente pregunta o verificar la respuesta
-  }
 }

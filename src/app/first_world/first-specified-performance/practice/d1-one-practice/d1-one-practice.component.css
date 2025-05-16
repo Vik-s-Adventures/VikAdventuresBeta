@@ -1,3 +1,4 @@
+/* Fondo general */
 .background {
   background-image: url('/assets/images/fb2fondo.png');
   background-size: cover;
@@ -5,138 +6,124 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   min-height: 100vh;
   font-family: 'Press Start 2P', cursive;
-  color: #333;
   padding: 20px;
+  gap: 1rem;
 }
 
-/* Estilos generales de las tarjetas */
+/* Tarjetas */
 .card {
-  background-color: rgba(173, 216, 230, 0.8); /* Color celeste transparente */
-  border-radius: 10px;
+  background-color: rgba(173, 216, 230, 0.85);
+  border-radius: 12px;
   padding: 20px;
-  margin: 10px;
-  max-width: 90%;
-  width: 400px;
+  width: 100%;
+  max-width: 600px;
   text-align: center;
-  font-family: 'Press Start 2P', cursive;
 }
 
-/* Estilo para la tarjeta del título */
-.title-card {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.02em;
-  max-width: 800px; /* Ajusta este valor según el tamaño deseado */
-  width: 100%; /* Hace que la tarjeta ocupe el 100% en pantallas pequeñas */
-}
-.h2{
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.02em;
+.title-card h2 {
+  font-size: 1.1rem;
+  color: #000;
+  margin: 0;
 }
 
-/* Estilo para la tarjeta de la dinámica */
+/* Zona dinámica */
 .dynamic-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
-/* Contenedor de las imágenes y entradas */
 .fraction-graphic-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 
-.fraction-image {
-  width: 100px;
-  margin-bottom: 10px;
-}
-
+.fraction-image,
 .fraction-representation {
-  width: 100px;  /* Ajusta este valor al tamaño deseado */
-  height: auto; /* Mantiene la proporción de la imagen */
-  margin: 10px 0;
+  width: 160px;
+  max-width: 90%;
+  height: auto;
 }
 
-
-/* Estilos para los campos de entrada */
+/* Inputs */
 .input-zone input {
-  padding: 5px;
+  padding: 10px;
   border: 2px solid green;
-  border-radius: 5px;
-  text-align: center;
+  border-radius: 6px;
   width: 100%;
-  margin: 10px 0;
   font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-align: center;
 }
 
-/* Botón de Enviar */
+/* Botones */
 button {
-  padding: 10px 20px;
+  padding: 10px 24px;
   border: none;
   background-color: #4CAF50;
   color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 6px;
   font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 button:disabled {
-  background-color: #ddd;
+  background-color: #999;
   cursor: not-allowed;
 }
 
-button:hover:enabled {
-  background-color: #45a049;
+button:hover:not(:disabled) {
+  background-color: #388e3c;
+  box-shadow: 0 0 10px #81c784;
 }
 
-/* Mensaje de retroalimentación */
+/* Feedback */
 .feedback {
-  margin-top: 20px;
+  font-size: 0.9rem;
   font-weight: bold;
-  color: green;
-}
-
-.feedback p {
   color: #333;
 }
 
-/* Footer con el botón "Continuemos" */
 .footer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 20px;
-  font-family: 'Press Start 2P', cursive;
 }
 
 .footer button {
-  padding: 15px 30px;
-  font-size: 18px;
-  font-family: 'Press Start 2P', cursive;
+  padding: 12px 28px;
+  font-size: 1rem;
+  background-color: #03A9F4;
+  color: #000;
+  border-radius: 8px;
+}
+
+.footer button:hover {
+  background-color: #0288d1;
+  color: white;
 }
 
 /* Responsividad */
-@media (max-width: 600px) {
-  .fraction-image {
-    width: 80px;
-  }
-
+@media (max-width: 768px) {
+  .fraction-image,
   .fraction-representation {
-    width: 40px;
+    width: 120px;
   }
 
-  .card {
-    width: 90%;
+  .input-zone input {
+    font-size: 0.7rem;
   }
 
   .footer button {
-    font-size: 14px;
+    font-size: 0.9rem;
     padding: 10px 20px;
   }
 }

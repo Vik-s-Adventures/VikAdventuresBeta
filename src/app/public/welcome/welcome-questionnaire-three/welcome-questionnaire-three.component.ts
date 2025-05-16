@@ -61,7 +61,7 @@ export class WelcomeQuestionnaireThreeComponent implements OnInit{
 
   continueAction(): void {
     sessionStorage.setItem('allowQuestionnaireAccess', 'true');
-    this.router.navigate(['/welcomeQuestionnaire-three']);
+    this.router.navigate(['/learning-path']);
   }
 
 }

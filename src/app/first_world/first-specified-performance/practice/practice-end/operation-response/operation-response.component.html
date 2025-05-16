@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="pantalla-dividida">
   <!-- 🧠 Sección problema -->
   <div class="seccion-pregunta">
@@ -40,13 +41,17 @@
       <!-- Card Gráfico -->
       <div class="card-analisis">
         <h3>Gráfico</h3>
-        <img src="assets/images/d1/practice-end-resources/operation-d1.png" alt="Gráfico de manzanas" class="imagen-pregunta centrada" />
+        <img
+          src="assets/images/d1/practice-end-resources/operation-d1.png"
+          alt="Gráfico de manzanas"
+          class="imagen-pregunta centrada"
+        />
       </div>
     </div>
 
     <!-- Card de ecuación -->
     <div class="card-ecuacion">
-      <h3>Dado que cada parte del gráfico es igual a 2, y nos faltan tres partes, entonces ¿Cuántas manzanas dejó Laura en la canasta? es igual a 2+2+2=?, marca la respuesta correcta.</h3>
+      <h3>Dado que cada parte del gráfico es igual a 2, y nos faltan tres partes, entonces ¿Cuántas manzanas dejó Laura en la canasta?</h3>
       <p>Selecciona la respuesta correcta para saber cuántas manzanas se dejó en la canasta</p>
       <mat-radio-group class="opciones-respuesta" [(ngModel)]="opcionSeleccionada">
         <mat-radio-button value="4">4</mat-radio-button>
@@ -55,8 +60,8 @@
         <mat-radio-button value="9">9</mat-radio-button>
       </mat-radio-group>
 
-      <!-- Botones -->
       <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
+
       <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
         {{ mensajeFeedback }}
       </p>

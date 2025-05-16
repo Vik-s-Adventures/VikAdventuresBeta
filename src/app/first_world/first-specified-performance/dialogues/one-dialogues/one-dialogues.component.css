@@ -1,34 +1,49 @@
-body, html {
+html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  overflow-x: hidden;
 }
 
 .container {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  gap: 30px; /* Espacio entre el sprite y la card */
+  min-height: 100vh;
+  gap: 20px;
+  padding: 20px;
   background-image: url('/assets/images/fondoinicio.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+#phaser-container {
+  width: 300px;
+  height: 300px;
+  max-width: 90vw;
+  max-height: 90vw;
+  z-index: 1;
 }
 
 .dialog-card {
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  font-family: 'Press Start 2P', cursive; /* Aplicar la fuente */
-  font-size: 1.3rem; /* Tamaño de letra más grande */
-  font-weight: bold; /* Texto más grueso */
-  max-width: 500px; /* Limita el ancho de la card */
-  word-wrap: break-word; /* Hace que el texto no se desborde */
-  animation: textMovement 1.5s infinite; /* Animación de movimiento de letras */
+  font-size: 1.1rem;
+  font-weight: bold;
+  max-width: 500px;
+  width: 100%;
+  animation: textMovement 1.5s infinite;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
 .dialog-card p {
@@ -36,57 +51,66 @@ body, html {
 }
 
 .dialog-card button {
-  padding: 15px 30px; /* Botón más grande */
-  font-size: 1.2rem; /* Texto más grande pero ajustado */
-  font-weight: bold; /* Texto más grueso */
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
   background-color: #03A9F4;
   border: none;
   border-radius: 5px;
   color: white;
-  font-family: 'Press Start 2P', cursive; /* Aplicar la fuente al botón */
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* Efecto de brillo y movimiento */
-  width: 100%; /* Botón ocupa todo el ancho disponible */
+  width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 .dialog-card button:hover {
-  box-shadow: 0 0 15px #03A9F4, 0 0 30px #03A9F4; /* Efecto de brillo al pasar el cursor */
-  transform: scale(1.1); /* El botón se agranda al pasar el cursor */
+  box-shadow: 0 0 15px #03A9F4, 0 0 30px #03A9F4;
+  transform: scale(1.05);
 }
 
-/* Animación para hacer que las letras se muevan */
 @keyframes textMovement {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+  0% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
 }
 
-/* Media Queries para pantallas más pequeñas */
+/* Móvil */
 @media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #phaser-container {
+    order: 2;
+    width: 250px;
+    height: 250px;
+  }
+
   .dialog-card {
-    font-size: 1.2rem; /* Reducir el tamaño de la letra en pantallas más pequeñas */
-    max-width: 250px; /* Limita el ancho de la card en pantallas pequeñas */
+    order: 1;
+    font-size: 1rem;
+    padding: 16px;
   }
 
   .dialog-card button {
-    font-size: 1rem; /* Ajustar el tamaño del botón en pantallas pequeñas */
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
+  #phaser-container {
+    width: 200px;
+    height: 200px;
+  }
+
   .dialog-card {
-    font-size: 1rem; /* Aún más pequeño en pantallas móviles */
-    max-width: 200px; /* Ajustar el tamaño de la card */
+    font-size: 0.9rem;
+    padding: 14px;
   }
 
   .dialog-card button {
-    font-size: 0.9rem; /* Ajustar el botón en móviles */
+    font-size: 0.85rem;
   }
 }
-

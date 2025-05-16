@@ -1,26 +1,36 @@
+<!-- HTML COMPLETO ACTUALIZADO -->
 <app-header></app-header>
 <div class="container">
   <h2 class="question-title">Pregunta Evaluadora</h2>
 
   <div class="question-card">
-
     <p class="question-text">Roberto recogió cierta cantidad de naranjas. Colocó 1/5 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántas naranjas dejó Roberto en la canasta?</p>
     <img class="question-image" src="assets/images/d1/final/f-im1.png" alt="Imagen referencial">
+
     <div class="options-container">
       <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(1)"> 15
+        <input type="radio" name="answer" (change)="selectOption(20)"> 20
       </label>
       <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(2)"> 20
+        <input type="radio" name="answer" (change)="selectOption(15)"> 15
       </label>
       <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(3)"> 30
+        <input type="radio" name="answer" (change)="selectOption(10)"> 10
       </label>
       <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(4)"> 10
+        <input type="radio" name="answer" (change)="selectOption(25)"> 25
       </label>
     </div>
 
-    <button [disabled]="!isOptionSelected" (click)="submitAnswer()">Continuar</button>
+    <button [disabled]="!isOptionSelected" (click)="submitAnswer()">
+      {{ isAnswerCorrect === false ? 'Reintentar' : 'Continuar' }}
+    </button>
+
+    <p class="feedback" *ngIf="isAnswerCorrect === false">
+      ❌ Respuesta incorrecta, intenta nuevamente.
+    </p>
+    <p class="feedback success" *ngIf="isAnswerCorrect === true">
+      ✅ ¡Correcto! Has respondido correctamente.
+    </p>
   </div>
 </div>

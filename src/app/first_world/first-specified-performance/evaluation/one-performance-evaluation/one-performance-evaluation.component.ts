@@ -12,13 +12,13 @@ export class OnePerformanceEvaluationComponent {
   cards = [
     {
       image: '../../../../../assets/images/perab2.png',  // Ruta de la imagen
-      question: "Se tiene un listón de madera de 3/10 m. ¿Cuántos metros más de madera debo adquirir para completar 17/20 m?",
+      question: "Pedro recogió cierta cantidad de cocos. Colocó 1/4 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántos cocos dejó Pedro en la canasta?",
       revealed: false,
       route: '/d1-one-evaluation-question'
     },
     {
       image: '../../../../../assets/images/sandia.png',  // Ruta de la imagen
-      question: "Una piscina inflable de 5200 L de capacidad está llena hasta sus 3/8. ¿Cuántos litros de agua hay que agregar para llenar la piscina?",
+      question: "Roberto recogió cierta cantidad de naranjas. Colocó 1/5 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántas naranjas dejó Roberto en la canasta?",
       revealed: false,
       route: '/d1-two-evaluation-question'
     }

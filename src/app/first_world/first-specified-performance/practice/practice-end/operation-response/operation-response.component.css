@@ -12,7 +12,7 @@ h2 {
 }
 
 h3 {
-  color: #0d47a1; /* Azul oscuro para subtítulos */
+  color: #0d47a1;
 }
 
 p, .mat-radio-button {
@@ -24,7 +24,7 @@ p, .mat-radio-button {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   flex-wrap: wrap;
 }
@@ -43,6 +43,8 @@ p, .mat-radio-button {
 
 .seccion-pregunta {
   background-image: url('/assets/images/d1/practice-end-resources/fb2fondo.png');
+  background-size: cover;
+  background-position: center;
   border-right: 2px solid #e0e0e0;
 }
 
@@ -64,7 +66,7 @@ p, .mat-radio-button {
 }
 
 .narracion-retro {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0.3);
   padding: 1rem;
@@ -153,6 +155,7 @@ p, .mat-radio-button {
   max-width: 600px;
   font-family: 'Segoe UI', sans-serif;
   color: #000;
+  font-size: 1.1rem;
 }
 
 .opciones-respuesta {
@@ -217,4 +220,43 @@ p, .mat-radio-button {
 .btn-flecha {
   background-color: #4caf50;
   border-radius: 50px;
+}
+
+/* ✅ Responsive para pantallas pequeñas */
+@media screen and (max-width: 1024px) {
+  .pantalla-dividida {
+    flex-direction: column;
+  }
+
+  .seccion-pregunta,
+  .seccion-juego {
+    max-width: 100%;
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  .titulo-juego {
+    font-size: 1.8rem;
+  }
+
+  .narracion-retro {
+    font-size: 1.1rem;
+  }
+
+  .bocadillo-retro {
+    font-size: 1.3rem;
+  }
+
+  .personaje-img.grande {
+    width: 100px;
+  }
+
+  .card-analisis {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .card-ecuacion {
+    font-size: 1rem;
+  }
 }

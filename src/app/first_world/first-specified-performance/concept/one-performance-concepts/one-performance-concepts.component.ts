@@ -8,78 +8,71 @@ import {Router} from '@angular/router';
   styleUrl: './one-performance-concepts.component.css'
 })
 export class OnePerformanceConceptsComponent implements OnInit {
-
   phaserGame!: Phaser.Game;
-  config!: Phaser.Types.Core.GameConfig;
+  currentCard = 0;
 
-  currentCard = 0; // Inicialmente, el sprite presenta el tema
-
-  sprite!: Phaser.GameObjects.Sprite; // Definir el sprite para el salto
-  private load: any;
-  private anims: any;
-  private add: any;
-  private tweens: any;
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.config = {
+    this.phaserGame = new Phaser.Game({
       type: Phaser.AUTO,
-      width: 500,
-      height: 500,
+      width: 300,
+      height: 300,
       parent: 'phaser-container',
       transparent: true,
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+      },
       scene: {
-        preload: this.preload,
-        create: this.create,
-        update: this.update
+        preload: function () {
+          this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
+            frameWidth: 500,
+            frameHeight: 500
+          });
+        },
+        create: function () {
+          const scaleFactor = window.innerWidth < 480 ? 0.4 : window.innerWidth < 768 ? 0.5 : 0.6;
+          this.anims.create({
+            key: 'walk',
+            frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
+            frameRate: 8,
+            repeat: -1
+          });
+          const sprite = this.add.sprite(150, 150, 'character').setScale(scaleFactor);
+          sprite.play('walk');
+        },
+        update: function () {}
       }
-    };
-
-    this.phaserGame = new Phaser.Game(this.config);
-  }
-
-  preload() {
-    // Cargar sprite (ajusta la ruta de la imagen)
-    this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
-      frameWidth: 500,
-      frameHeight: 500
     });
   }
 
-  create() {
-    // Crear la animación del sprite
-    this.anims.create({
-      key: 'walk',
-      frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
-      frameRate: 8,
-      repeat: -1 // Repite indefinidamente
-    });
-
-    this.sprite = this.add.sprite(250, 250, 'character').setScale(1);
-    this.sprite.play('walk');
+  // Cambia a la tarjeta siguiente
+  nextCard(): void {
+    if (this.currentCard < 7) {
+      this.currentCard++;
+    }
   }
 
-  update() {
-    // Lógica de actualización si es necesario
+  // Cambia a la tarjeta anterior
+  previousCard(): void {
+    if (this.currentCard > 0) {
+      this.currentCard--;
+    }
   }
 
-  // Función para avanzar al siguiente card y hacer que el sprite salte
-  nextCard() {
-    this.currentCard += 1;
-  }
-  previousCard(){
-    this.currentCard -= 1;
+  // Redirige al componente de práctica
+  goToRemember(): void {
+    this.router.navigate(['/d1-one-practice']);
   }
 
-  goToRemember() {
-    this.router.navigate(['/d1-one-practice']); // Navega a Componente 1
-  }
-  navigateToComponent1() {
-    this.router.navigate(['/menu']); // Navega a Componente 1
+  // Redirige al menú
+  navigateToComponent1(): void {
+    this.router.navigate(['/menu']);
   }
 
-  navigateToComponent2() {
-    this.router.navigate(['/learning-path']); // Navega a Componente 2
+  // Redirige a la ruta de aprendizaje
+  navigateToComponent2(): void {
+    this.router.navigate(['/learning-path']);
   }
 }

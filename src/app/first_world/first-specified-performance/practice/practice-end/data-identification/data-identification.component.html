@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="pantalla-dividida">
   <!-- 🧠 Sección problema -->
   <div class="seccion-pregunta">
@@ -27,8 +28,9 @@
 
   <!-- 🎮 Sección juego -->
   <div class="seccion-juego">
-    <h2 class="titulo-juego">Arrastra los datos según el problema matemático...</h2>
+    <h2 class="titulo-juego">📌 Arrastra los datos en las cajas de abajo...</h2>
 
+    <!-- Tarjetas disponibles -->
     <div
       id="zonaDisponible"
       class="tarjetas"
@@ -42,7 +44,23 @@
       </div>
     </div>
 
-    <div class="zona-tableros">
+    <!-- ✅ Botones arriba de los tableros -->
+    <div class="botones-juego">
+      <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
+      <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
+        {{ mensajeFeedback }}
+      </p>
+      <button *ngIf="mensajeFeedback.includes('❌')" class="btn-reintentar" (click)="reiniciarJuego()">
+        🔁 INTENTAR DE NUEVO
+      </button>
+      <!-- Botón continuar -->
+      <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
+        CONTINUAR ➡
+      </button>
+    </div>
+
+    <!-- 🔄 Tableros alineados en horizontal -->
+    <div class="zona-tableros-horizontal">
       <div
         class="zona-drop"
         id="zonaDato"
@@ -63,22 +81,11 @@
         [cdkDropListConnectedTo]="['zonaDisponible', 'zonaDato']"
         (cdkDropListDropped)="onDrop($event)"
       >
-        <h3>Dato faltante</h3>
+        <h3>¿Cuál es la pregunta?</h3>
         <div *ngFor="let f of zonaFaltante" class="tarjeta-correcta">{{ f }}</div>
       </div>
     </div>
 
-    <button class="btn-validar" (click)="validarRespuesta()">ENVIAR RESPUESTA</button>
-    <p class="feedback" [class.error]="mensajeFeedback.includes('❌')">
-      {{ mensajeFeedback }}
-    </p>
-    <button *ngIf="mensajeFeedback.includes('❌')" class="btn-reintentar" (click)="reiniciarJuego()">
-      🔁 INTENTAR DE NUEVO
-    </button>
-
-    <button *ngIf="mensajeFeedback.includes('✅')" class="btn-flecha" (click)="continuar()">
-      CONTINUAR  ➡
-    </button>
 
   </div>
 </div>
