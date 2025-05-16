@@ -47,6 +47,9 @@ import {
 import {
   D2OnePracticeComponent
 } from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
+import {
+  D2TwoPracticeComponent
+} from './first_world/second-specified-performance/practice/d2-two-practice/d2-two-practice.component';
 
 
 const routes: Routes = [
