@@ -41,14 +41,14 @@ export class LearningPathComponent implements OnInit {
     const rutas = [
       '/one-performance-concept',
       '/two-performance-concept',
-      '/nivel3-unidades',
-      '/nivel4-graficos',
-      '/nivel5-funciones',
-      '/nivel6-porcentajes',
-      '/nivel7-medidas',
-      '/nivel8-multiplos',
-      '/nivel9-divisiones',
-      '/nivel10-evaluacion'
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept',
+      '/one-performance-concept'
     ];
 
     this.cards = rutas.map((ruta, i) => ({
