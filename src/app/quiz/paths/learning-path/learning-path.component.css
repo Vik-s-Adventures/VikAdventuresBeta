@@ -13,7 +13,6 @@ body, .learning-path-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 /* Sprite + textos */
@@ -53,21 +52,12 @@ body, .learning-path-container {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-.start-text,
-.end-text {
-  font-weight: bold;
-  font-size: 1rem;
-  margin: 0.6rem 0;
-}
-
-/* SCROLL */
 .level-path-scroll {
   overflow-x: auto;
   padding-bottom: 0.5rem;
   max-width: 90vw;
 }
 
-/* Nivel y flechas */
 .level-path {
   display: flex;
   align-items: center;
@@ -104,6 +94,10 @@ body, .learning-path-container {
   background-color: #27ae60;
 }
 
+.gray-circle {
+  background-color: #7f8c8d;
+}
+
 .level-title {
   padding: 0 5px;
   text-align: center;
@@ -121,20 +115,6 @@ body, .learning-path-container {
   50% { transform: scale(1.3); opacity: 0.6; }
 }
 
-/* Manita */
-.pointer-guide {
-  width: 40px;
-  position: absolute;
-  top: calc(50% + 60px);
-  left: calc(50% - 380px);
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .circle-card {
@@ -145,10 +125,5 @@ body, .learning-path-container {
 
   .arrow {
     font-size: 1.5rem;
-  }
-
-  .pointer-guide {
-    width: 32px;
-    left: 16px;
   }
 }

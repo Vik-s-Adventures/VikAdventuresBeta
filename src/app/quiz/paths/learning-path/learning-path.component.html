@@ -17,7 +17,11 @@
         <ng-container *ngFor="let card of cards; let i = index">
           <div
             class="circle-card"
-            [ngClass]="{'red-circle': card.value === 0, 'green-circle': card.value === 1}"
+            [ngClass]="{
+              'green-circle': card.value === 1,
+              'red-circle': card.value === 0,
+              'gray-circle': card.value === -1
+            }"
             (click)="onCardSelect(card.id)">
             <span class="level-title">{{ card.title }}</span>
           </div>
@@ -26,5 +30,4 @@
       </div>
     </div>
   </div>
-
 </div>

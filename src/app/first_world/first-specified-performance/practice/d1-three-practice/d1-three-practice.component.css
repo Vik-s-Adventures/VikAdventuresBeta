@@ -1,139 +1,224 @@
-.background {
-  background-image: url('/assets/images/fb2fondo.png');
+:host {
+  display: block;
+  background-image: url('/assets/images/d1/m2.png');
   background-size: cover;
   background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh;
-  color: #333;
-  padding: 20px;
-}
-
-/* Contenedor principal */
-.fraction-card {
-  background-color: rgba(255, 255, 204, 0.8); /* Color amarillo bebé transparente */
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  max-width: 600px;
-  width: 90%;
-  margin: auto;
   font-family: 'Press Start 2P', cursive;
+  box-sizing: border-box;
+  color: white;
 }
 
-/* Cuadrícula de fracciones */
-.fraction-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas para imagen, input y tipo */
-  gap: 15px;
-  margin-top: 20px;
-}
-
-/* Celda de fracción */
-.fraction-cell {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  background-color: rgba(173, 216, 230, 0.8); /* Color celeste bebé transparente */
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.fraction-cell img {
-  width: 100%;
-  max-width: 80px;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-.fraction-cell input {
   padding: 5px;
-  border: 1px solid #333;
-  border-radius: 5px;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Subtítulo */
+.subtitle-card {
+  background-color: #45a049;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 16px;
   text-align: center;
-  width: 80%;
-  margin-top: 5px;
+  width: 100%;
+  max-width: 850px;
 }
 
-.fraction-type {
-  margin-top: 10px;
-  font-size: 0.9em;
-  font-weight: bold;
+.subtitle {
+  font-size: 14px;
+  margin: 0;
 }
 
-/* Botón "Continuemos" */
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+.main-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 2rem;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Columnas izquierda y derecha */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Tarjetas */
+.match-card {
+  background-color: rgba(0, 0, 0, 0.6); /* negro translúcido */
+  border: 2px solid #fff;
   border-radius: 5px;
   cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+  text-align: center;
+  min-width: 180px;
+  max-width: 220px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-button:disabled {
-  background-color: #ddd;
+
+.fraction-img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* Estados */
+.match-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #fff;
+}
+
+.match-card.selected {
+  border-color: #00ffff;
+  background-color: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.match-card.paired {
+  border-color: #ccc;
+  background-color: rgba(240, 240, 240, 0.3);
+  box-shadow: 0 0 12px rgba(200, 200, 200, 0.8);
+}
+
+/* Colores dinámicos */
+.pair-color-0 {
+  box-shadow: 0 0 12px #00ffff !important;
+  border-color: #00ffff;
+  background-color: rgba(0, 255, 255, 0.2);
+}
+
+.pair-color-1 {
+  box-shadow: 0 0 12px #ffcc00 !important;
+  border-color: #ffcc00;
+  background-color: rgba(255, 204, 0, 0.2);
+}
+
+.pair-color-2 {
+  box-shadow: 0 0 12px #ff66cc !important;
+  border-color: #ff66cc;
+  background-color: rgba(255, 102, 204, 0.2);
+}
+
+.pair-color-3 {
+  box-shadow: 0 0 12px #ccccff !important;
+  border-color: #ccccff;
+  background-color: rgba(200, 200, 255, 0.2);
+}
+
+/* Panel derecho ejemplo */
+.right-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 200px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* importante si hay más contenido */
+  gap: 1rem;
+}
+
+.panel-title {
+  margin-bottom: 1rem;
+  font-size: 12px;
+}
+
+.example-image {
+  width: 150px;
+  height: auto;
+}
+
+/* Botón */
+.button-container {
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  background-color: #ff0033;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ff0033;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:disabled {
+  background-color: #aaa;
+  box-shadow: none;
   cursor: not-allowed;
 }
 
-button:hover:enabled {
-  background-color: #45a049;
+/* Diálogos */
+.dialog-title {
+  font-family: 'Press Start 2P', cursive;
+  color: red;
+  font-size: 16px;
 }
 
-/* Responsividad */
-@media (max-width: 600px) {
-  .fraction-grid {
-    grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas pequeñas */
+.dialog-content {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  padding-top: 10px;
+}
+
+.dialog-actions button {
+  font-family: 'Press Start 2P', cursive;
+  background: #ff0033;
+  color: white;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  margin-top: 10px;
+}
+
+/* ✅ Totalmente responsive: mantiene columnas visibles */
+@media screen and (max-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0 1rem;
+  }
+
+  .match-card {
+    min-width: 100px;
+    max-width: 120px;
+  }
+
+  .fraction-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .submit-btn {
+    font-size: 12px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .example-image {
+    width: 100px;
   }
 }
-
-/* Contenedor principal que organiza las tarjetas en fila */
-.content-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  max-width: 900px;
-  width: 100%;
-  margin: auto;
-}
-
-/* Tarjeta de consejo */
-.tip-card {
-  background-color: rgba(255, 228, 196, 0.8); /* Color beige transparente */
-  border-radius: 10px;
-  padding: 15px;
-  text-align: center;
-  max-width: 250px;
-}
-
-.tip-card img {
-  width: 100%;
-  max-width: 160px;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
-}
-
-
-
-.tip-card p {
-  font-size: 20px;
-  color: black;
-}
-
-/* Adaptación para pantallas pequeñas */
-@media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-

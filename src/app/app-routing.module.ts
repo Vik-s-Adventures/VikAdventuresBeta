@@ -63,10 +63,6 @@ const routes: Routes = [
   {path: 'ranking-map3', component: RankingMap3Component},
   {path: 'ranking-map4', component: RankingMap4Component},
 
-  {path: 'welcomeQuestionnaire', component: WelcomeQuestionnaireComponent},
-  {path: 'welcomeQuestionnaire-two', component: WelcomeQuestionnaireTwoComponent},
-  {path: 'welcomeQuestionnaire-three', component: WelcomeQuestionnaireThreeComponent},
-  {path: 'welcomeQuestionnaire-four', component: WelcomeQuestionnaireFourComponent},
   {
     path: 'welcomeQuestionnaire',
     component: WelcomeQuestionnaireComponent,
@@ -109,15 +105,19 @@ const routes: Routes = [
   },
 
   {path: 'one-performance-concept', component: OnePerformanceConceptsComponent},
+
   {path: 'd1-one-practice', component: D1OnePracticeComponent},
   {path: 'd1-two-practice', component: D1TwoPracticeComponent},
   {path: 'd1-three-practice', component: D1ThreePracticeComponent},
+
   {path: 'd1-data-identification', component: DataIdentificationComponent},
   {path: 'd1-visual-representation', component: VisualRepresentationComponent},
   {path: 'd1-operation-response', component: OperationResponseComponent},
+
   {path: 'd1-evaluation', component: OnePerformanceEvaluationComponent},
   {path: 'd1-one-evaluation-question', component: D1OneEvaluationQuestionComponent},
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},
+
   {path: 'one-dialogues', component: OneDialoguesComponent},
 
   {path: 'learning-path', component: LearningPathComponent},

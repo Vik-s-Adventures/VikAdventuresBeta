@@ -44,7 +44,7 @@ import { ProfileUserComponent } from './profile/profile-user/profile-user.compon
 import {MatIcon} from '@angular/material/icon';
 import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.component';
 import { ProfileEditDialogComponentComponent } from './profile/profile-edit-dialog-component/profile-edit-dialog-component.component';
-import {MatDialogActions, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
 import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {
@@ -152,6 +152,7 @@ import { PlayComponent } from './public/play/play.component';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogClose,
 
   ],
   providers: [
@@ -161,7 +162,10 @@ import { PlayComponent } from './public/play/play.component';
     MatNativeDateModule,
     provideHttpClient(),
     provideHttpClient(withInterceptorsFromDi()),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
+  exports: [
+    HeaderComponent
   ],
   bootstrap: [AppComponent]
 })
