@@ -1,39 +1,32 @@
 <app-header></app-header>
 <div class="background">
-  <div class="content-wrapper">
-
-    <!-- Nueva card para el título -->
-    <div class="title-card">
-      <h2>Ejercicio: Si todo el circulo equivale a 80 y cada parte equivale a 10. ¿Cuánto equivale las partes sombreadas en cada gráfica?</h2>
-    </div>
-
-    <!-- Contenedor de fracciones y consejo en la misma fila -->
-    <div class="main-content">
-      <!-- Sección de ejercicios -->
-      <div class="content-container">
-        <div class="fraction-row">
-          <div *ngFor="let fraction of fractions" class="fraction-cell">
-            <img [src]="fraction.img" alt="Imagen de fracción" />
-            <input
-              [(ngModel)]="fraction.userAnswer"
-              (input)="checkAnswers()"
-              placeholder="Ejem: 10"
-              aria-label="Input de fracción"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Sección del consejo -->
-      <div class="advice-container">
-        <h3>Ejemplo</h3>
-        <img src="/assets/images/d1/d1-5.png" alt="Ejemplo de porcentajes y fracciones" />
-        <p>En este ejemplo la parte sombreada equivale a 50, ya que cada parte equivale a 10.</p>
-      </div>
-    </div>
-
-    <!-- Botón de Continuemos -->
-    <button [disabled]="!isCompleted" (click)="goToNext()">Continuemos</button>
-
+  <!-- Card para el título -->
+  <div class="card title-card" >
+    <h2>Encuentra los pares según el tipo de fracción</h2>
   </div>
+
+  <!-- Card principal que contiene las 9 cards -->
+  <div class="card main-card">
+    <div class="card-grid">
+      <div
+        *ngFor="let card of cards"
+        class="small-card"
+        [ngClass]="{ 'revealed': card.revealed || card.matched }"
+        (click)="revealCard(card)"
+      >
+        <img *ngIf="card.revealed || card.matched" [src]="card.img" alt="Imagen de fracción" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="successMessage" class="feedback">
+    <p>{{ successMessage }}</p>
+  </div>
+
+  <!-- Footer con el botón "Continuemos" -->
+  <footer class="footer">
+    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
+
+  </footer>
 </div>

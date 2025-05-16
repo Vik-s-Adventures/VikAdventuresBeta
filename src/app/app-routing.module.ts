@@ -41,6 +41,12 @@ import {RankingMap4Component} from './public/results-table/ranking-map4/ranking-
 import {TableSelectionComponent} from './public/results-table/table-selection/table-selection.component';
 import {ProgressAdvanceComponent} from './learning-progress/progress-advance/progress-advance.component';
 import {PlayComponent} from './public/play/play.component';
+import {
+  TwoPerformanceConceptsComponent
+} from './first_world/second-specified-performance/concept/two-performance-concepts/two-performance-concepts.component';
+import {
+  D2OnePracticeComponent
+} from './first_world/second-specified-performance/practice/d2-one-practice/d2-one-practice.component';
 
 
 const routes: Routes = [
@@ -105,9 +111,14 @@ const routes: Routes = [
   },
 
   {path: 'one-performance-concept', component: OnePerformanceConceptsComponent},
+  {path: 'two-performance-concept', component: TwoPerformanceConceptsComponent},
 
   {path: 'd1-one-practice', component: D1OnePracticeComponent},
+  {path: 'd2-one-practice', component: D2OnePracticeComponent},
+
   {path: 'd1-two-practice', component: D1TwoPracticeComponent},
+  {path: 'd2-two-practice', component: D2TwoPracticeComponent},
+
   {path: 'd1-three-practice', component: D1ThreePracticeComponent},
 
   {path: 'd1-data-identification', component: DataIdentificationComponent},

@@ -1,91 +1,101 @@
-<div class="container">
+<div class="main-wrapper">
+  <!-- Botones navegación superior -->
   <div class="button-container">
     <button class="nav-button" (click)="navigateToComponent1()">MENU</button>
     <button class="nav-button" (click)="navigateToComponent2()">TU RUTA</button>
   </div>
 
-  <!-- Sprite a la izquierda -->
-  <div id="phaser-container"></div>
+  <!-- Contenido principal -->
+  <div class="content-container">
+    <!-- Sprite -->
+    <div id="phaser-container"></div>
 
-  <!-- Contenedor de las cards, alineadas en columna -->
-  <div class="card-container">
+    <!-- Tarjetas -->
+    <div class="card-container">
+      <div class="title" *ngIf="currentCard === 0">
+        <h1 class="dynamic-title">FRACCIONES</h1>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 0">
+        <p>¡Hola! En este nivel seguiremos  aprendiendo sobre las fracciones.
+        </p>
+      </div>
 
-    <!-- Título grande en el primer diálogo -->
-    <div class="title" *ngIf="currentCard === 0">
-      <h1 class="dynamic-title">PORCENTAJES</h1>
-    </div>
+      <div class="title" *ngIf="currentCard === 1">
+        <h2 class="dynamic-title-small">PARTE DEL TOTAL</h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 1">
+        <p>Una fracción puede representar solo una parte del total o varias partes del total.</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 1">
+        <img src="assets/images/d2/D2-A-1.PNG" alt="Partes de una fracción">
+      </div>
 
-    <!-- Card de presentación del tema -->
-    <div class="dialog-card" *ngIf="currentCard === 0">
-      <p>Hoy vamos a aprender cómo los porcentajes y las fracciones están relacionados. ¡Vamos a verlo!</p>
-    </div>
+      <div class="title" *ngIf="currentCard === 2">
+        <h2 class="dynamic-title-small">MULTIPLICAR PARA HALLAR EL TOTAL
+        </h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 2">
+        <p>Si sabes una parte, multiplica por el denominador.</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 2">
+        <img src="assets/images/d2/D2-A-2.PNG" alt="Partes de una fracción">
+      </div>
 
-    <!-- Card principal explicando qué es un porcentaje -->
-    <div class="title" *ngIf="currentCard === 1">
-      <h2 class="dynamic-title-small">¿QUÉ ES UN PORCENTAJE?</h2>
-    </div>
-    <div class="dialog-card" *ngIf="currentCard === 1">
-      <p>Un porcentaje es una forma de expresar una fracción de 100. Por ejemplo, 50% es lo mismo que 1/2.</p>
-    </div>
-    <div class="example-card" *ngIf="currentCard === 1">
-      <img src="assets/images/imaguno.png" alt="Ejemplo de fracción 50/100">
-    </div>
+      <div class="title" *ngIf="currentCard === 3">
+        <h2 class="dynamic-title-small">DIVIDIR PARA HALLAR UNA PARTE
+        </h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 3">
+        <p>Si sabes varias partes, puedes dividir entre el numerador para saber cuánto vale una.</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 3">
+        <img src="assets/images/d2/D2-A-3.PNG" alt="Fracción propia">
+      </div>
 
-    <!-- Card explicando la relación entre porcentajes y fracciones -->
-    <div class="title" *ngIf="currentCard === 2">
-      <h2 class="dynamic-title-small">CONVERTIR PORCENTAJES A FRACCIONES</h2>
-    </div>
-    <div class="dialog-card" *ngIf="currentCard === 2">
-      <p>Para convertir un porcentaje a fracción, simplemente pon el número sobre 100. Ejemplo:</p>
-    </div>
-    <div class="example-card" *ngIf="currentCard === 2">
-      <img src="assets/images/imagdos.jpg" alt="Ejemplo">
-    </div>
+      <div class="title" *ngIf="currentCard === 4">
+        <h2 class="dynamic-title-small">PARTES DE UNA FRACCIÓN</h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 4">
+        <p>Recuerda, una fracción tiene dos partes principales: el numerador (arriba) y el denominador (abajo).
+        </p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 4">
+        <img src="https://i.ibb.co/Y4Zq0gMM/partefraccion.png" alt="Fracción impropia">
+      </div>
 
-    <!-- Card explicando cómo simplificar fracciones -->
-    <div class="title" *ngIf="currentCard === 3">
-      <h2 class="dynamic-title-small">SIMPLIFICAR FRACCIONES</h2>
-    </div>
-    <div class="dialog-card" *ngIf="currentCard === 3">
-      <p>Después de convertir un porcentaje a fracción, puedes simplificarla si es posible. Ejemplo:</p>
-    </div>
-    <div class="example-card" *ngIf="currentCard === 3">
-      <img src="assets/images/Imagtres.png" alt="Ejemplo de simplificación">
-    </div>
+      <div class="title" *ngIf="currentCard === 5">
+        <h2 class="dynamic-title-small">FRACCIÓN EQUIVALENTE</h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 5">
+        <p>Tiene el mismo valor aunque use otros números.</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 5">
+        <img src="assets/images/d2/D2-A-4.jpg" alt="Fracción mixta">
+      </div>
 
-    <!-- Card explicando ejemplos adicionales de porcentajes y fracciones -->
-    <div class="title" *ngIf="currentCard === 4">
-      <h2 class="dynamic-title-small">EJEMPLOS PORCENTAJES COMUNES</h2>
-    </div>
-    <div class="dialog-card" *ngIf="currentCard === 4">
-      <p>Ejemplos comunes:</p>
-      <p>* 25% = 1/4</p>
-      <p>* 75% = 3/4</p>
-      <p>* 20% = 1/5</p>
-    </div>
+      <div class="title" *ngIf="currentCard === 6">
+        <h2 class="dynamic-title-small">CONSEJO ÚTIL</h2>
+      </div>
+      <div class="dialog-card" *ngIf="currentCard === 6">
+        <p>Cuando una fracción es parte del total, primero divido para saber 1 parte, y luego multiplico para saber todo</p>
+      </div>
 
-
-    <!-- Card para explicar consejos útiles sobre porcentajes -->
-    <div class="title" *ngIf="currentCard === 5">
-      <h2 class="dynamic-title-small">CONSEJO ÚTIL</h2>
+      <div class="dialog-card" *ngIf="currentCard === 7">
+        <p>¡Eso es todo! Ahora lo pondremos en práctica.</p>
+        <button (click)="goToRemember()">CONTINUEMOS</button>
+      </div>
     </div>
-    <div class="dialog-card small-text" *ngIf="currentCard === 5">
-      <p>Convierte porcentajes complicados en fracciones para facilitar los cálculos. ¡Simplifica siempre que puedas!</p>
-    </div>
+  </div>
 
-    <!-- Card final con el botón "Recuerda" -->
-    <div class="dialog-card" *ngIf="currentCard === 6">
-      <p>¡Eso es todo! Recuerda que los porcentajes y las fracciones están muy relacionados. Ahora vamos a practicar.</p>
-      <button (click)="goToRemember()">CONTINUEMOS</button>
-    </div>
-
-  </div> <!-- Fin del contenedor de las cards -->
-
-  <!-- Footer con las flechas centradas -->
+  <!-- Footer fijo y con textos -->
   <footer class="footer-container">
-    <div class="arrow-left" *ngIf="currentCard > 0" (click)="previousCard()"></div>
-    <div class="arrow" *ngIf="currentCard < 6" (click)="nextCard()"></div>
+    <div class="arrow-group" *ngIf="currentCard > 0" (click)="previousCard()">
+      <div class="arrow-left"></div>
+      <span class="arrow-label">Retroceder</span>
+    </div>
+    <div class="arrow-group" *ngIf="currentCard < 7" (click)="nextCard()">
+      <div class="arrow"></div>
+      <span class="arrow-label">Avanzar</span>
+    </div>
   </footer>
-
 </div>
-

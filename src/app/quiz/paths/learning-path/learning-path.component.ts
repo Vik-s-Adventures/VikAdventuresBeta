@@ -40,7 +40,7 @@ export class LearningPathComponent implements OnInit {
   initializeCards(): void {
     const rutas = [
       '/one-performance-concept',
-      '/nivel2-estimacion',
+      '/two-performance-concept',
       '/nivel3-unidades',
       '/nivel4-graficos',
       '/nivel5-funciones',

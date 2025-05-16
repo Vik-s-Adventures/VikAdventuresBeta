@@ -1,198 +1,161 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  background-image: url('/assets/images/fb2fondo.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* Botones de navegación con opacidad 80% */
-.button-container {
-  position: absolute;
-  top: 20px;
-  left: 90%;
-  transform: translateX(-50%);
+.main-wrapper {
   display: flex;
-  gap: 20px;
-  opacity: 0.8; /* Opacidad del 80% */
+  flex-direction: column;
+  min-height: 100vh;
+  background: url('/assets/images/fb2fondo.png') no-repeat center center / cover;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.button-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  z-index: 100;
 }
 
 .nav-button {
   background-color: #03A9F4;
-  color: #000000;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
+  color: #000;
+  font-size: 0.8rem;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   text-transform: uppercase;
 }
-
 .nav-button:hover {
   background-color: #FFD700;
-  box-shadow: 0 0 15px #FFD700;
 }
 
-/* Contenedor de las cards, alineadas en columna */
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px 20px;
+  gap: 20px;
+}
+
+#phaser-container {
+  width: 300px;
+  height: 300px;
+  max-width: 90vw;
+}
+
 .card-container {
+  width: 100%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-/* Estilos para las cards de diálogo y ejemplos */
 .dialog-card, .example-card {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  max-width: 800px;
   width: 100%;
-  word-wrap: break-word;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+.example-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+}
 
-/* Footer centrado con flechas, color blanco y borde azul brillante oscuro */
 .footer-container {
-  position: absolute;
-  bottom: 20px;
   width: 100%;
+  padding: 15px;
   display: flex;
   justify-content: center;
-  gap: 20px;
-  background-color: #ffffff; /* Fondo blanco */
-  border: 3px solid #00008B; /* Borde azul brillante oscuro */
-  box-shadow: 0 0 15px #00008B; /* Efecto de brillo alrededor del borde */
-  padding: 10px; /* Espaciado interno */
-  opacity: 0.8; /* Opacidad del 80% */
+  gap: 30px;
+  background-color: #ffffff;
+  border-top: 3px solid #00008B;
+  box-shadow: 0 0 10px #00008B;
 }
 
-/* Estilo de las flechas */
-.arrow, .arrow-left {
-  width: 50px;
-  height: 50px;
-  background-color: #03A9F4;
+.arrow-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Flecha hacia la derecha */
+.arrow, .arrow-left {
+  width: 40px;
+  height: 40px;
+  background-color: #03A9F4;
+}
+
 .arrow {
   clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
 }
-
-/* Flecha hacia la izquierda */
 .arrow-left {
   clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
 }
 
-.arrow:hover, .arrow-left:hover {
-  background-color: #FFD700;
-  box-shadow: 0 0 15px #FFD700;
+.arrow-label {
+  font-size: 0.7rem;
+  font-weight: bold;
 }
 
-/* Título grande en el primer diálogo */
-.dynamic-title {
-  font-size: 3rem;
-  color: #FFD700;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-  animation: moveTitle 3s infinite alternate;
-}
-
-/* Título dinámico para los subtemas */
-.dynamic-title-small {
-  font-size: 2rem;
-  color: #FFD700;
-  text-align: center;
-  font-family: 'Press Start 2P', cursive;
-  text-transform: uppercase;
-  animation: moveTitleSmall 3s infinite alternate;
-}
-
-/* Animación para el título grande */
-@keyframes moveTitle {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(10px);
-  }
-  100% {
-    transform: translateX(-10px);
-  }
-}
-
-/* Animación para los títulos pequeños */
-@keyframes moveTitleSmall {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
-  100% {
-    transform: translateX(-5px);
-  }
-}
-
-/* Estilo del botón "Recuerda" */
 button {
   background-color: #03A9F4;
-  color: #000000;
+  color: #000;
   font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
+  font-size: 0.9rem;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
-
 button:hover {
   background-color: #FFD700;
-  color: #000000;
-  box-shadow: 0 0 15px #FFD700;
 }
 
+.dynamic-title {
+  font-size: 2rem;
+  color: #FFD700;
+  text-align: center;
+  animation: moveTitle 3s infinite alternate;
+}
+.dynamic-title-small {
+  font-size: 1.3rem;
+  color: #FFD700;
+  text-align: center;
+  animation: moveTitleSmall 3s infinite alternate;
+}
 
+@keyframes moveTitle {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(-10px); }
+}
 
-/* Responsividad para pantallas más pequeñas */
+@keyframes moveTitleSmall {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(-5px); }
+}
+
 @media (max-width: 768px) {
-  .dialog-card {
-    font-size: 1rem;
-    padding: 15px;
-    max-width: 300px;
-  }
-
-  .arrow, .arrow-left {
-    width: 40px;
-    height: 40px;
-  }
-
   .nav-button {
-    font-size: 0.8rem;
-    padding: 8px 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dialog-card {
-    font-size: 0.9rem;
-    padding: 10px;
-    max-width: 250px;
+    font-size: 0.7rem;
+    padding: 8px 12px;
   }
 
   .arrow, .arrow-left {
@@ -201,15 +164,14 @@ button:hover {
   }
 
   .dynamic-title {
-    font-size: 2.5rem;
-  }
-
-  .dynamic-title-small {
     font-size: 1.5rem;
   }
 
-  .nav-button {
-    font-size: 0.7rem;
-    padding: 6px 12px;
+  .dynamic-title-small {
+    font-size: 1.1rem;
+  }
+
+  .arrow-label {
+    font-size: 0.6rem;
   }
 }

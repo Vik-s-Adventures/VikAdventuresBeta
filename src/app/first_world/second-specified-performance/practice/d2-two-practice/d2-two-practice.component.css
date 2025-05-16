@@ -1,148 +1,124 @@
-/* Fondo */
 .background {
-  background-image: url('/assets/images/fb2fondo.png');
+  background-image: url('/assets/images/d1/m1.png');
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
   color: #333;
   padding: 20px;
 }
 
-/* Contenedor principal */
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 95%;
-  gap: 20px;
+/* Estilo general para las tarjetas */
+.card {
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
 }
 
-/* Nueva card para el título */
+/* Tarjeta del título */
 .title-card {
-  background-color: rgba(255, 228, 181, 0.9);
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  width: 80%;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* Contenedor de imágenes + consejo en la misma fila */
-.main-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  background-color: rgba(255, 255, 204, 0.8); /* Color amarillo bebé con opacidad */
+  max-width: 500px;
   width: 100%;
-  gap: 20px;
+  font-size: 1em;
 }
 
-/* Contenedor de ejercicios */
-.content-container {
-  background-color: rgba(255, 255, 204, 0.9);
-  border-radius: 15px;
-  padding: 30px;
-  text-align: center;
-  width: 75%;
-  font-family: 'Press Start 2P', cursive;
-}
-
-/* Contenedor del consejo */
-.advice-container {
-  background-color: rgba(245, 222, 179, 0.9);
-  border-radius: 15px;
-  padding: 20px;
-  width: 25%;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-/* Imagen del consejo */
-.advice-container img {
-  width: 50%;
-  height: auto;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-/* Contenedor de fracciones en fila */
-.fraction-row {
+/* Tarjeta principal que contiene la cuadrícula */
+.main-card {
+  background-color: rgba(255, 255, 0, 0.8); /* Color amarillo */
+  width: 400px; /* Ancho aumentado */
+  padding: 10px;
   display: flex;
   justify-content: center;
-  gap: 15px;
-  padding-bottom: 10px;
-  overflow-x: auto;
 }
 
-/* Celda de fracción */
-.fraction-cell {
+/* Cuadrícula de tarjetas */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+/* Tarjetas pequeñas en la cuadrícula */
+.small-card {
+  background-color: rgba(173, 216, 230, 0.8); /* Color celeste bebé transparente */
+  border-radius: 5px;
+  width: 100px;  /* Tamaño aumentado */
+  height: 100px; /* Tamaño aumentado */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  background-color: rgba(173, 216, 230, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  width: 200px;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden; /* Asegura que el contenido se mantenga dentro de la tarjeta */
 }
 
-/* Imágenes de fracción */
-.fraction-cell img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  margin-bottom: 10px;
+.small-card img {
+  max-width: 100%;  /* Limita el ancho al tamaño de la tarjeta */
+  max-height: 100%; /* Limita la altura al tamaño de la tarjeta */
+  object-fit: contain; /* Ajusta la imagen dentro de la tarjeta sin distorsión */
   border-radius: 5px;
 }
 
-/* Input */
-.fraction-cell input {
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #333;
-  border-radius: 5px;
-  text-align: center;
-  width: 90%;
+/* Indicador de tarjeta revelada */
+.revealed {
+  background-color: #fff;
 }
 
-/* Botón */
-button {
+/* Mensaje de éxito */
+.feedback {
   margin-top: 20px;
-  padding: 12px 20px;
+  font-weight: bold;
+  color: yellow;
+}
+
+/* Footer con el botón "Continuemos" */
+.footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footer button {
+  padding: 15px 30px;
   font-size: 18px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
 }
 
-button:disabled {
+.footer button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
 }
 
-button:hover:enabled {
+.footer button:hover:enabled {
   background-color: #45a049;
 }
 
-/* Responsive: si la pantalla es muy pequeña, el consejo se mueve abajo */
-@media (max-width: 1024px) {
-  .main-content {
-    flex-direction: column;
-    align-items: center;
+/* Responsividad */
+@media (max-width: 600px) {
+  .main-card {
+    width: 90%;
   }
 
-  .content-container {
-    width: 100%;
+  .small-card {
+    width: 80px; /* Tamaño reducido para pantallas pequeñas */
+    height: 80px;
   }
 
-  .advice-container {
-    width: 80%;
-    margin-top: 20px;
+  .title-card {
+    max-width: 90%;
+  }
+
+  .footer button {
+    font-size: 14px;
+    padding: 10px 20px;
   }
 }

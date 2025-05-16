@@ -1,33 +1,42 @@
 <app-header></app-header>
 <div class="background">
-  <!-- Tarjeta de Consejo -->
-  <div class="tip-card">
-    <h3>Consejo</h3>
-    <p>Recuerda que los porcentajes son el equivalente de las fracciones y viceversa: Ejemplo 100%=10/10</p>
-    <img src="/assets/images/d2/d2.PNG" alt="Consejo" />
+  <!-- Card para el título -->
+  <div class="card title-card" style="font-family: 'Press Start 2P', cursive; font-size: 10px">
+    <h2 style="font-family: 'Press Start 2P', cursive;">1. PRIMERA PRÁCTICA: Observa la gráfica y luego completa </h2>
   </div>
 
-  <div class="content-container">
-    <h2>Completa los porcentajes y las fracciones equivalentes observando los gráficos</h2>
+  <!-- Card para la dinámica -->
+  <div class="card dynamic-card">
+    <div class="fraction-graphic-container">
+      <img src="../../../../../assets/images/d2/D2-001.PNG" class="fraction-image" alt="Imagen de fracción" />
 
-    <!-- Contenedor de fracciones en una sola fila -->
-    <div class="fraction-row">
-      <div *ngFor="let fraction of fractions" class="fraction-cell">
-        <img [src]="fraction.img" alt="Imagen de fracción" />
-        <input
-          [(ngModel)]="fraction.userAnswer"
-          (input)="checkAnswers()"
-          placeholder="Ejem: 10%=1/10"
-          aria-label="Input de fracción"
-        />
+      <!-- Campo de entrada para Numerador -->
+      <div class="input-zone">
+        <input [(ngModel)]="topInput" placeholder="Escribe aquí" aria-label="600" />
+      </div>
+
+      <img src="../../../../../assets/images/d2/D2-002.PNG" class="fraction-representation" alt="Representación gráfica de 2/3" />
+
+      <!-- Campo de entrada para Denominador -->
+      <div class="input-zone">
+        <input [(ngModel)]="bottomInput" placeholder="Escribe aquí" aria-label="3/4" />
       </div>
     </div>
 
+    <!-- Botón para verificar la respuesta -->
+    <button (click)="checkAnswer()">Enviar</button>
 
-    <!-- Botón de Continuemos -->
-    <button [disabled]="!isCompleted" (click)="goToNext()">Continuemos</button>
+    <!-- Mensaje de retroalimentación -->
+    <div class="feedback">
+      <p>{{ feedbackMessage }}</p>
+    </div>
   </div>
 
+  <!-- Footer con el botón "Continuemos" -->
+  <footer class="footer">
+    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
 
-
+  </footer>
 </div>
+
+

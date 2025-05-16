@@ -1,4 +1,4 @@
-/* Fondo */
+/* Fondo general */
 .background {
   background-image: url('/assets/images/fb2fondo.png');
   background-size: cover;
@@ -6,118 +6,124 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   min-height: 100vh;
-  color: #333;
-  padding: 20px;
-}
-
-/* Contenedor principal */
-.content-container {
-  background-color: rgba(255, 255, 204, 0.9);
-  border-radius: 15px;
-  gap: 20px;
-  padding: 30px;
-  text-align: center;
-  max-width: 95%;
   font-family: 'Press Start 2P', cursive;
+  padding: 20px;
+  gap: 1rem;
 }
 
-
-/* Contenedor de fracciones en fila */
-.fraction-row {
-  display: flex;
-  flex-wrap: nowrap;  /* Evita que los elementos salten de línea */
-  overflow-x: auto;  /* Permite desplazamiento horizontal si es necesario */
-  justify-content: center;
-  gap: 15px;
-  padding-bottom: 10px;
+/* Tarjetas */
+.card {
+  background-color: rgba(173, 216, 230, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
 }
 
-/* Celda de fracción */
-.fraction-cell {
+.title-card h2 {
+  font-size: 1.1rem;
+  color: #000;
+  margin: 0;
+}
+
+/* Zona dinámica */
+.dynamic-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  background-color: rgba(173, 216, 230, 0.8);
-  padding: 15px;
-  border-radius: 10px;
-  width: 220px; /* Tamaño fijo para uniformidad */
-  flex-shrink: 0; /* Evita que las tarjetas se encojan */
+  gap: 1rem;
 }
 
-/* Imágenes de fracción */
-.fraction-cell img {
-  width: 200px;  /* Tamaño uniforme */
-  height: 200px; /* Tamaño uniforme */
-  object-fit: cover; /* Ajusta la imagen sin deformarla */
-  margin-bottom: 10px;
-  border-radius: 5px;
+.fraction-graphic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Input */
-.fraction-cell input {
+.fraction-image,
+.fraction-representation {
+  width: 160px;
+  max-width: 90%;
+  height: auto;
+}
+
+/* Inputs */
+.input-zone input {
   padding: 10px;
-  font-size: 16px;
-  border: 2px solid #333;
-  border-radius: 5px;
+  border: 2px solid green;
+  border-radius: 6px;
+  width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
   text-align: center;
-  width: 90%;
 }
 
-/* Botón */
+/* Botones */
 button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  font-size: 18px;
+  padding: 10px 24px;
+  border: none;
   background-color: #4CAF50;
   color: white;
-  border: none;
-  border-radius: 5px;
+  font-size: 1rem;
+  border-radius: 6px;
+  font-family: 'Press Start 2P', cursive;
   cursor: pointer;
-  transition: background 0.3s ease-in-out;
+  transition: 0.3s;
 }
 
 button:disabled {
-  background-color: #ddd;
+  background-color: #999;
   cursor: not-allowed;
 }
 
-button:hover:enabled {
-  background-color: #45a049;
-}
-/* Contenedor principal que organiza las tarjetas en fila */
-
-
-/* Tarjeta de consejo */
-.tip-card {
-  background-color: rgba(255, 228, 196, 0.8); /* Color beige transparente */
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  max-width: 250px;
-  margin-bottom: 10px;
+button:hover:not(:disabled) {
+  background-color: #388e3c;
+  box-shadow: 0 0 10px #81c784;
 }
 
-.tip-card img {
+/* Feedback */
+.feedback {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.footer {
   width: 100%;
-  max-width: 160px;
-  height: auto;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 
-
-
-.tip-card p {
-  font-size: 20px;
-  color: black;
+.footer button {
+  padding: 12px 28px;
+  font-size: 1rem;
+  background-color: #03A9F4;
+  color: #000;
+  border-radius: 8px;
 }
 
-/* Adaptación para pantallas pequeñas */
+.footer button:hover {
+  background-color: #0288d1;
+  color: white;
+}
+
+/* Responsividad */
 @media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-    align-items: center;
+  .fraction-image,
+  .fraction-representation {
+    width: 120px;
+  }
+
+  .input-zone input {
+    font-size: 0.7rem;
+  }
+
+  .footer button {
+    font-size: 0.9rem;
+    padding: 10px 20px;
   }
 }
