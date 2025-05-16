@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {environment} from '../../../shared/environments/environment.development';
 
 
 interface Option {
@@ -63,11 +64,11 @@ export class LearningPathComponent implements OnInit {
   loadUserResponses(profileId: number): void {
     const quizId = 1;
 
-    this.http.get<Response[]>(`https://viks-adventures-api-hipx.onrender.com/api/v1/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
+    this.http.get<Response[]>(`${environment.serverBasePath}/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
       next: responses => {
         console.log('🟢 Respuestas del usuario:', responses);
 
-        this.http.get<Option[]>(`https://viks-adventures-api-hipx.onrender.com/api/v1/options/quiz/${quizId}`).subscribe({
+        this.http.get<Option[]>(`${environment.serverBasePath}/options/quiz/${quizId}`).subscribe({
           next: options => {
             console.log('🟢 Opciones del quiz:', options);
 
