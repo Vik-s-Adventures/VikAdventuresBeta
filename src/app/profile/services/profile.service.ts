@@ -26,7 +26,7 @@ export class ProfileService {
     return this.http.get<Profile>(url);
   }
   getProfileByUserId(userId: number): Observable<Profile> {
-    return this.http.get<Profile>(`${this.resourcePath()}/by-user/${userId}`);
+    return this.http.get<Profile>(`${this.resourcePath()}/users/${userId}`);
   }
 
 
