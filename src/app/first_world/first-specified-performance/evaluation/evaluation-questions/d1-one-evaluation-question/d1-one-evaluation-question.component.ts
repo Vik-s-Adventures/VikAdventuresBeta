@@ -16,7 +16,7 @@ export class D1OneEvaluationQuestionComponent {
   isOptionSelected = false;
   isAnswerCorrect: boolean | null = null;
 
-  correctAnswer = 8; // ✅ Respuesta correcta
+  correctAnswer = 6; // ✅ Respuesta correcta
 
   selectOption(option: number): void {
     this.selectedOption = option;

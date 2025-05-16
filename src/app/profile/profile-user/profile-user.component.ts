@@ -31,7 +31,7 @@ export class ProfileUserComponent implements OnInit {
 
       if (userId) {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        this.http.get(`${environment.serverBasePath}/profiles/by-user/${userId}`, { headers })
+        this.http.get(`${environment.serverBasePath}/profiles/users/${userId}`, { headers })
           .subscribe({
             next: data => this.profile = data,
             error: err => console.error('❌ Error al cargar perfil:', err)
