@@ -63,11 +63,11 @@ export class LearningPathComponent implements OnInit {
   loadUserResponses(profileId: number): void {
     const quizId = 1;
 
-    this.http.get<Response[]>(`http://localhost:8080/api/v1/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
+    this.http.get<Response[]>(`https://viks-adventures-api-hipx.onrender.com/api/v1/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
       next: responses => {
         console.log('🟢 Respuestas del usuario:', responses);
 
-        this.http.get<Option[]>(`http://localhost:8080/api/v1/options/quiz/${quizId}`).subscribe({
+        this.http.get<Option[]>(`https://viks-adventures-api-hipx.onrender.com/api/v1/options/quiz/${quizId}`).subscribe({
           next: options => {
             console.log('🟢 Opciones del quiz:', options);
 
