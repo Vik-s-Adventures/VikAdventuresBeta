@@ -148,6 +148,39 @@
 .register-link:hover {
   color: #0000ff;
 }
+.form-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+}
+
+.column {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error-msg {
+  font-size: 0.6rem;
+  color: red;
+  font-family: 'Press Start 2P', cursive;
+  margin-top: 4px;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
+  }
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {

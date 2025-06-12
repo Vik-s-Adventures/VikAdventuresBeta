@@ -7,86 +7,62 @@
 
   <!-- Contenido principal -->
   <div class="content-container">
-    <!-- Sprite -->
-    <div id="phaser-container"></div>
-
-    <!-- Tarjetas -->
     <div class="card-container">
+
+      <!-- Card 0: Bienvenida -->
       <div class="title" *ngIf="currentCard === 0">
-        <h1 class="dynamic-title">FRACCIONES</h1>
+        <h1 class="dynamic-title">{{ tome?.title }}</h1>
       </div>
       <div class="dialog-card" *ngIf="currentCard === 0">
-        <p>¡Hola! Hoy te voy a explicar sobre las fracciones. Empecemos con los conceptos básicos.</p>
+        <p>{{ tome?.welcome }}</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === 0">
+        <img src="../../../../../assets/images/vickkk.png" alt="Fracción bienvenida">
       </div>
 
-      <div class="title" *ngIf="currentCard === 1">
-        <h2 class="dynamic-title-small">¿QUÉ ES UNA FRACCIÓN?</h2>
-      </div>
-      <div class="dialog-card" *ngIf="currentCard === 1">
-        <p>Una fracción es una forma de representar una parte de un todo.</p>
-      </div>
+      <!-- Cards 1..N: Conceptos -->
+      <ng-container *ngFor="let concept of concepts; let i = index">
+        <div class="title" *ngIf="currentCard === i + 1">
+          <h2 class="dynamic-title-small">{{ concept.subtitle }}</h2>
+        </div>
+        <div class="dialog-card" *ngIf="currentCard === i + 1">
+          <p>{{ concept.description }}</p>
+        </div>
+        <div class="example-card" *ngIf="currentCard === i + 1">
+          <img [src]="concept.imageUrl" alt="Imagen del concepto">
+        </div>
+      </ng-container>
 
-      <div class="title" *ngIf="currentCard === 2">
-        <h2 class="dynamic-title-small">PARTES DE UNA FRACCIÓN</h2>
-      </div>
-      <div class="dialog-card" *ngIf="currentCard === 2">
-        <p>Una fracción tiene dos partes principales: el numerador (arriba) y el denominador (abajo).</p>
-      </div>
-      <div class="example-card" *ngIf="currentCard === 2">
-        <img src="https://i.ibb.co/Y4Zq0gMM/partefraccion.png" alt="Partes de una fracción">
-      </div>
-
-      <div class="title" *ngIf="currentCard === 3">
-        <h2 class="dynamic-title-small">FRACCIONES PROPIAS</h2>
-      </div>
-      <div class="dialog-card" *ngIf="currentCard === 3">
-        <p>Fracción propia: el numerador es menor que el denominador.</p>
-      </div>
-      <div class="example-card" *ngIf="currentCard === 3">
-        <img src="../../../../../assets/images/fraccionpropia.png" alt="Fracción propia">
-      </div>
-
-      <div class="title" *ngIf="currentCard === 4">
-        <h2 class="dynamic-title-small">FRACCIONES IMPROPIAS</h2>
-      </div>
-      <div class="dialog-card" *ngIf="currentCard === 4">
-        <p>Fracción impropia: el numerador es mayor que el denominador.</p>
-      </div>
-      <div class="example-card" *ngIf="currentCard === 4">
-        <img src="../../../../../assets/images/fraccionimpropia.png" alt="Fracción impropia">
-      </div>
-
-      <div class="title" *ngIf="currentCard === 5">
-        <h2 class="dynamic-title-small">FRACCIONES MIXTAS</h2>
-      </div>
-      <div class="dialog-card" *ngIf="currentCard === 5">
-        <p>Fracción mixta: combina un número entero y una fracción.</p>
-      </div>
-      <div class="example-card" *ngIf="currentCard === 5">
-        <img src="../../../../../assets/images/fraccionmixta.png" alt="Fracción mixta">
-      </div>
-
-      <div class="title" *ngIf="currentCard === 6">
+      <!-- Card N+1: Consejo (Advice) -->
+      <div class="title" *ngIf="currentCard === concepts.length + 1">
         <h2 class="dynamic-title-small">CONSEJO ÚTIL</h2>
       </div>
-      <div class="dialog-card" *ngIf="currentCard === 6">
-        <p>Simplifica las fracciones siempre que sea posible para facilitar los cálculos.</p>
+      <div class="dialog-card" *ngIf="currentCard === concepts.length + 1">
+        <p>{{ tome?.advice }}</p>
+      </div>
+      <div class="example-card" *ngIf="currentCard === concepts.length + 1">
+        <img src="../../../../../assets/images/vickkk.png" alt="Consejo">
       </div>
 
-      <div class="dialog-card" *ngIf="currentCard === 7">
+      <!-- Card N+2: Final -->
+      <div class="dialog-card" *ngIf="currentCard === concepts.length + 2">
         <p>¡Eso es todo! Ahora lo pondremos en práctica.</p>
         <button (click)="goToRemember()">CONTINUEMOS</button>
       </div>
+      <div class="example-card" *ngIf="currentCard === concepts.length + 2">
+        <img src="../../../../../assets/images/vickkk.png" alt="Final">
+      </div>
+
     </div>
   </div>
 
-  <!-- Footer fijo y con textos -->
+  <!-- Footer navegación -->
   <footer class="footer-container">
     <div class="arrow-group" *ngIf="currentCard > 0" (click)="previousCard()">
       <div class="arrow-left"></div>
       <span class="arrow-label">Retroceder</span>
     </div>
-    <div class="arrow-group" *ngIf="currentCard < 7" (click)="nextCard()">
+    <div class="arrow-group" *ngIf="currentCard < concepts.length + 2" (click)="nextCard()">
       <div class="arrow"></div>
       <span class="arrow-label">Avanzar</span>
     </div>

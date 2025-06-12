@@ -1,24 +1,26 @@
 <app-header></app-header>
 <div class="background-container">
-  <h2 class="title">Escoge una de las cartas para terminar el nivel,¡SUERTE!</h2>
+  <h2 class="title">{{ finalBattleDescription }}</h2>
+
   <div class="cards-container">
     <div
-      *ngFor="let card of cards; let i = index"
+      *ngFor="let card of obstacleCards; let i = index"
       class="card"
       [ngClass]="{ 'selected': i === currentCardIndex }"
       (click)="revealCard(i)"
     >
       <div class="card-inner">
         <div class="card-front">
-          <img [src]="card.image" alt="Imagen de la carta" />
+          <img src="assets/images/final-battle/back.png" alt="Imagen de la carta" />
           <p>¿...?</p>
         </div>
         <div class="card-back" *ngIf="card.revealed">
-          <p>{{ card.question }}</p>
+          <p class="card-question">{{ card.description }}</p>
         </div>
       </div>
-      <button *ngIf="card.revealed" class="go-to-question-btn" (click)="goToQuestion(card.route)">Continuar</button>
+      <button *ngIf="card.revealed" class="go-to-question-btn" (click)="goToQuestion(card.id)">
+        Continuar
+      </button>
     </div>
   </div>
 </div>
-

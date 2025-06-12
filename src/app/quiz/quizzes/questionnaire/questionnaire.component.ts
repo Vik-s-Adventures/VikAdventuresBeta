@@ -24,6 +24,8 @@ export class QuestionnaireComponent implements OnInit {
   currentQuestion!: Question;
   selectedAnswer: Option | null = null;
   currentProfile!: Profile;
+  selectedQuizId: number=1;
+
 
   constructor(
     private router: Router,
@@ -110,12 +112,35 @@ export class QuestionnaireComponent implements OnInit {
           if (this.currentQuestionIndex < this.questions.length) {
             this.currentQuestion = this.questions[this.currentQuestionIndex];
           } else {
-            alert('🎉 Has completado el cuestionario');
-            this.router.navigate(['/learning-path']);
+            const profileId = this.currentProfile.id;
+            const quizId = this.selectedQuizId;
+
+            if (!quizId) {
+              console.error('❌ No se encontró quizId para generar la ruta');
+              return;
+            }
+
+            console.log('🚀 Generando ruta con:', { profileId, quizId });
+
+            this.learningPathService.generateLearningPath(profileId, quizId).subscribe({
+              next: () => {
+                console.log('✅ Ruta generada correctamente');
+                localStorage.setItem('profileId', profileId.toString());
+                this.router.navigate(['/learning-path']);
+              },
+              error: (error: any) => {
+                console.error('❌ Error al generar la ruta de aprendizaje:', error);
+                alert('Hubo un error al generar tu ruta. Inténtalo más tarde.');
+              }
+            });
           }
         },
-        error: (error) => console.error(error)
+        error: (error) => {
+          console.error('❌ Error al guardar la respuesta del perfil:', error);
+        }
       });
     }
   }
+
+
 }

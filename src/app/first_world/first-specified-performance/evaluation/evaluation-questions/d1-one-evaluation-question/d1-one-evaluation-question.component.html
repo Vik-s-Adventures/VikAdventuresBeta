@@ -1,26 +1,21 @@
-<!-- HTML COMPLETO ACTUALIZADO -->
 <app-header></app-header>
 <div class="container">
   <h2 class="question-title">Pregunta Evaluadora</h2>
 
   <div class="question-card">
     <p class="question-text">
-      Pedro recogió cierta cantidad de cocos. Colocó 1/4 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántos cocos dejó Pedro en la canasta?
+      {{ question }}
     </p>
-    <img class="question-image" src="assets/images/d1/final/f-im2.png" alt="Imagen referencial">
+    <img class="question-image" [src]="imageUrl" alt="Imagen referencial" />
 
     <div class="options-container">
-      <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(6)"> 6
-      </label>
-      <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(10)"> 10
-      </label>
-      <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(13)"> 13
-      </label>
-      <label class="option">
-        <input type="radio" name="answer" (change)="selectOption(7)"> 7
+      <label class="option" *ngFor="let option of options">
+        <input
+          type="radio"
+          name="answer"
+          (change)="selectOption(option.id)"
+        />
+        {{ option.optionText }}
       </label>
     </div>
 

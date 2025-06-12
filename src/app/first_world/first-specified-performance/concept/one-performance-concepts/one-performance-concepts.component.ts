@@ -1,5 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TomeService } from '../services/tome.service';
+import { ConceptService } from '../services/concept.service';
+import { Tome } from '../models/Tome';
+import { Concept } from '../models/Concept';
+import {environment} from '../../../../shared/environments/environment.development';
 
 @Component({
   selector: 'app-one-performance-concepts',
@@ -8,70 +13,78 @@ import {Router} from '@angular/router';
   styleUrl: './one-performance-concepts.component.css'
 })
 export class OnePerformanceConceptsComponent implements OnInit {
-  phaserGame!: Phaser.Game;
   currentCard = 0;
+  levelId!: number;
+  tome!: Tome;
+  concepts: Concept[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private tomeService: TomeService,
+    private conceptService: ConceptService
+  ) {}
 
   ngOnInit(): void {
-    this.phaserGame = new Phaser.Game({
-      type: Phaser.AUTO,
-      width: 300,
-      height: 300,
-      parent: 'phaser-container',
-      transparent: true,
-      scale: {
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
-      },
-      scene: {
-        preload: function () {
-          this.load.spritesheet('character', 'assets/images/adelantesprite.png', {
-            frameWidth: 500,
-            frameHeight: 500
-          });
-        },
-        create: function () {
-          const scaleFactor = window.innerWidth < 480 ? 0.4 : window.innerWidth < 768 ? 0.5 : 0.6;
-          this.anims.create({
-            key: 'walk',
-            frames: this.anims.generateFrameNumbers('character', { start: 0, end: 3 }),
-            frameRate: 8,
-            repeat: -1
-          });
-          const sprite = this.add.sprite(150, 150, 'character').setScale(scaleFactor);
-          sprite.play('walk');
-        },
-        update: function () {}
-      }
+    this.route.params.subscribe(params => {
+      this.levelId = +params['levelId'];
+
+      console.log('✅ levelId recibido correctamente:', this.levelId);
+
+      this.loadTomeAndConcepts(this.levelId);
     });
   }
 
-  // Cambia a la tarjeta siguiente
+  loadTomeAndConcepts(levelId: number): void {
+    const tomeUrl = `${environment.serverBasePath}/tomes/level/${levelId}`;
+    console.log('📥 Request URL:', tomeUrl);
+
+    this.tomeService.getByLevelId(levelId).subscribe({
+      next: tomes => {
+        if (!tomes || tomes.length === 0) {
+          console.error('❌ No se encontró ningún tome para el levelId:', levelId);
+          return;
+        }
+
+        this.tome = tomes[0]; // ✅ toma el primero del arreglo
+        console.log('📘 Tome recibido:', this.tome);
+
+        const conceptUrl = `${environment.serverBasePath}/concepts/tome/${this.tome.id}`;
+        console.log('📥 Request URL para concepts:', conceptUrl);
+
+        this.conceptService.getByTomeId(this.tome.id).subscribe({
+          next: concepts => {
+            this.concepts = concepts;
+            console.log('📚 Concepts recibidos:', concepts);
+          },
+          error: err => console.error('❌ Error al cargar concepts:', err)
+        });
+      },
+      error: err => console.error('❌ Error al cargar tome:', err)
+    });
+  }
+
+
   nextCard(): void {
-    if (this.currentCard < 7) {
+    if (this.currentCard < this.concepts.length + 2) {
       this.currentCard++;
     }
   }
 
-  // Cambia a la tarjeta anterior
   previousCard(): void {
     if (this.currentCard > 0) {
       this.currentCard--;
     }
   }
 
-  // Redirige al componente de práctica
   goToRemember(): void {
-    this.router.navigate(['/d1-one-practice']);
+    this.router.navigate(['/d1-one-practice', this.levelId]);
   }
 
-  // Redirige al menú
   navigateToComponent1(): void {
     this.router.navigate(['/menu']);
   }
 
-  // Redirige a la ruta de aprendizaje
   navigateToComponent2(): void {
     this.router.navigate(['/learning-path']);
   }

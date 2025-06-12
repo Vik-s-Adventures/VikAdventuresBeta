@@ -1,0 +1,29 @@
+.runner-container {
+  max-width: 400px;
+  margin: 30px auto;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

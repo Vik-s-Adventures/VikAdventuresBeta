@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Obstacle} from '../models/Obstacle';
+import {FinalBattleService} from '../services/final-battle.service';
+import {ObstacleService} from '../services/obstacle.service';
 
 @Component({
   selector: 'app-one-performance-evaluation',
@@ -7,34 +10,60 @@ import {Router} from '@angular/router';
   templateUrl: './one-performance-evaluation.component.html',
   styleUrl: './one-performance-evaluation.component.css'
 })
-export class OnePerformanceEvaluationComponent {
-  currentCardIndex = -1; // Al principio, ninguna carta está seleccionada
-  cards = [
-    {
-      image: '../../../../../assets/images/perab2.png',  // Ruta de la imagen
-      question: "Pedro recogió cierta cantidad de cocos. Colocó 1/4 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántos cocos dejó Pedro en la canasta?",
-      revealed: false,
-      route: '/d1-one-evaluation-question'
-    },
-    {
-      image: '../../../../../assets/images/sandia.png',  // Ruta de la imagen
-      question: "Roberto recogió cierta cantidad de naranjas. Colocó 1/5 de esa cantidad en un plato y dejó el resto en la canasta. ¿Cuántas naranjas dejó Roberto en la canasta?",
-      revealed: false,
-      route: '/d1-two-evaluation-question'
-    }
-  ];
+export class OnePerformanceEvaluationComponent implements OnInit {
+  levelId!: number;
+  finalBattleDescription: string = '';
+  obstacleCards: Obstacle[] = [];
+  currentCardIndex: number = -1;
 
-  constructor(private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private finalBattleService: FinalBattleService,
+    private obstacleService: ObstacleService
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.levelId = +params['levelId'];
+
+      this.finalBattleService.getByLevelId(this.levelId).subscribe({
+        next: finalBattles => {
+          const finalBattle = finalBattles[0];
+          if (!finalBattle || typeof finalBattle.id === 'undefined') {
+            console.error('❌ Error: finalBattle.id está undefined');
+            return;
+          }
+
+          this.finalBattleDescription = finalBattle.description;
+
+          this.obstacleService.getByFinalBattleId(finalBattle.id).subscribe({
+            next: (obstacles: any[]) => {
+              // Mapear los campos invertidos del backend
+              this.obstacleCards = obstacles.map(o => ({
+                id: o.id,
+                finalBattleId: o.finalBattleId,
+                description: o.imageUrl, // ← Aquí va el texto
+                imageUrl: o.description, // ← Aquí va la imagen
+                revealed: false
+              }));
+            },
+            error: err => console.error('❌ Error al cargar obstáculos:', err)
+          });
+        },
+        error: err => console.error('❌ Error al cargar final battle:', err)
+      });
+    });
   }
 
-  revealCard(index: number) {
+  revealCard(index: number): void {
     if (this.currentCardIndex === -1) {
       this.currentCardIndex = index;
-      this.cards[index].revealed = true;
+      this.obstacleCards[index].revealed = true;
     }
   }
 
-  goToQuestion(route: string) {
-    this.router.navigate([route]);
+  goToQuestion(obstacleId: number): void {
+    this.router.navigate(['/d1-one-evaluation-question', obstacleId]);
   }
 }

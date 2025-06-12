@@ -1,10 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {environment} from '../../shared/environments/environment.development';
 
 @Injectable({ providedIn: 'root' })
 export class LearningPathService {
-  private apiUrl = 'http://localhost:8080/api/v1/learning-path';
+
+  private basePath = environment.serverBasePath;
+  private url: string = '/learning-path';
+
+  private resourcePath(): string {
+    return `${this.basePath}${this.url}`;
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -15,9 +22,17 @@ export class LearningPathService {
     });
 
     return this.http.post<number[]>(
-      `${this.apiUrl}?profileId=${profileId}&quizId=${quizId}`,
+      `${this.resourcePath()}?profileId=${profileId}&quizId=${quizId}`,
       {}, // cuerpo vacío
       { headers }
     );
   }
+
+  generateLearningPath(profileId: number, quizId: number): Observable<any> {
+    return this.http.post(
+      `${this.resourcePath()}?profileId=${profileId}&quizId=${quizId}`,
+      {}
+    );
+  }
+
 }

@@ -1,0 +1,19 @@
+<div class="runner-container">
+  <h3>Generar y Mostrar Ruta de Aprendizaje</h3>
+
+  <select [(ngModel)]="selectedQuizId">
+    <option *ngFor="let quiz of quizzes" [value]="quiz.id">
+      {{ quiz.title || 'Quiz ' + quiz.id }}
+    </option>
+  </select>
+
+  <button (click)="generarYObtenerRuta()">Generar Ruta</button>
+
+  <div *ngIf="rutaFinal.length > 0" class="ruta-container">
+    <h4>Ruta final sugerida:</h4>
+    <ul>
+      <li *ngFor="let paso of rutaFinal">Nivel {{ paso }}</li>
+    </ul>
+  </div>
+</div>
+

@@ -1,8 +1,8 @@
 <app-header></app-header>
 <div class="background">
   <!-- Card para el título -->
-  <div class="card title-card" >
-    <h2>Encuentra los pares según el tipo de fracción</h2>
+  <div class="card title-card">
+    <h2>{{ matchingDescription }}</h2>
   </div>
 
   <!-- Card principal que contiene las 9 cards -->
@@ -26,7 +26,6 @@
 
   <!-- Footer con el botón "Continuemos" -->
   <footer class="footer">
-    <button [disabled]="!isCompleted" (click)="goToNext()" >Continuemos</button>
-
+    <button [disabled]="!isCompleted" (click)="goToNext()">Continuemos</button>
   </footer>
 </div>

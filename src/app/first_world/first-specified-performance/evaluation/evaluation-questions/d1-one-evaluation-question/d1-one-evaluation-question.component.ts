@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ObstacleOption} from '../../models/ObstacleOptions';
+import {ObstacleService} from '../../services/obstacle.service';
+import {ObstacleOptionService} from '../../services/obstacle-option.service';
 
 @Component({
   selector: 'app-d1-one-evaluation-question',
@@ -7,27 +10,54 @@ import {Router} from '@angular/router';
   templateUrl: './d1-one-evaluation-question.component.html',
   styleUrl: './d1-one-evaluation-question.component.css'
 })
-export class D1OneEvaluationQuestionComponent {
+export class D1OneEvaluationQuestionComponent implements OnInit {
+  obstacleId!: number;
+  question = '';
+  imageUrl = '';
+  options: ObstacleOption[] = [];
 
-  constructor(private router: Router) {}
-
-
-  selectedOption: number | null = null;
+  selectedOptionId: number | null = null;
   isOptionSelected = false;
   isAnswerCorrect: boolean | null = null;
 
-  correctAnswer = 6; // ✅ Respuesta correcta
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private obstacleService: ObstacleService,
+    private obstacleOptionService: ObstacleOptionService
+  ) {}
 
-  selectOption(option: number): void {
-    this.selectedOption = option;
-    this.isOptionSelected = true;
-    this.isAnswerCorrect = null; // Reinicia feedback al cambiar selección
+  ngOnInit(): void {
+    this.obstacleId = +this.route.snapshot.params['obstacleId'];
+
+    this.obstacleService.getById(this.obstacleId).subscribe({
+      next: obstacle => {
+        // Corrige el mapeo de campos
+        this.question = obstacle.imageUrl;     // <-- el texto real
+        this.imageUrl = obstacle.description;  // <-- la URL real de la imagen
+      },
+      error: err => console.error('❌ Error al cargar obstáculo:', err)
+    });
+
+    this.obstacleOptionService.getByObstacleId(this.obstacleId).subscribe({
+      next: options => {
+        this.options = options;
+      },
+      error: err => console.error('❌ Error al cargar opciones:', err)
+    });
   }
-  submitAnswer(): void {
-    if (this.selectedOption === this.correctAnswer) {
-      this.isAnswerCorrect = true;
 
-      // Espera 1 segundo para mostrar feedback y luego redirige
+
+  selectOption(optionId: number): void {
+    this.selectedOptionId = optionId;
+    this.isOptionSelected = true;
+    this.isAnswerCorrect = null;
+  }
+
+  submitAnswer(): void {
+    const selectedOption = this.options.find(opt => opt.id === this.selectedOptionId);
+    if (selectedOption?.isCorrect) {
+      this.isAnswerCorrect = true;
       setTimeout(() => {
         this.router.navigate(['/one-dialogues']);
       }, 1000);
@@ -35,5 +65,4 @@ export class D1OneEvaluationQuestionComponent {
       this.isAnswerCorrect = false;
     }
   }
-
 }

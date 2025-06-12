@@ -1,6 +1,6 @@
-export interface MatchItem {
+export interface MatchingItem {
   id: number;
-  label?: string;
-  image?: string;
-  value: string; // para validar el match (clave común)
+  imageUrl: string;
+  isDistractor: boolean;
+  matchingPairId: number;
 }

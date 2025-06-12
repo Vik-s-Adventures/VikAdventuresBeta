@@ -15,6 +15,13 @@ interface Response {
   profileId: number;
 }
 
+interface Level {
+  id: number;
+  name: string;
+  worldId: number;
+  performance: string;
+}
+
 @Component({
   selector: 'app-learning-path',
   standalone: false,
@@ -25,99 +32,109 @@ export class LearningPathComponent implements OnInit {
   cards: { value: number, id: number, title: string, route: string }[] = [];
 
   constructor(private router: Router, private http: HttpClient) {}
-
   ngOnInit(): void {
     const profileId = localStorage.getItem('profileId');
+    console.log('🟢 ngOnInit - profileId en localStorage:', profileId);
+
     if (!profileId) {
-      console.error('❌ No se encontró el profileId en localStorage');
+      console.error('❌ profileId no encontrado');
       return;
     }
 
-    console.log('🟢 profileId cargado:', profileId);
-    this.initializeCards();
-    this.loadUserResponses(+profileId);
+    // Llama al flujo principal de carga de la ruta de aprendizaje
+    this.loadLearningPath();
   }
 
-  initializeCards(): void {
-    const rutas = [
-      '/one-performance-concept',
-      '/two-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept',
-      '/one-performance-concept'
-    ];
 
-    this.cards = rutas.map((ruta, i) => ({
-      value: -1,
-      id: i + 1,
-      title: `Nivel ${i + 1}`,
-      route: ruta
-    }));
-    console.log('🟢 Niveles inicializados:', this.cards);
-  }
+  loadLearningPath(): void {
+    const profileId = localStorage.getItem('profileId');
+    console.log('🟢 ngOnInit - profileId en localStorage:', profileId);
 
-  loadUserResponses(profileId: number): void {
-    const quizId = 1;
+    if (!profileId) {
+      console.warn('⚠️ No se encontró profileId en localStorage');
+      return;
+    }
 
-    this.http.get<Response[]>(`${environment.serverBasePath}/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
-      next: responses => {
-        console.log('🟢 Respuestas del usuario:', responses);
+    console.log('📥 Iniciando carga de ruta IA para profileId:', profileId);
 
-        this.http.get<Option[]>(`${environment.serverBasePath}/options/quiz/${quizId}`).subscribe({
-          next: options => {
-            console.log('🟢 Opciones del quiz:', options);
+    this.http.get<any[]>(`${environment.serverBasePath}/learning-path/profile/${profileId}`).subscribe({
+      next: (res) => {
+        console.log('📦 Respuesta recibida del backend:', res);
 
-            const questionIdsOrdered = Array.from(new Set(options.map(o => o.questionId)));
-            console.log('🧩 Orden de preguntas:', questionIdsOrdered);
+        const learningPathRaw = res[0]?.learningPath;
+        console.log('🧪 learningPath (raw desde res[0]):', learningPathRaw);
 
-            responses.forEach(resp => {
-              if (!resp.optionId) {
-                console.warn('⚠️ Respuesta sin optionId válido:', resp);
-                return;
-              }
+        if (!learningPathRaw) {
+          console.warn('⚠️ learningPath está vacío, deteniendo flujo');
+          return;
+        }
 
-              const selectedOption = options.find(opt => opt.id === resp.optionId);
-              if (!selectedOption) {
-                console.warn(`⚠️ No se encontró opción con ID=${resp.optionId}`);
-                return;
-              }
+        const learningPath: number[] = Array.isArray(learningPathRaw)
+          ? learningPathRaw
+          : JSON.parse(learningPathRaw);
 
-              const questionId = selectedOption.questionId;
-              const correctOption = options.find(opt => opt.questionId === questionId && opt.isCorrect === true);
-              const isCorrect = correctOption?.id === selectedOption.id;
+        console.log('✅ learningPath convertido a arreglo:', learningPath);
 
-              const levelIndex = questionIdsOrdered.indexOf(questionId);
-              if (levelIndex !== -1 && levelIndex < this.cards.length) {
-                this.cards[levelIndex].value = isCorrect ? 1 : 0;
-              }
+        // Llamamos a los niveles del mundo 1
+        this.http.get<any[]>(`${environment.serverBasePath}/levels/world/1`).subscribe({
+          next: (levels) => {
+            console.log('📘 Niveles del mundo 1:', levels);
 
-              console.log(
-                `📍 Nivel ${levelIndex + 1} | Pregunta=${questionId} | opción=${selectedOption.id} | correcta=${correctOption?.id} | ✅=${isCorrect}`
-              );
-            });
+            this.cards = learningPath.map((levelId: number, index: number) => ({
+              id: levelId,
+              value: -1,
+              title: `Nivel ${index + 1}`,
+              route: '/one-performance-concept'
+            }));
 
-            console.log('✅ Resultado final de niveles:', this.cards);
+            console.log('🧩 Cards construidos:', this.cards);
           },
-          error: err => {
-            console.error('❌ Error al obtener opciones:', err);
+          error: (err) => {
+            console.error('❌ Error al obtener niveles del mundo 1:', err);
           }
         });
       },
-      error: err => {
-        console.error('❌ Error al obtener respuestas del usuario:', err);
+      error: (err) => {
+        console.error('❌ Error al obtener ruta de aprendizaje:', err);
       }
     });
   }
 
+
+
+  loadUserResponses(profileId: number, quizId: number): void {
+    this.http.get<Response[]>(`${environment.serverBasePath}/responses/profile/${profileId}/quiz/${quizId}`).subscribe({
+      next: responses => {
+        this.http.get<Option[]>(`${environment.serverBasePath}/options/quiz/${quizId}`).subscribe({
+          next: options => {
+            const questionIdsOrdered = Array.from(new Set(options.map(o => o.questionId)));
+
+            responses.forEach(resp => {
+              const selectedOption = options.find(opt => opt.id === resp.optionId);
+              const correctOption = selectedOption
+                ? options.find(opt => opt.questionId === selectedOption.questionId && opt.isCorrect)
+                : null;
+
+              const isCorrect = selectedOption && correctOption && selectedOption.id === correctOption.id;
+              const levelIndex = selectedOption
+                ? questionIdsOrdered.indexOf(selectedOption.questionId)
+                : -1;
+
+              if (levelIndex !== -1 && levelIndex < this.cards.length) {
+                this.cards[levelIndex].value = isCorrect ? 1 : 0;
+              }
+            });
+
+            console.log('✅ Resultado final de niveles:', this.cards);
+          },
+          error: err => console.error('❌ Error al obtener opciones:', err)
+        });
+      },
+      error: err => console.error('❌ Error al obtener respuestas del usuario:', err)
+    });
+  }
+
   onCardSelect(cardId: number): void {
-    const selectedCard = this.cards.find(card => card.id === cardId);
-    if (selectedCard) {
-      this.router.navigate([selectedCard.route]);
-    }
+    this.router.navigate(['/one-performance-concept', cardId]);
   }
 }

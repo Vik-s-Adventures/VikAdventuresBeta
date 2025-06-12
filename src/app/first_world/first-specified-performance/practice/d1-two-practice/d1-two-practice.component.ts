@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatchingItemService} from '../services/matching-item.service';
 
 interface Card {
   id: number;
@@ -15,66 +16,86 @@ interface Card {
   templateUrl: './d1-two-practice.component.html',
   styleUrl: './d1-two-practice.component.css'
 })
-export class D1TwoPracticeComponent {
-  constructor(private router: Router) {}
+export class D1TwoPracticeComponent implements OnInit{
+  levelId!: number;
+  matchingDescription = '';
+  cards: any[] = [];
+  selectedCards: any[] = [];
+  successMessage = '';
+  isCompleted = false;
 
-// Definir las tarjetas con las imágenes y estados necesarios
-cards: Card[] = [
-  { id: 1, type: 'mixta', img: 'assets/images/fraccionmixta.png', revealed: false, matched: false },
-  { id: 2, type: 'impropia', img: 'assets/images/fraccionimpropia.png', revealed: false, matched: false },
-  { id: 3, type: 'propia', img: 'assets/images/fraccionpropia.png', revealed: false, matched: false },
-  { id: 4, type: 'mixta', img: 'assets/images/fraccionmixta.png', revealed: false, matched: false },
-  { id: 5, type: 'impropia', img: 'assets/images/fraccionimpropia.png', revealed: false, matched: false },
-  { id: 6, type: 'propia', img: 'assets/images/fraccionpropia.png', revealed: false, matched: false },
-  { id: 7, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false },
-  { id: 8, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false },
-  { id: 9, type: 'error', img: 'assets/images/x.png', revealed: false, matched: false }
-];
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private matchingItemService: MatchingItemService
+  ) {}
 
-selectedCards: Card[] = [];
-successMessage: string = '';
-isCompleted: boolean = false;
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.levelId = +params['levelId'];
+      console.log('📘 levelId recibido:', this.levelId);
 
-// Método para revelar una tarjeta al hacer clic
-revealCard(card: Card) {
-  if (card.revealed || card.matched || this.selectedCards.length === 2) return;
-
-  card.revealed = true;
-  this.selectedCards.push(card);
-
-  if (this.selectedCards.length === 2) {
-    this.checkForMatch();
+      this.matchingItemService.getByLevelId(this.levelId).subscribe({
+        next: result => {
+          this.matchingDescription = result.description;
+          this.cards = this.shuffle(result.items.map(item => ({
+            id: item.id,
+            img: item.imageUrl,
+            matchingPairId: item.matchingPairId,
+            isDistractor: item.isDistractor,
+            revealed: false,
+            matched: false
+          })));
+          console.log('🃏 Cartas cargadas:', this.cards);
+        },
+        error: err => console.error('❌ Error al cargar matching items:', err)
+      });
+    });
   }
-}
 
-// Verificar si las tarjetas seleccionadas coinciden
-checkForMatch() {
-  const [card1, card2] = this.selectedCards;
-  if (card1.type === card2.type && card1.id !== card2.id) {
-    card1.matched = true;
-    card2.matched = true;
-    this.selectedCards = [];
-    this.checkWinCondition();
-  } else {
-    setTimeout(() => {
-      card1.revealed = false;
-      card2.revealed = false;
+  revealCard(card: any) {
+    if (card.revealed || card.matched || this.selectedCards.length === 2) return;
+    card.revealed = true;
+    this.selectedCards.push(card);
+    if (this.selectedCards.length === 2) this.checkForMatch();
+  }
+
+  checkForMatch() {
+    const [c1, c2] = this.selectedCards;
+    if (
+      c1.matchingPairId === c2.matchingPairId &&
+      !c1.isDistractor && !c2.isDistractor &&
+      c1.id !== c2.id
+    ) {
+      c1.matched = true;
+      c2.matched = true;
       this.selectedCards = [];
-    }, 1000);
+      this.checkWinCondition();
+    } else {
+      setTimeout(() => {
+        c1.revealed = false;
+        c2.revealed = false;
+        this.selectedCards = [];
+      }, 1000);
+    }
   }
-}
 
-// Verificar si el juego se ha completado al encontrar todos los pares
-checkWinCondition() {
-  const allMatched = this.cards.every(card => card.matched || card.type === 'error');
-  if (allMatched) {
-    this.successMessage = '¡Lo lograste! Continuemos.';
-    this.isCompleted = true;  // Habilitar botón "Continuemos"
+  checkWinCondition() {
+    const allMatched = this.cards.every(c => c.matched || c.isDistractor);
+    if (allMatched) {
+      this.successMessage = '¡Lo lograste! Continuemos.';
+      this.isCompleted = true;
+    }
   }
-}
 
-goToNext() {
-  this.router.navigate(['/d1-three-practice']); // Cambia '/menu' a la ruta real de tu menú principal
-}
+  goToNext(): void {
+    this.router.navigate(['/d1-three-practice', this.levelId]);
+
+  }
+
+
+  shuffle(array: any[]): any[] {
+    return array.sort(() => Math.random() - 0.5);
+  }
 }
 

@@ -71,10 +71,12 @@ import {
 import {
   D2TwoEvaluationQuestionComponent
 } from './first_world/second-specified-performance/evaluation/evaluation-questions/d2-two-evaluation-question/d2-two-evaluation-question.component';
+import {TestComponent} from './test/test.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo:'play', pathMatch:'full'},
+  {path: 'test', component: TestComponent},
   {path: 'play', component: PlayComponent},
   {path: 'initial', component: InitialComponent},
   {path: 'sign-up', component: SignUpComponent},
@@ -133,17 +135,28 @@ const routes: Routes = [
     component: QuestionnareFourComponent,
     canActivate: [guardsQuestionnaireAccessGuard]
   },
+  {
+    path: 'one-performance-concept/:levelId',
+    component: OnePerformanceConceptsComponent
+  },
 
-  {path: 'one-performance-concept', component: OnePerformanceConceptsComponent},
   {path: 'two-performance-concept', component: TwoPerformanceConceptsComponent},
 
-  {path: 'd1-one-practice', component: D1OnePracticeComponent},
-  {path: 'd2-one-practice', component: D2OnePracticeComponent},
+  { path: 'd1-one-practice/:levelId',
+    component: D1OnePracticeComponent
+  },
 
-  {path: 'd1-two-practice', component: D1TwoPracticeComponent},
+  { path: 'd1-two-practice/:levelId',
+    component: D1TwoPracticeComponent
+  },
+
   {path: 'd2-two-practice', component: D2TwoPracticeComponent},
 
-  {path: 'd1-three-practice', component: D1ThreePracticeComponent},
+  {
+    path: 'd1-three-practice/:levelId',
+    component: D1ThreePracticeComponent
+  },
+
   {path: 'd2-three-practice', component: D2ThreePracticeComponent},
 
   {path: 'd1-data-identification', component: DataIdentificationComponent},
@@ -153,8 +166,16 @@ const routes: Routes = [
   {path: 'd2-visual-representation', component: D2VisualRepresentationComponent},
   {path: 'd2-operation-response', component: D2OperationResponseComponent},
 
-  {path: 'd1-evaluation', component: OnePerformanceEvaluationComponent},
-  {path: 'd1-one-evaluation-question', component: D1OneEvaluationQuestionComponent},
+
+  {
+    path: 'd1-evaluation/:levelId',
+    component: OnePerformanceEvaluationComponent
+  },
+  {
+    path: 'd1-one-evaluation-question/:obstacleId',
+    component: D1OneEvaluationQuestionComponent
+  },
+
   {path: 'd1-two-evaluation-question', component: D1TwoEvaluationQuestionComponent},
   {path: 'd2-evaluation', component: TwoPerformanceEvaluationComponent},
   {path: 'd2-one-evaluation-question', component: D2OneEvaluationQuestionComponent},
@@ -163,6 +184,7 @@ const routes: Routes = [
   {path: 'one-dialogues', component: OneDialoguesComponent},
 
   {path: 'learning-path', component: LearningPathComponent},
+
 
 
 ];

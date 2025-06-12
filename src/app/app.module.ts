@@ -44,7 +44,13 @@ import { ProfileUserComponent } from './profile/profile-user/profile-user.compon
 import {MatIcon} from '@angular/material/icon';
 import { AuthCallbackComponent } from './iam/auth-callback/auth-callback.component';
 import { ProfileEditDialogComponentComponent } from './profile/profile-edit-dialog-component/profile-edit-dialog-component.component';
-import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import {
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogModule,
+  MatDialogTitle
+} from '@angular/material/dialog';
 import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {
@@ -75,6 +81,8 @@ import { TwoPerformanceEvaluationComponent } from './first_world/second-specifie
 import { D2DataIdentificationComponent } from './first_world/second-specified-performance/practice/practice-end/d2-data-identification/d2-data-identification.component';
 import { D2OperationResponseComponent } from './first_world/second-specified-performance/practice/practice-end/d2-operation-response/d2-operation-response.component';
 import { D2VisualRepresentationComponent } from './first_world/second-specified-performance/practice/practice-end/d2-visual-representation/d2-visual-representation.component';
+import { TestComponent } from './test/test.component';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -129,6 +137,7 @@ import { D2VisualRepresentationComponent } from './first_world/second-specified-
     D2DataIdentificationComponent,
     D2OperationResponseComponent,
     D2VisualRepresentationComponent,
+    TestComponent,
 
   ],
   imports: [
@@ -165,6 +174,9 @@ import { D2VisualRepresentationComponent } from './first_world/second-specified-
     MatFormFieldModule,
     MatInputModule,
     MatDialogClose,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatSnackBarModule,
 
   ],
   providers: [

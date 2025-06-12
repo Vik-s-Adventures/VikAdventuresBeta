@@ -1,58 +1,83 @@
-
 <div class="background">
   <div class="card">
-    <!-- Encabezado con imagen y título -->
+    <!-- Encabezado -->
     <div class="user-info">
       <img src="assets/images/vickk.png" alt="SignUpUser Image" class="user-image">
       <h2 class="title">COMPLETA TUS DATOS</h2>
     </div>
 
-    <!-- Formulario -->
-    <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <form #studentForm="ngForm" (ngSubmit)="validateAndSubmit(studentForm)">
       <div class="form-container">
-        <div class="single-column">
+        <div class="form-grid">
+          <!-- Columna izquierda -->
+          <div class="column">
+            <div>
+              <label for="firstName" class="form-label">Nombres:</label>
+              <input type="text" id="firstName" name="firstName" class="form-input"
+                     required minlength="2" [(ngModel)]="profile.firstName" #firstName="ngModel">
+              <div *ngIf="firstName.invalid && firstName.touched" class="error-msg">
+                Ingresa un nombre válido.
+              </div>
+            </div>
 
-          <div>
-            <label for="firstName" class="form-label">Nombres:</label>
-            <input type="text" id="firstName" name="firstName" [(ngModel)]="profile.firstName" required class="form-input">
+            <div>
+              <label for="birthDate" class="form-label">Fecha de nacimiento:</label>
+              <input type="date" id="birthDate" name="birthDate" class="form-input"
+                     required [(ngModel)]="profile.birthDate" #birthDate="ngModel">
+              <div *ngIf="birthDate.invalid && birthDate.touched" class="error-msg">
+                Ingresa una fecha válida.
+              </div>
+            </div>
+
+            <div>
+              <label for="gradeLevel" class="form-label">Nivel de grado:</label>
+              <input type="number" id="gradeLevel" name="gradeLevel" class="form-input"
+                     required min="1" max="11" [(ngModel)]="profile.gradeLevel" #gradeLevel="ngModel">
+              <div *ngIf="gradeLevel.invalid && gradeLevel.touched" class="error-msg">
+                Ingresa un grado entre 1 y 11.
+              </div>
+            </div>
           </div>
 
-          <div>
-            <label for="lastName" class="form-label">Apellidos:</label>
-            <input type="text" id="lastName" name="lastName" [(ngModel)]="profile.lastName" required class="form-input">
-          </div>
+          <!-- Columna derecha -->
+          <div class="column">
+            <div>
+              <label for="lastName" class="form-label">Apellidos:</label>
+              <input type="text" id="lastName" name="lastName" class="form-input"
+                     required minlength="2" [(ngModel)]="profile.lastName" #lastName="ngModel">
+              <div *ngIf="lastName.invalid && lastName.touched" class="error-msg">
+                Ingresa un apellido válido.
+              </div>
+            </div>
 
-          <div>
-            <label for="birthDate" class="form-label">Fecha de nacimiento:</label>
-            <input type="date" id="birthDate" name="birthDate" [(ngModel)]="profile.birthDate" required class="form-input">
-          </div>
+            <div>
+              <label for="sex" class="form-label">Género:</label>
+              <select id="sex" name="sex" class="form-input"
+                      required [(ngModel)]="profile.sex" #sex="ngModel">
+                <option value="" disabled selected>Selecciona</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+              </select>
+              <div *ngIf="sex.invalid && sex.touched" class="error-msg">
+                Selecciona un género.
+              </div>
+            </div>
 
-          <div>
-            <label for="sex" class="form-label">Sexo:</label>
-            <select id="sex" name="sex" [(ngModel)]="profile.sex" required class="form-input">
-              <option value="M">Masculino</option>
-              <option value="F">Femenino</option>
-            </select>
+            <div>
+              <label for="school" class="form-label">Escuela:</label>
+              <input type="text" id="school" name="school" class="form-input"
+                     required minlength="2" [(ngModel)]="profile.school" #school="ngModel">
+              <div *ngIf="school.invalid && school.touched" class="error-msg">
+                Ingresa una escuela válida.
+              </div>
+            </div>
           </div>
-
-          <div>
-            <label for="gradeLevel" class="form-label">Nivel de grado:</label>
-            <input type="number" id="gradeLevel" name="gradeLevel" [(ngModel)]="profile.gradeLevel" required class="form-input">
-          </div>
-
-          <div>
-            <label for="school" class="form-label">Escuela:</label>
-            <input type="text" id="school" name="school" [(ngModel)]="profile.school" required class="form-input">
-          </div>
-
         </div>
       </div>
 
-      <!-- Botón de enviar -->
       <button type="submit" [disabled]="studentForm.invalid" class="action-button">
         Enviar
       </button>
     </form>
   </div>
 </div>
-
