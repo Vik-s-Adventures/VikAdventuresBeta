@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../iam/services/auth.service';
 import Phaser from 'phaser';
+import {AudioService} from '../../shared/services/audio.service';
 
 @Component({
   selector: 'app-play',
@@ -10,15 +11,17 @@ import Phaser from 'phaser';
   styleUrl: './play.component.css'
 })
 export class PlayComponent implements OnInit{
-  constructor(private router: Router,
-              private authService: AuthService) {}
+  phaserGame!: Phaser.Game;
 
+  constructor(
+    private router: Router,
+    private audioService: AudioService
+  ) {}
 
   navigateToInitial(): void {
+    this.audioService.play('assets/music/Plucked.wav'); // Reproduce música al hacer clic en PLAY
     this.router.navigate(['/initial']);
   }
-
-  phaserGame!: Phaser.Game;
 
   preload = function (this: Phaser.Scene) {
     this.load.spritesheet('character', 'assets/images/vick250ad.png', {
@@ -35,11 +38,12 @@ export class PlayComponent implements OnInit{
       repeat: -1
     });
 
-    // Ajuste dinámico de escala según el ancho del canvas
     const canvasWidth = this.sys.canvas.width;
     const scaleFactor = canvasWidth <= 200 ? 0.4 : canvasWidth <= 300 ? 0.6 : 0.8;
 
-    const sprite = this.add.sprite(canvasWidth / 2, canvasWidth * 0.35, 'character').setScale(scaleFactor);
+    const sprite = this.add.sprite(canvasWidth / 2, canvasWidth * 0.35, 'character')
+      .setScale(scaleFactor);
+
     sprite.play('walk');
   };
 
