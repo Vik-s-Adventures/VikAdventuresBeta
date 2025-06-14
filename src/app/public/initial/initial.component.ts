@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import * as Phaser from 'phaser';
 import {AuthService} from '../../iam/services/auth.service';
+import {AudioService} from '../../shared/services/audio.service';
 
 @Component({
   selector: 'app-initial',
@@ -11,10 +12,12 @@ import {AuthService} from '../../iam/services/auth.service';
 })
 export class InitialComponent implements OnInit{
   constructor(private router: Router,
-              private authService: AuthService) {}
+              private authService: AuthService,
+              private audioService: AudioService) {}
 
 
   navigateToGoogleLogin(): void {
+    this.audioService.play('assets/music/Plucked.wav'); // 🔊 Sonido de redirección
     this.authService.loginWithGoogle();
   }
 

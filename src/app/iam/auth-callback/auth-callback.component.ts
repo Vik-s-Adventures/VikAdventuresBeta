@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ProfileService} from '../../profile/services/profile.service';
 import { Profile } from '../../profile/model/Profile';
+import {AudioService} from '../../shared/services/audio.service';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class AuthCallbackComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private audioService: AudioService,
   ) {}
 
   ngOnInit(): void {
@@ -37,8 +39,12 @@ export class AuthCallbackComponent implements OnInit {
               !profile.school;
 
             if (isIncomplete) {
+              this.audioService.stop();
+              this.audioService.play('assets/music/Plucked.wav'); // 🎵 Tema principal si ya tiene perfil
               this.router.navigate(['/profile']); // 🔄 Redirige a completar perfil
             } else {
+              this.audioService.stop();
+              this.audioService.play('assets/music/Bebop.mp3'); // 🎵 Tema principal si ya tiene perfil
               this.router.navigate(['/menu']); // ✅ Perfil completo
             }
           },
