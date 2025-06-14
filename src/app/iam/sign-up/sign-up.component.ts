@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {AudioService} from '../../shared/services/audio.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +21,9 @@ export class SignUpComponent  {
     minLength: false
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private audioService: AudioService) {}
 
   onSignUp(): void {
     if (!this.isFormValid()) return;
@@ -28,6 +31,8 @@ export class SignUpComponent  {
     this.authService.signUp(this.user).subscribe({
       next: (response) => {
         console.log('✅ Usuario registrado exitosamente:', response);
+        // 🔊 Reproducir audio de registro exitoso
+        this.audioService.play('assets/music/Plucked.wav');
         this.router.navigate(['/sign-in']);
       },
       error: (error) => {

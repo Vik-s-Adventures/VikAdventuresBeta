@@ -13,6 +13,6 @@ export class MenuComponent {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('profileId');
-    this.router.navigate(['/initial']);
+    this.router.navigate(['/play']);
   }
 }

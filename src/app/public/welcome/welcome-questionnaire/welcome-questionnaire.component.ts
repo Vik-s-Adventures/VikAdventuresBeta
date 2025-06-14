@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import Phaser from 'phaser';
 import {Router} from '@angular/router';
+import {AudioService} from '../../../shared/services/audio.service';
 
 @Component({
   selector: 'app-welcome-questionnaire',
@@ -12,7 +13,8 @@ export class WelcomeQuestionnaireComponent implements OnInit{
 
   phaserGame!: Phaser.Game;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private audioService: AudioService) {}
 
   ngOnInit(): void {
     const config: Phaser.Types.Core.GameConfig = {
@@ -61,8 +63,13 @@ export class WelcomeQuestionnaireComponent implements OnInit{
 
   continueAction(): void {
     sessionStorage.setItem('allowQuestionnaireAccess', 'true');
+
+    // Detiene la música actual y reproduce una nueva
+    this.audioService.play('assets/music/GypsyAlex(Chiptune).mp3');
+
     this.router.navigate(['/questionnaire']);
   }
+
 }
 
 

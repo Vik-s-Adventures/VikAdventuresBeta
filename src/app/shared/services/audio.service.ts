@@ -7,7 +7,7 @@ export class AudioService {
 
   private currentAudio: HTMLAudioElement | null = null;
 
-  play(src: string, loop = true, volume = 0.2): void {
+  play(src: string, loop = true, volume = 0.1): void {
     // Si ya hay una pista sonando, deténla
     if (this.currentAudio) {
       this.currentAudio.pause();

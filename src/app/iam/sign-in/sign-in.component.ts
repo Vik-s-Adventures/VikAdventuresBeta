@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {ProfileService} from '../../profile/services/profile.service';
 import {Profile} from '../../profile/model/Profile';
+import {AudioService} from '../../shared/services/audio.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -29,7 +30,8 @@ export class SignInComponent {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private audioService: AudioService,// ⬅️ NUEVO
   ) {}
 
 
@@ -58,14 +60,21 @@ export class SignInComponent {
                 !profile.birthDate ||
                 !profile.sex;
 
-              this.router.navigate([isIncomplete ? '/profile' : '/menu']);
+              this.audioService.stop(); // ⛔️ Detiene música anterior
+
+              if (isIncomplete) {
+                this.router.navigate(['/profile']);
+              } else {
+                this.audioService.play('assets/music/Bebop.mp3'); // ✅ Nueva música para menú
+                this.router.navigate(['/menu']);
+              }
             },
             error: () => {
-              // 🔁 Si no tiene perfil aún, lo mandamos a completarlo
               this.router.navigate(['/profile']);
             }
           });
-        } else {
+        }
+        else {
           this.router.navigate(['/login']);
         }
       },

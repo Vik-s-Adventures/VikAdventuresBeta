@@ -10,6 +10,7 @@ import { ProfileResponseService } from '../../services/profile-response.service'
 import { OptionService } from '../../services/option.service';
 import { ProfileService } from '../../../profile/services/profile.service';
 import { LearningPathService } from '../../services/learning-path.service';
+import {AudioService} from '../../../shared/services/audio.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -34,6 +35,7 @@ export class QuestionnaireComponent implements OnInit {
     private responseProfileService: ProfileResponseService,
     private profileService: ProfileService,
     private learningPathService: LearningPathService,
+    private audioService: AudioService // ⬅️ AÑADIDO
   ) {}
 
   ngOnInit(): void {
@@ -126,6 +128,9 @@ export class QuestionnaireComponent implements OnInit {
               next: () => {
                 console.log('✅ Ruta generada correctamente');
                 localStorage.setItem('profileId', profileId.toString());
+                this.audioService.stop(); // Detiene la música actual
+                this.audioService.play('assets/music/Classical Pop.mp3'); // Reproduce nueva música
+
                 this.router.navigate(['/learning-path']);
               },
               error: (error: any) => {
