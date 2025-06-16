@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import confetti from 'canvas-confetti';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {LinkingPairService} from '../services/linking-pair.service';
+import {PlayerLinkingPairService} from '../services/player-linking-pair.service';
+import {PlayerLinkingPairRequest} from '../model/PlayerLinkingPairRequest';
 
 interface MatchItem {
   id: number;
@@ -19,6 +21,7 @@ interface MatchItem {
 })
 export class D1ThreePracticeComponent implements OnInit{
   levelId!: number;
+  profileId!: number;
   description = '';
   leftItems: MatchItem[] = [];
   rightItems: MatchItem[] = [];
@@ -35,18 +38,29 @@ export class D1ThreePracticeComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog,
-    private linkingPairService: LinkingPairService
+    private linkingPairService: LinkingPairService,
+    private playerLinkingPairService: PlayerLinkingPairService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.levelId = +params['levelId'];
+      console.log('🔢 levelId:', this.levelId);
+
+      const storedProfileId = localStorage.getItem('profileId');
+      if (!storedProfileId) {
+        console.error('❌ No se encontró el profileId en localStorage.');
+        this.router.navigate(['/login']);
+        return;
+      }
+      this.profileId = +storedProfileId;
+      console.log('🧾 profileId cargado:', this.profileId);
 
       this.linkingPairService.getByLevelId(this.levelId).subscribe({
         next: result => {
+          console.log('📘 Resultado del servicio linkingPairService:', result);
           this.description = result.description;
 
-          // Left (imagen) y Right (respuesta)
           const items = result.items;
           this.leftItems = this.shuffle(items.map(p => ({
             id: p.id,
@@ -59,6 +73,9 @@ export class D1ThreePracticeComponent implements OnInit{
             label: p.answer,
             value: p.answer
           })));
+
+          console.log('🧩 LeftItems:', this.leftItems);
+          console.log('🧩 RightItems:', this.rightItems);
         },
         error: err => console.error('❌ Error al cargar linking pairs:', err)
       });
@@ -66,28 +83,35 @@ export class D1ThreePracticeComponent implements OnInit{
   }
 
   selectLeft(item: MatchItem) {
+    console.log('🎯 Left seleccionado:', item);
     this.selectedLeft = item;
     this.tryToPair();
   }
 
   selectRight(item: MatchItem) {
+    console.log('🎯 Right seleccionado:', item);
     this.selectedRight = item;
     this.tryToPair();
   }
 
   tryToPair() {
     if (this.selectedLeft && this.selectedRight) {
+      console.log('🔗 Intentando emparejar:', this.selectedLeft, this.selectedRight);
       const alreadyMatched = this.matchedPairs.some(
         pair => pair.left.id === this.selectedLeft!.id || pair.right.id === this.selectedRight!.id
       );
 
       if (!alreadyMatched) {
         this.matchedPairs.push({ left: this.selectedLeft, right: this.selectedRight });
+        console.log('✅ Emparejamiento registrado:', this.matchedPairs);
+      } else {
+        console.warn('⚠️ Ya existe emparejamiento con alguno de los ítems seleccionados');
       }
 
       this.selectedLeft = null;
       this.selectedRight = null;
       this.canSubmit = this.matchedPairs.length === this.leftItems.length;
+      console.log('📦 Pairs actuales:', this.matchedPairs);
     }
   }
 
@@ -101,19 +125,39 @@ export class D1ThreePracticeComponent implements OnInit{
   }
 
   verifyMatches() {
+    console.log('🔍 Verificando respuestas...');
     const correct = this.matchedPairs.every(
       pair => pair.left.value === pair.right.value
     );
 
     if (correct) {
       confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-      this.dialog.open(this.successDialog, { disableClose: true });
+
+      const request: PlayerLinkingPairRequest = {
+        playerId: this.profileId,
+        pairs: this.matchedPairs.map(pair => ({
+          linkingPairImageId: pair.left.id,
+          linkingPairAnswerId: pair.right.id
+        }))
+      };
+
+      console.log('📤 Enviando player linking pairs al backend:', request);
+
+      this.playerLinkingPairService.save(request).subscribe({
+        next: () => {
+          console.log('✅ Emparejamientos guardados exitosamente.');
+          this.dialog.open(this.successDialog, { disableClose: true });
+        },
+        error: err => console.error('❌ Error al guardar emparejamientos:', err)
+      });
     } else {
+      console.warn('❌ Respuestas incorrectas. Mostrando diálogo de error.');
       this.dialog.open(this.errorDialog);
     }
   }
 
   resetPairs() {
+    console.log('🔄 Reiniciando emparejamientos.');
     this.matchedPairs = [];
     this.selectedLeft = null;
     this.selectedRight = null;
@@ -121,10 +165,10 @@ export class D1ThreePracticeComponent implements OnInit{
   }
 
   closeAndNavigate(dialogRef: MatDialogRef<any>) {
+    console.log('➡️ Navegando al siguiente componente.');
     dialogRef.close();
     this.router.navigate([this.redirectUrl, this.levelId]);
   }
-
 
   shuffle(array: any[]): any[] {
     return array.sort(() => Math.random() - 0.5);

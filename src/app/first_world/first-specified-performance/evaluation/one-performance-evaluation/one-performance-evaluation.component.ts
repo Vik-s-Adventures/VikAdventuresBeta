@@ -43,8 +43,8 @@ export class OnePerformanceEvaluationComponent implements OnInit {
               this.obstacleCards = obstacles.map(o => ({
                 id: o.id,
                 finalBattleId: o.finalBattleId,
-                description: o.imageUrl, // ← Aquí va el texto
-                imageUrl: o.description, // ← Aquí va la imagen
+                description: o.description, // ← Aquí va el texto
+                imageUrl: o.imageUrl, // ← Aquí va la imagen
                 revealed: false
               }));
             },

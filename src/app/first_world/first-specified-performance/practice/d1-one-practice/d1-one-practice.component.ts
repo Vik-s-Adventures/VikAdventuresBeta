@@ -6,6 +6,7 @@ import {RiddleDetail} from '../model/RiddleDetails';
 import {TrialService} from '../services/trial.service';
 import {RiddleService} from '../services/riddle.service';
 import {RiddleDetailService} from '../services/riddle-detail.service';
+import {PlayerRiddleAnswerService} from '../services/player-riddle-answer.service';
 
 @Component({
   selector: 'app-d1-one-practice',
@@ -23,19 +24,31 @@ export class D1OnePracticeComponent implements OnInit {
   inputs: string[] = [];
   feedbackMessage = '';
   isCompleted = false;
+  profileId!: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private trialService: TrialService,
     private riddleService: RiddleService,
-    private riddleDetailService: RiddleDetailService
+    private riddleDetailService: RiddleDetailService,
+    private playerRiddleAnswerService: PlayerRiddleAnswerService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.levelId = +params['levelId'];
       console.log('🟦 levelId recibido:', this.levelId);
+
+      const storedProfileId = localStorage.getItem('profileId');
+      if (!storedProfileId) {
+        console.error('❌ No se encontró el profileId en localStorage.');
+        this.router.navigate(['/login']);
+        return;
+      }
+
+      this.profileId = +storedProfileId;
+      console.log('🧾 profileId cargado desde localStorage:', this.profileId);
 
       this.trialService.getByLevelId(this.levelId).subscribe({
         next: trial => {
@@ -75,15 +88,43 @@ export class D1OnePracticeComponent implements OnInit {
   }
 
   checkAnswer(): void {
-    const allCorrect = this.inputs.every((input, i) =>
-      input.trim().toLowerCase() === this.riddleDetails[i].answer.trim().toLowerCase()
-    );
+    const playerId = this.profileId; // usa profileId por ahora (ajustar si se agrega playerId)
+    let allCorrect = true;
+
+    this.riddleDetails.forEach((detail, i) => {
+      const entered = this.inputs[i].trim().toLowerCase();
+      const expected = detail.answer.trim().toLowerCase();
+
+      const answerPayload = {
+        playerId: playerId,
+        riddleDetailId: detail.id,
+        enteredAnswer: entered
+      };
+
+      if (entered === expected) {
+        this.playerRiddleAnswerService.create(answerPayload).subscribe({
+          next: () => console.log(`✅ Respuesta correcta registrada para detalle ${detail.id}`),
+          error: err => {
+            if (err.status === 409 || err.status === 400) {
+              this.playerRiddleAnswerService.update(answerPayload).subscribe({
+                next: () => console.log(`♻️ Respuesta corregida actualizada para detalle ${detail.id}`),
+                error: error => console.error(`❌ Error al actualizar respuesta:`, error)
+              });
+            } else {
+              console.error(`❌ Error al registrar respuesta:`, err);
+            }
+          }
+        });
+      } else {
+        allCorrect = false;
+      }
+    });
 
     if (allCorrect) {
       this.feedbackMessage = '✅ ¡Genial! Respuesta correcta.';
       this.isCompleted = true;
     } else {
-      this.feedbackMessage = '❌ Inténtalo de nuevo.';
+      this.feedbackMessage = '❌ Intenta de nuevo. Revisa tu respuesta.';
       this.inputs = this.inputs.map(() => '');
     }
   }

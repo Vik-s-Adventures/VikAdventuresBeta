@@ -27,7 +27,7 @@
   gap: 25px;
 }
 
-/* INFO DEL USUARIO Y TÍTULO */
+/* INFO DEL USUARIO */
 .user-info {
   display: flex;
   flex-direction: column;
@@ -41,40 +41,56 @@
   margin-bottom: 10px;
 }
 
+/* TÍTULO */
 .title {
-  font-family: 'Press Start 2P', cursive;
   font-size: 1.5rem;
   color: #FFCC00;
   font-weight: bold;
   margin-bottom: 20px;
   text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px  1px 0 #000000,
-    1px  1px 0 #000000;
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
 }
 
-/* CONTENEDOR DE LOS CAMPOS */
+/* CONTENEDOR DE CAMPOS */
 .form-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.single-column {
+/* DISEÑO EN DOS COLUMNAS */
+.form-grid {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
   width: 100%;
 }
 
-/* INPUTS Y SELECTS */
+.column {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CAMPOS DE FORMULARIO */
+.form-label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: black;
+  text-align: left;
+  display: block;
+}
+
 .form-input {
-  font-family: 'Press Start 2P', cursive;
   font-size: 1rem;
   color: blue;
   background-color: white;
-  border: 2px solid #000000;
+  border: 2px solid #000;
   padding: 10px 20px;
   border-radius: 25px;
   text-align: center;
@@ -89,18 +105,16 @@
   transform: scale(1.05);
 }
 
-.form-label {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8rem;
-  margin-bottom: 5px;
-  color: black;
-  display: block;
+/* MENSAJE DE ERROR */
+.error-msg {
+  font-size: 0.6rem;
+  color: red;
+  margin-top: 4px;
   text-align: left;
 }
 
 /* BOTÓN DE ENVÍO */
 .action-button {
-  font-family: 'Press Start 2P', cursive;
   font-size: 1.2rem;
   color: blue;
   background-color: white;
@@ -111,10 +125,10 @@
   border-radius: 25px;
   font-weight: bold;
   text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px  1px 0 #000000,
-    1px  1px 0 #000000;
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
   margin-top: 15px;
 }
 
@@ -123,22 +137,18 @@
   background-color: #60a5fa;
 }
 
-/* OPCIONAL: SECCIÓN DE ENLACE AL REGISTRO */
+/* ENLACE DE REGISTRO */
 .register-container {
   margin-top: 20px;
   text-align: center;
 }
 
-.register-text {
-  font-family: 'Press Start 2P', cursive;
+.register-text,
+.register-link {
   font-size: 0.9rem;
-  color: #000000;
-  margin-bottom: 10px;
 }
 
 .register-link {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
   color: #FF5722;
   text-decoration: none;
   font-weight: bold;
@@ -148,39 +158,6 @@
 .register-link:hover {
   color: #0000ff;
 }
-.form-grid {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100%;
-  gap: 20px;
-}
-
-.column {
-  flex: 1 1 45%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.error-msg {
-  font-size: 0.6rem;
-  color: red;
-  font-family: 'Press Start 2P', cursive;
-  margin-top: 4px;
-  text-align: left;
-}
-
-@media (max-width: 768px) {
-  .form-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .column {
-    width: 100%;
-  }
-}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -188,13 +165,22 @@
     font-size: 1.2rem;
   }
 
+  .form-label {
+    font-size: 0.7rem;
+  }
+
   .form-input,
   .action-button {
     font-size: 0.9rem;
   }
 
-  .form-label {
-    font-size: 0.7rem;
+  .form-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .column {
+    width: 100%;
   }
 
   .user-image {

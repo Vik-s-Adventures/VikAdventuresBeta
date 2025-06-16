@@ -3,4 +3,5 @@ export interface MatchingItem {
   imageUrl: string;
   isDistractor: boolean;
   matchingPairId: number;
+  matchingId: number;
 }

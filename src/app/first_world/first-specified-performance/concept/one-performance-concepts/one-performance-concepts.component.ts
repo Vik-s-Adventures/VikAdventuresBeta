@@ -4,7 +4,8 @@ import { TomeService } from '../services/tome.service';
 import { ConceptService } from '../services/concept.service';
 import { Tome } from '../models/Tome';
 import { Concept } from '../models/Concept';
-import {environment} from '../../../../shared/environments/environment.development';
+import {TomesReviewedService} from '../services/tomes-reviewed.service';
+import {PlayerTomesReviewed} from '../models/PlayerTomesReviewed';
 
 @Component({
   selector: 'app-one-performance-concepts',
@@ -17,28 +18,39 @@ export class OnePerformanceConceptsComponent implements OnInit {
   levelId!: number;
   tome!: Tome;
   concepts: Concept[] = [];
+  profileId!: number;
+  playerId!: number; // <-- Si luego deseas integrarlo
+
+  readConceptIds: Set<number> = new Set();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private tomeService: TomeService,
-    private conceptService: ConceptService
+    private conceptService: ConceptService,
+    private tomesReviewedService: TomesReviewedService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.levelId = +params['levelId'];
-
       console.log('✅ levelId recibido correctamente:', this.levelId);
+
+      const storedProfileId = localStorage.getItem('profileId');
+      if (!storedProfileId) {
+        console.error('❌ No se encontró el profileId en localStorage.');
+        this.router.navigate(['/login']);
+        return;
+      }
+
+      this.profileId = +storedProfileId;
+      console.log('🧾 profileId cargado desde localStorage:', this.profileId);
 
       this.loadTomeAndConcepts(this.levelId);
     });
   }
 
   loadTomeAndConcepts(levelId: number): void {
-    const tomeUrl = `${environment.serverBasePath}/tomes/level/${levelId}`;
-    console.log('📥 Request URL:', tomeUrl);
-
     this.tomeService.getByLevelId(levelId).subscribe({
       next: tomes => {
         if (!tomes || tomes.length === 0) {
@@ -46,11 +58,8 @@ export class OnePerformanceConceptsComponent implements OnInit {
           return;
         }
 
-        this.tome = tomes[0]; // ✅ toma el primero del arreglo
+        this.tome = tomes[0];
         console.log('📘 Tome recibido:', this.tome);
-
-        const conceptUrl = `${environment.serverBasePath}/concepts/tome/${this.tome.id}`;
-        console.log('📥 Request URL para concepts:', conceptUrl);
 
         this.conceptService.getByTomeId(this.tome.id).subscribe({
           next: concepts => {
@@ -64,10 +73,32 @@ export class OnePerformanceConceptsComponent implements OnInit {
     });
   }
 
-
   nextCard(): void {
     if (this.currentCard < this.concepts.length + 2) {
       this.currentCard++;
+
+      const conceptIndex = this.currentCard - 1;
+      if (conceptIndex >= 0 && conceptIndex < this.concepts.length) {
+        const conceptId = this.concepts[conceptIndex].id;
+        if (!this.readConceptIds.has(conceptId)) {
+          const data: PlayerTomesReviewed = {
+            playerId: this.profileId, // usa profileId por ahora (ajustar si se agrega playerId)
+            conceptId: conceptId
+          };
+
+          console.log('📤 Enviando registro de lectura:', data);
+
+          this.tomesReviewedService.markAsRead(data).subscribe({
+            next: () => {
+              console.log(`✅ Concepto ${conceptId} marcado como leído`);
+              this.readConceptIds.add(conceptId);
+            },
+            error: err => {
+              console.error(`❌ Error al marcar como leído el concepto ${conceptId}`, err);
+            }
+          });
+        }
+      }
     }
   }
 

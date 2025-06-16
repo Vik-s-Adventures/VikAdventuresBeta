@@ -21,7 +21,7 @@
             </div>
 
             <div>
-              <label for="birthDate" class="form-label">Fecha de nacimiento:</label>
+              <label for="birthDate" class="form-label">Nacimiento:</label>
               <input type="date" id="birthDate" name="birthDate" class="form-input"
                      required [(ngModel)]="profile.birthDate" #birthDate="ngModel">
               <div *ngIf="birthDate.invalid && birthDate.touched" class="error-msg">

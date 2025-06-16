@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {SignUpUser} from '../model/SignUpUser';
 import {SignInUser} from '../model/SignInUser';
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,6 @@ export class AuthService {
   loginWithGoogle(): void {
     window.location.href = `${this.resourcePath()}/login/google`;
   }
-
 
 
 
