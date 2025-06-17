@@ -10,7 +10,7 @@
     <div class="column">
       <div
         class="level-row"
-        *ngFor="let level of levels.slice(0, 5); let i = index"
+        *ngFor="let score of levels.slice(0, 5); let i = index"
         [class.unlocked]="isLevelUnlocked(i + 1)"
       >
         <div class="level-icon-left">
@@ -18,26 +18,14 @@
         </div>
 
         <div class="progress-bar">
-          <div
-            class="progress-fill"
-            [style.width.%]="getLevelProgress(i + 1)"
-          ></div>
+          <div class="progress-fill" [style.width.%]="getLevelProgress(i + 1)"></div>
           <span class="progress-indicator">
-            Nivel {{ i + 1 }} - {{ level }}/{{ maxPointsPerLevel }}
+            Nivel {{ i + 1 }} - {{ score }}/{{ maxPointsPerLevel }}
           </span>
         </div>
 
         <div class="level-icon-right">
-          <img
-            *ngIf="canUnlockReward(i + 1)"
-            src="assets/images/copa.png"
-            alt="Recompensa"
-          />
-        </div>
-
-        <div class="level-controls">
-          <button (click)="increaseProgress(i)">➕</button>
-          <button (click)="resetProgress(i)">🔄</button>
+          <img *ngIf="canUnlockReward(i + 1)" src="assets/images/copa.png" alt="Recompensa" />
         </div>
       </div>
     </div>
@@ -45,7 +33,7 @@
     <div class="column">
       <div
         class="level-row"
-        *ngFor="let level of levels.slice(5, 10); let j = index"
+        *ngFor="let score of levels.slice(5, 10); let j = index"
         [class.unlocked]="isLevelUnlocked(j + 6)"
       >
         <div class="level-icon-left">
@@ -53,28 +41,17 @@
         </div>
 
         <div class="progress-bar">
-          <div
-            class="progress-fill"
-            [style.width.%]="getLevelProgress(j + 6)"
-          ></div>
+          <div class="progress-fill" [style.width.%]="getLevelProgress(j + 6)"></div>
           <span class="progress-indicator">
-            Nivel {{ j + 6 }} - {{ level }}/{{ maxPointsPerLevel }}
+            Nivel {{ j + 6 }} - {{ score }}/{{ maxPointsPerLevel }}
           </span>
         </div>
 
         <div class="level-icon-right">
-          <img
-            *ngIf="canUnlockReward(j + 6)"
-            src="assets/images/copa.png"
-            alt="Recompensa"
-          />
-        </div>
-
-        <div class="level-controls">
-          <button (click)="increaseProgress(j + 5)">➕</button>
-          <button (click)="resetProgress(j + 5)">🔄</button>
+          <img *ngIf="canUnlockReward(j + 6)" src="assets/images/copa.png" alt="Recompensa" />
         </div>
       </div>
     </div>
   </div>
 </div>
+
